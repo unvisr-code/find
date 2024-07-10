@@ -51,7 +51,6 @@ h1 {
 }
 
 button {
-    background-color:  #F2A0B0;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -62,6 +61,7 @@ button {
     margin-top: 10px;
     cursor: pointer;
     border-radius: 5px;
+    background-color: #F2A0B0; /* 버튼 색상 코드 */
 }
 
 .curriculum-bar {
@@ -87,7 +87,7 @@ button {
 }
 
 .month-point {
-    background-color: #4CAF50;
+    background-color: #F2A0B0; /* 포인트 색상 코드 */
     color: white;
     border-radius: 50%;
     cursor: pointer;
