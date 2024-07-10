@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 
-const NOTION_API_KEY = 'secret_ySH1EHTrVrLb80p6yQsOztjQ6CB6HRzFo73lg57Tnnd';
+const NOTION_API_KEY = 'secret_tJNk9yiO1tinhEa5lOpgMx4ZFdwByKSnN99GBxKs47A';
 const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 
 module.exports = async (req, res) => {
