@@ -35,21 +35,33 @@ async function fetchNotionData() {
             const representativeCell = document.createElement('td');
             const clubRoomAddressCell = document.createElement('td');
             const introductionCell = document.createElement('td');
-            const descriptionCell = document.createElement('td');
+            const startDateCell = document.createElement('td');
+            const endDateCell = document.createElement('td');
+            const applicationMethodCell = document.createElement('td');
+            const curriculumCell = document.createElement('td');
+            const logoCell = document.createElement('td');
 
             // 각 셀에 값을 할당
             clubNameCell.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || '';
             representativeCell.textContent = page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || '';
             clubRoomAddressCell.textContent = page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || '';
             introductionCell.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || '';
-            descriptionCell.textContent = page.properties['Description']?.rich_text?.[0]?.plain_text || '';
+            startDateCell.textContent = page.properties['모집 시작일']?.date?.start || '';
+            endDateCell.textContent = page.properties['모집 마감일']?.date?.start || '';
+            applicationMethodCell.textContent = page.properties['신청방법']?.rich_text?.[0]?.plain_text || '';
+            curriculumCell.textContent = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || '';
+            logoCell.innerHTML = page.properties['로고']?.url ? `<img src="${page.properties['로고'].url}" alt="로고" width="50" height="50">` : '';
 
             // 각 셀을 행에 추가
             row.appendChild(clubNameCell);
             row.appendChild(representativeCell);
             row.appendChild(clubRoomAddressCell);
             row.appendChild(introductionCell);
-            row.appendChild(descriptionCell);
+            row.appendChild(startDateCell);
+            row.appendChild(endDateCell);
+            row.appendChild(applicationMethodCell);
+            row.appendChild(curriculumCell);
+            row.appendChild(logoCell);
 
             // 행을 테이블 본문에 추가
             tableBody.appendChild(row);
