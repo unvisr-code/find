@@ -13,61 +13,43 @@ async function fetchNotionData() {
         const data = await response.json();
         console.log('Notion Data:', data);
 
-        const notionList = document.querySelector('#notionList');
-        notionList.innerHTML = '';
+        const tableBody = document.querySelector('#notionTable tbody');
+        tableBody.innerHTML = '';
 
         data.results.forEach(page => {
-            const listItem = document.createElement('div');
-            listItem.className = 'list-item';
+            const row = document.createElement('tr');
 
-            const logoImg = document.createElement('img');
-            const logoUrl = page.properties['로고']?.files?.[0]?.external?.url || '';
-            if (logoUrl) {
-                logoImg.src = logoUrl;
-            } else {
-                logoImg.alt = 'No logo';
-            }
+            const clubNameCell = document.createElement('td');
+            const representativeCell = document.createElement('td');
+            const clubRoomAddressCell = document.createElement('td');
+            const introductionCell = document.createElement('td');
+            const startDateCell = document.createElement('td');
+            const endDateCell = document.createElement('td');
+            const applicationMethodCell = document.createElement('td');
+            const curriculumCell = document.createElement('td');
+            const logoCell = document.createElement('td');
 
-            const listItemContent = document.createElement('div');
-            listItemContent.className = 'list-item-content';
+            clubNameCell.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || '';
+            representativeCell.textContent = page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || '';
+            clubRoomAddressCell.textContent = page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || '';
+            introductionCell.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || '';
+            startDateCell.textContent = page.properties['모집 시작일']?.date?.start || '';
+            endDateCell.textContent = page.properties['모집 마감일']?.date?.start || '';
+            applicationMethodCell.textContent = page.properties['신청방법']?.rich_text?.[0]?.plain_text || '';
+            curriculumCell.textContent = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || '';
+            logoCell.innerHTML = page.properties['로고']?.files?.[0]?.external?.url ? `<img src="${page.properties['로고'].files[0].external.url}" alt="로고" width="50" height="50">` : '';
 
-            const clubName = document.createElement('h2');
-            clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || '';
+            row.appendChild(clubNameCell);
+            row.appendChild(representativeCell);
+            row.appendChild(clubRoomAddressCell);
+            row.appendChild(introductionCell);
+            row.appendChild(startDateCell);
+            row.appendChild(endDateCell);
+            row.appendChild(applicationMethodCell);
+            row.appendChild(curriculumCell);
+            row.appendChild(logoCell);
 
-            const description = document.createElement('p');
-            description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || '';
-
-            const representative = document.createElement('p');
-            representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || ''}`;
-
-            const address = document.createElement('p');
-            address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || ''}`;
-
-            const startDate = document.createElement('p');
-            startDate.textContent = `모집 시작일: ${page.properties['모집 시작일']?.date?.start || ''}`;
-
-            const endDate = document.createElement('p');
-            endDate.textContent = `모집 마감일: ${page.properties['모집 마감일']?.date?.start || ''}`;
-
-            const applicationMethod = document.createElement('p');
-            applicationMethod.textContent = `신청방법: ${page.properties['신청방법']?.rich_text?.[0]?.plain_text || ''}`;
-
-            const curriculum = document.createElement('p');
-            curriculum.textContent = `커리큘럼: ${page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || ''}`;
-
-            listItemContent.appendChild(clubName);
-            listItemContent.appendChild(description);
-            listItemContent.appendChild(representative);
-            listItemContent.appendChild(address);
-            listItemContent.appendChild(startDate);
-            listItemContent.appendChild(endDate);
-            listItemContent.appendChild(applicationMethod);
-            listItemContent.appendChild(curriculum);
-
-            listItem.appendChild(logoImg);
-            listItem.appendChild(listItemContent);
-
-            notionList.appendChild(listItem);
+            tableBody.appendChild(row);
         });
     } catch (error) {
         console.error('Error fetching data:', error);
