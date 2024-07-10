@@ -50,7 +50,7 @@ async function fetchNotionData() {
             endDateCell.textContent = page.properties['모집 마감일']?.date?.start || '';
             applicationMethodCell.textContent = page.properties['신청방법']?.rich_text?.[0]?.plain_text || '';
             curriculumCell.textContent = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || '';
-            logoCell.innerHTML = page.properties['로고']?.url ? `<img src="${page.properties['로고'].url}" alt="로고" width="50" height="50">` : '';
+            logoCell.innerHTML = page.properties['로고']?.files?.[0]?.external?.url ? `<img src="${page.properties['로고'].files[0].external.url}" alt="로고" width="50" height="50">` : '';
 
             // 각 셀을 행에 추가
             row.appendChild(clubNameCell);
