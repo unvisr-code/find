@@ -2,6 +2,7 @@
 const NOTION_API_KEY = 'secret_IBZ0cQY55Y5ZUlGQK7Jx3gziy8RIIljenkvpgvqmKhw';
 const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 
+
 // 페이지가 로드되면 데이터를 가져오는 함수 실행
 document.addEventListener('DOMContentLoaded', fetchNotionData);
 
