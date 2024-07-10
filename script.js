@@ -12,8 +12,9 @@ async function fetchNotionData() {
             headers: {
                 'Authorization': `Bearer ${NOTION_API_KEY}`,
                 'Content-Type': 'application/json',
-                'Notion-Version': '2022-02-02'
-            }
+                'Notion-Version': '2022-02-22' // 최신 버전 확인 후 업데이트
+            },
+            body: JSON.stringify({ page_size: 100 }) // 필요한 경우, 요청 본문 추가
         });
 
         if (!response.ok) {
