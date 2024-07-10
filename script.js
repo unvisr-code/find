@@ -51,12 +51,12 @@ async function fetchNotionData() {
             period.textContent = `모집 기간: ${startDate} ~ ${endDate}`;
 
             const applicationButton = document.createElement('button');
-            applicationButton.textContent = '신청방법';
-            const applicationUrl = page.properties['신청방법']?.url || '#';
+            applicationButton.textContent = '지원하기!';
+            const applicationUrl = page.properties['지원하기!']?.url || '#';
             applicationButton.onclick = () => window.open(applicationUrl, '_blank');
 
             const curriculum = document.createElement('div');
-            curriculum.className = 'curriculum';
+            curriculum.className = 'curriculum-bar';
             const curriculumText = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || 'N/A';
             const curriculumItems = curriculumText.split(' ');
 
@@ -79,14 +79,18 @@ async function fetchNotionData() {
                     const monthPoint = document.createElement('div');
                     monthPoint.className = 'month-point';
                     monthPoint.textContent = month;
-                    monthPoint.title = monthDetails[month].join(', ');
 
                     const detailDiv = document.createElement('div');
                     detailDiv.className = 'month-detail';
                     detailDiv.innerHTML = monthDetails[month].join('<br>');
+
                     monthPoint.appendChild(detailDiv);
 
                     curriculum.appendChild(monthPoint);
+                } else {
+                    const emptyPoint = document.createElement('div');
+                    emptyPoint.className = 'empty-point';
+                    curriculum.appendChild(emptyPoint);
                 }
             });
 

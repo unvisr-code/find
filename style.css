@@ -64,7 +64,7 @@ button {
     border-radius: 5px;
 }
 
-.curriculum {
+.curriculum-bar {
     display: flex;
     align-items: center;
     margin-top: 10px;
@@ -75,24 +75,34 @@ button {
     padding: 5px;
 }
 
-.month-point {
+.month-point,
+.empty-point {
+    width: 8%;
+    height: 100%;
     position: relative;
-    width: 50px;
-    height: 30px;
+    margin: 0 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.month-point {
     background-color: #4CAF50;
     color: white;
-    text-align: center;
-    line-height: 30px;
-    margin: 0 5px;
-    border-radius: 5px;
+    border-radius: 50%;
     cursor: pointer;
+}
+
+.empty-point {
+    background-color: transparent;
 }
 
 .month-detail {
     display: none;
     position: absolute;
     top: 40px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     background-color: #fff;
     color: #333;
     border: 1px solid #ddd;
