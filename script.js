@@ -21,17 +21,25 @@ async function fetchNotionData() {
 
     data.results.forEach(page => {
         const row = document.createElement('tr');
-        const idCell = document.createElement('td');
-        const titleCell = document.createElement('td');
+        
+        const clubNameCell = document.createElement('td');
+        const representativeCell = document.createElement('td');
+        const clubRoomAddressCell = document.createElement('td');
+        const introductionCell = document.createElement('td');
         const descriptionCell = document.createElement('td');
 
-        idCell.textContent = page.id;
-        titleCell.textContent = page.properties.Name.title[0].plain_text;
-        descriptionCell.textContent = page.properties.Description.rich_text[0].plain_text;
+        clubNameCell.textContent = page.properties['동아리명'].title[0]?.plain_text || '';
+        representativeCell.textContent = page.properties['대표자 성함'].rich_text[0]?.plain_text || '';
+        clubRoomAddressCell.textContent = page.properties['동아리방 주소'].rich_text[0]?.plain_text || '';
+        introductionCell.textContent = page.properties['한줄소개'].rich_text[0]?.plain_text || '';
+        descriptionCell.textContent = page.properties['Description'].rich_text[0]?.plain_text || '';
 
-        row.appendChild(idCell);
-        row.appendChild(titleCell);
+        row.appendChild(clubNameCell);
+        row.appendChild(representativeCell);
+        row.appendChild(clubRoomAddressCell);
+        row.appendChild(introductionCell);
         row.appendChild(descriptionCell);
+
         tableBody.appendChild(row);
     });
 }
