@@ -16,12 +16,15 @@ module.exports = async (req, res) => {
         });
 
         if (!response.ok) {
-            return res.status(response.status).json({ error: 'Failed to fetch data from Notion' });
+            const errorText = await response.text();
+            console.error('Failed to fetch data from Notion:', response.status, response.statusText, errorText);
+            return res.status(response.status).json({ error: 'Failed to fetch data from Notion', details: errorText });
         }
 
         const data = await response.json();
         return res.status(200).json(data);
     } catch (error) {
-        return res.status(500).json({ error: 'Internal Server Error' });
+        console.error('Error fetching data from Notion:', error);
+        return res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };

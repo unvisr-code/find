@@ -5,7 +5,8 @@ async function fetchNotionData() {
         const response = await fetch('/api/fetchNotionData');
 
         if (!response.ok) {
-            console.error('Failed to fetch data:', response.statusText);
+            const errorText = await response.text();
+            console.error('Failed to fetch data:', response.status, response.statusText, errorText);
             return;
         }
 
