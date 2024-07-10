@@ -5,6 +5,7 @@ const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 
 module.exports = async (req, res) => {
     try {
+        console.log('Request received');
         const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
             method: 'POST',
             headers: {
