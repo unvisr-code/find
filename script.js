@@ -75,23 +75,20 @@ async function fetchNotionData() {
                 }
             });
 
-            months.forEach(month => {
-                if (monthDetails[month]) {
-                    const monthPoint = document.createElement('div');
-                    monthPoint.className = 'month-point';
-                    monthPoint.textContent = month;
+            const activeMonths = months.filter(month => monthDetails[month]);
 
-                    const detailDiv = document.createElement('div');
-                    detailDiv.className = 'month-detail';
-                    detailDiv.innerHTML = monthDetails[month].join('<br>');
+            activeMonths.forEach(month => {
+                const monthPoint = document.createElement('div');
+                monthPoint.className = 'month-point';
+                monthPoint.textContent = month;
+                monthPoint.style.width = `${100 / activeMonths.length}%`;
 
-                    monthPoint.appendChild(detailDiv);
-                    curriculum.appendChild(monthPoint);
-                } else {
-                    const emptyPoint = document.createElement('div');
-                    emptyPoint.className = 'empty-point';
-                    curriculum.appendChild(emptyPoint);
-                }
+                const detailDiv = document.createElement('div');
+                detailDiv.className = 'month-detail';
+                detailDiv.innerHTML = monthDetails[month].join('<br>');
+
+                monthPoint.appendChild(detailDiv);
+                curriculum.appendChild(monthPoint);
             });
 
             listItemContent.appendChild(clubName);
