@@ -77,8 +77,8 @@ button {
 }
 
 .month-point {
-    height: 80px;
-    width: 80px;
+    height: 40px;
+    width: 40px;
     position: relative;
     display: flex;
     align-items: center;
@@ -102,7 +102,7 @@ button {
     padding: 10px;
     border-radius: 5px;
     white-space: nowrap;
-    z-index: 10;
+    z-index: 9999; /* 모든 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
 }
 
 .month-point:hover .month-detail,
