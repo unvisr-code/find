@@ -1,18 +1,8 @@
-const NOTION_API_KEY = 'secret_tJNk9yiO1tinhEa5lOpgMx4ZFdwByKSnN99GBxKs47A';
-const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 document.addEventListener('DOMContentLoaded', fetchNotionData);
 
 async function fetchNotionData() {
     try {
-        const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
-            method: 'POST',
-            headers: {
-                'Authorization': `Bearer ${NOTION_API_KEY}`,
-                'Content-Type': 'application/json',
-                'Notion-Version': '2022-06-28'
-            },
-            body: JSON.stringify({ page_size: 100 })
-        });
+        const response = await fetch('/api/fetchNotionData');
 
         if (!response.ok) {
             console.error('Failed to fetch data:', response.statusText);
