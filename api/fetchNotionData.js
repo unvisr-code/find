@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
         }
 
         const data = await response.json();
+        console.log('Notion API response data:', data); // 추가된 디버깅 로그
         return res.status(200).json(data);
     } catch (error) {
         console.error('Error fetching data from Notion:', error);
