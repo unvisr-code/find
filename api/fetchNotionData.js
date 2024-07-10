@@ -6,6 +6,7 @@ const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 module.exports = async (req, res) => {
     try {
         console.log('Request received');
+        
         const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
             method: 'POST',
             headers: {
@@ -23,7 +24,7 @@ module.exports = async (req, res) => {
         }
 
         const data = await response.json();
-        console.log('Notion API response data:', data); // 추가된 디버깅 로그
+        console.log('Notion API response data:', data);
         return res.status(200).json(data);
     } catch (error) {
         console.error('Error fetching data from Notion:', error);
