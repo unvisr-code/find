@@ -77,11 +77,13 @@ async function fetchNotionData() {
 
             const activeMonths = months.filter(month => monthDetails[month]);
 
+            // curriculum-bar의 가로 크기를 활성화된 월의 개수에 따라 조정
+            curriculum.style.width = `${activeMonths.length * 8}%`; // 포인트당 8% 너비 할당
+
             activeMonths.forEach(month => {
                 const monthPoint = document.createElement('div');
                 monthPoint.className = 'month-point';
                 monthPoint.textContent = month;
-                monthPoint.style.width = `${100 / activeMonths.length}%`;
 
                 const detailDiv = document.createElement('div');
                 detailDiv.className = 'month-detail';
