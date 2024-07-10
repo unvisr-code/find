@@ -1,5 +1,5 @@
 // 노션 API 키와 데이터베이스 ID를 입력하세요.
-const NOTION_API_KEY = 'secret_IBZ0cQY55Y5ZUlGQK7Jx3gziy8RIIljenkvpgvqmKhw';
+const NOTION_API_KEY = 'secret_ySH1EHTrVrLb80p6yQsOztjQ6CB6HRzFo73lg57Tnnd';
 const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 
 // 페이지가 로드되면 데이터를 가져오는 함수 실행
