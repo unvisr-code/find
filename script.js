@@ -76,9 +76,11 @@ async function fetchNotionData() {
             });
 
             const activeMonths = months.filter(month => monthDetails[month]);
+            const totalPoints = activeMonths.length;
+            const barWidth = totalPoints * 10 + (totalPoints - 1) * 2; // 각 포인트당 10% 너비, 간격 2%
 
             // curriculum-bar의 가로 크기를 활성화된 월의 개수에 따라 조정
-            curriculum.style.width = `${activeMonths.length * 8}%`; // 포인트당 8% 너비 할당
+            curriculum.style.width = `${barWidth}%`;
 
             activeMonths.forEach(month => {
                 const monthPoint = document.createElement('div');

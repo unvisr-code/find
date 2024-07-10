@@ -78,6 +78,7 @@ button {
 
 .month-point {
     height: 100%;
+    width: 10%; /* 고정 너비 */
     position: relative;
     display: flex;
     align-items: center;
@@ -86,7 +87,7 @@ button {
     color: white;
     border-radius: 50%;
     cursor: pointer;
-    margin: 0 1%; /* 포인트 간 간격 */
+    margin-right: 2%; /* 포인트 간 간격 */
 }
 
 .month-detail {
