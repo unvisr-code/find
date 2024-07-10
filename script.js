@@ -77,8 +77,8 @@ async function fetchNotionData() {
 
             const activeMonths = months.filter(month => monthDetails[month]);
             const totalPoints = activeMonths.length;
-            const pointSize = 80; // 포인트의 크기(px)
-            const gapSize = 20; // 포인트 간의 간격(px)
+            const pointSize = 40; // 포인트의 크기(px)
+            const gapSize = 10; // 포인트 간의 간격(px)
             const barWidth = (pointSize + gapSize) * totalPoints - gapSize; // 바의 전체 너비 계산
 
             // curriculum-bar의 가로 크기를 설정
