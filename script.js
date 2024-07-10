@@ -17,6 +17,8 @@ async function fetchNotionData() {
         notionList.innerHTML = '';
 
         data.results.forEach(page => {
+            console.log('Page properties:', page.properties);
+
             const listItem = document.createElement('div');
             listItem.className = 'list-item';
 
@@ -32,36 +34,45 @@ async function fetchNotionData() {
             listItemContent.className = 'list-item-content';
 
             const clubName = document.createElement('h2');
-            clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || '';
+            clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
 
             const description = document.createElement('p');
-            description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || '';
+            description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
 
             const representative = document.createElement('p');
-            representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || ''}`;
+            representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || 'N/A'}`;
 
             const address = document.createElement('p');
-            address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || ''}`;
+            address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || 'N/A'}`;
 
-            const startDate = document.createElement('p');
-            startDate.textContent = `모집 시작일: ${page.properties['모집 시작일']?.date?.start || ''}`;
+            const startDate = page.properties['모집 시작일']?.date?.start || 'N/A';
+            const endDate = page.properties['모집 마감일']?.date?.start || 'N/A';
+            const period = document.createElement('p');
+            period.textContent = `모집 기간: ${startDate} ~ ${endDate}`;
 
-            const endDate = document.createElement('p');
-            endDate.textContent = `모집 마감일: ${page.properties['모집 마감일']?.date?.start || ''}`;
+            const applicationButton = document.createElement('button');
+            applicationButton.textContent = '신청방법';
+            const applicationUrl = page.properties['신청방법']?.url || '#';
+            applicationButton.onclick = () => window.open(applicationUrl, '_blank');
 
-            const applicationMethod = document.createElement('p');
-            applicationMethod.textContent = `신청방법: ${page.properties['신청방법']?.rich_text?.[0]?.plain_text || ''}`;
+            const curriculum = document.createElement('div');
+            curriculum.className = 'curriculum';
+            const curriculumText = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || 'N/A';
+            const curriculumItems = curriculumText.split(' ');
 
-            const curriculum = document.createElement('p');
-            curriculum.textContent = `커리큘럼: ${page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || ''}`;
+            curriculumItems.forEach(item => {
+                const curriculumItem = document.createElement('div');
+                curriculumItem.className = 'curriculum-item';
+                curriculumItem.textContent = item;
+                curriculum.appendChild(curriculumItem);
+            });
 
             listItemContent.appendChild(clubName);
             listItemContent.appendChild(description);
             listItemContent.appendChild(representative);
             listItemContent.appendChild(address);
-            listItemContent.appendChild(startDate);
-            listItemContent.appendChild(endDate);
-            listItemContent.appendChild(applicationMethod);
+            listItemContent.appendChild(period);
+            listItemContent.appendChild(applicationButton);
             listItemContent.appendChild(curriculum);
 
             listItem.appendChild(logoImg);
