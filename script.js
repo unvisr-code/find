@@ -1,8 +1,6 @@
-// 노션 API 키와 데이터베이스 ID를 입력하세요.
 const NOTION_API_KEY = 'secret_ySH1EHTrVrLb80p6yQsOztjQ6CB6HRzFo73lg57Tnnd';
 const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 
-// 페이지가 로드되면 데이터를 가져오는 함수 실행
 document.addEventListener('DOMContentLoaded', fetchNotionData);
 
 async function fetchNotionData() {
@@ -12,9 +10,9 @@ async function fetchNotionData() {
             headers: {
                 'Authorization': `Bearer ${NOTION_API_KEY}`,
                 'Content-Type': 'application/json',
-                'Notion-Version': '2022-02-22' // 최신 버전 확인 후 업데이트
+                'Notion-Version': '2022-06-28'
             },
-            body: JSON.stringify({ page_size: 100 }) // 필요한 경우, 요청 본문 추가
+            body: JSON.stringify({ page_size: 100 })
         });
 
         if (!response.ok) {
@@ -23,14 +21,14 @@ async function fetchNotionData() {
         }
 
         const data = await response.json();
-        console.log('Notion Data:', data);  // 응답 데이터 로그 출력
+        console.log('Notion Data:', data);
 
         const tableBody = document.querySelector('#notionTable tbody');
         tableBody.innerHTML = '';
 
         data.results.forEach(page => {
             const row = document.createElement('tr');
-            
+
             const clubNameCell = document.createElement('td');
             const representativeCell = document.createElement('td');
             const clubRoomAddressCell = document.createElement('td');
@@ -41,7 +39,6 @@ async function fetchNotionData() {
             const curriculumCell = document.createElement('td');
             const logoCell = document.createElement('td');
 
-            // 각 셀에 값을 할당
             clubNameCell.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || '';
             representativeCell.textContent = page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || '';
             clubRoomAddressCell.textContent = page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || '';
@@ -52,7 +49,6 @@ async function fetchNotionData() {
             curriculumCell.textContent = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || '';
             logoCell.innerHTML = page.properties['로고']?.files?.[0]?.external?.url ? `<img src="${page.properties['로고'].files[0].external.url}" alt="로고" width="50" height="50">` : '';
 
-            // 각 셀을 행에 추가
             row.appendChild(clubNameCell);
             row.appendChild(representativeCell);
             row.appendChild(clubRoomAddressCell);
@@ -63,7 +59,6 @@ async function fetchNotionData() {
             row.appendChild(curriculumCell);
             row.appendChild(logoCell);
 
-            // 행을 테이블 본문에 추가
             tableBody.appendChild(row);
         });
     } catch (error) {
