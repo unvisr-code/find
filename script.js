@@ -6,40 +6,51 @@ const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 document.addEventListener('DOMContentLoaded', fetchNotionData);
 
 async function fetchNotionData() {
-    const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${NOTION_API_KEY}`,
-            'Content-Type': 'application/json',
-            'Notion-Version': '2022-06-28'
+    try {
+        const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${NOTION_API_KEY}`,
+                'Content-Type': 'application/json',
+                'Notion-Version': '2022-06-28'
+            }
+        });
+
+        if (!response.ok) {
+            console.error('Failed to fetch data:', response.statusText);
+            return;
         }
-    });
-    
-    const data = await response.json();
-    const tableBody = document.querySelector('#notionTable tbody');
-    tableBody.innerHTML = '';
 
-    data.results.forEach(page => {
-        const row = document.createElement('tr');
-        
-        const clubNameCell = document.createElement('td');
-        const representativeCell = document.createElement('td');
-        const clubRoomAddressCell = document.createElement('td');
-        const introductionCell = document.createElement('td');
-        const descriptionCell = document.createElement('td');
+        const data = await response.json();
+        console.log('Notion Data:', data);  // 응답 데이터 로그 출력
 
-        clubNameCell.textContent = page.properties['동아리명'].title[0]?.plain_text || '';
-        representativeCell.textContent = page.properties['대표자 성함'].rich_text[0]?.plain_text || '';
-        clubRoomAddressCell.textContent = page.properties['동아리방 주소'].rich_text[0]?.plain_text || '';
-        introductionCell.textContent = page.properties['한줄소개'].rich_text[0]?.plain_text || '';
-        descriptionCell.textContent = page.properties['Description'].rich_text[0]?.plain_text || '';
+        const tableBody = document.querySelector('#notionTable tbody');
+        tableBody.innerHTML = '';
 
-        row.appendChild(clubNameCell);
-        row.appendChild(representativeCell);
-        row.appendChild(clubRoomAddressCell);
-        row.appendChild(introductionCell);
-        row.appendChild(descriptionCell);
+        data.results.forEach(page => {
+            const row = document.createElement('tr');
+            
+            const clubNameCell = document.createElement('td');
+            const representativeCell = document.createElement('td');
+            const clubRoomAddressCell = document.createElement('td');
+            const introductionCell = document.createElement('td');
+            const descriptionCell = document.createElement('td');
 
-        tableBody.appendChild(row);
-    });
+            clubNameCell.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || '';
+            representativeCell.textContent = page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || '';
+            clubRoomAddressCell.textContent = page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || '';
+            introductionCell.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || '';
+            descriptionCell.textContent = page.properties['Description']?.rich_text?.[0]?.plain_text || '';
+
+            row.appendChild(clubNameCell);
+            row.appendChild(representativeCell);
+            row.appendChild(clubRoomAddressCell);
+            row.appendChild(introductionCell);
+            row.appendChild(descriptionCell);
+
+            tableBody.appendChild(row);
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
 }
