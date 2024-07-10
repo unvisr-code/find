@@ -66,7 +66,7 @@ async function fetchNotionData() {
             let monthDetails = {};
 
             curriculumItems.forEach(item => {
-                const month = months.find(m => item.includes(m));
+                const month = months.find(m => item.startsWith(m));
                 if (month) {
                     if (!monthDetails[month]) {
                         monthDetails[month] = [];
