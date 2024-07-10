@@ -60,11 +60,34 @@ async function fetchNotionData() {
             const curriculumText = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || 'N/A';
             const curriculumItems = curriculumText.split(' ');
 
+            const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
+            let monthDetails = {};
+
             curriculumItems.forEach(item => {
-                const curriculumItem = document.createElement('div');
-                curriculumItem.className = 'curriculum-item';
-                curriculumItem.textContent = item;
-                curriculum.appendChild(curriculumItem);
+                const [month, ...details] = item.split(' ');
+                const detailText = details.join(' ');
+                if (months.includes(month)) {
+                    if (!monthDetails[month]) {
+                        monthDetails[month] = [];
+                    }
+                    monthDetails[month].push(detailText);
+                }
+            });
+
+            months.forEach(month => {
+                if (monthDetails[month]) {
+                    const monthPoint = document.createElement('div');
+                    monthPoint.className = 'month-point';
+                    monthPoint.textContent = month;
+                    monthPoint.title = monthDetails[month].join(', ');
+
+                    const detailDiv = document.createElement('div');
+                    detailDiv.className = 'month-detail';
+                    detailDiv.innerHTML = monthDetails[month].join('<br>');
+                    monthPoint.appendChild(detailDiv);
+
+                    curriculum.appendChild(monthPoint);
+                }
             });
 
             listItemContent.appendChild(clubName);

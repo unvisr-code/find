@@ -66,16 +66,43 @@ button {
 
 .curriculum {
     display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     margin-top: 10px;
-}
-
-.curriculum-item {
+    position: relative;
+    height: 30px;
     background-color: #e0e0e0;
     border-radius: 5px;
-    padding: 10px;
-    margin: 5px;
-    flex: 1 0 21%; /* approximately 4 items per row */
+    padding: 5px;
+}
+
+.month-point {
+    position: relative;
+    width: 50px;
+    height: 30px;
+    background-color: #4CAF50;
+    color: white;
     text-align: center;
+    line-height: 30px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.month-detail {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    background-color: #fff;
     color: #333;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.month-point:hover .month-detail,
+.month-point:focus .month-detail {
+    display: block;
 }
