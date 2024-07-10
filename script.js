@@ -58,19 +58,19 @@ async function fetchNotionData() {
             const curriculum = document.createElement('div');
             curriculum.className = 'curriculum-bar';
             const curriculumText = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || 'N/A';
-            const curriculumItems = curriculumText.split(' ');
 
+            // 커리큘럼 텍스트를 월별로 분리
+            const curriculumItems = curriculumText.split('\n');
             const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             let monthDetails = {};
 
             curriculumItems.forEach(item => {
-                const [month, ...details] = item.split(' ');
-                const detailText = details.join(' ');
-                if (months.includes(month)) {
+                const month = months.find(m => item.includes(m));
+                if (month) {
                     if (!monthDetails[month]) {
                         monthDetails[month] = [];
                     }
-                    monthDetails[month].push(detailText);
+                    monthDetails[month].push(item.trim());
                 }
             });
 

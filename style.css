@@ -51,7 +51,7 @@ h1 {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color:  #F2A0B0;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -69,7 +69,7 @@ button {
     align-items: center;
     margin-top: 10px;
     position: relative;
-    height: 30px;
+    height: 50px;
     background-color: #e0e0e0;
     border-radius: 5px;
     padding: 5px;
@@ -100,7 +100,7 @@ button {
 .month-detail {
     display: none;
     position: absolute;
-    top: 40px;
+    top: 60px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
