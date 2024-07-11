@@ -379,5 +379,5 @@ button:hover {
 }
 
 .month-detail.fade-out {
-    animation: fadeOut 0.5s forwards;
+    animation: fadeOut 0.4s forwards;
 }
