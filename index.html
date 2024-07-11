@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>모집 동아리 알아보기! </title>
-    <link rel="stylesheet" href="style.css">
+    <title>Notion Database Table</title>
 </head>
 <body>
     <div class="container">
         <h1>모집 동아리 알아보기!</h1>
-        <div id="notionList">
-            <!-- 데이터가 여기 삽입됩니다 -->
+        <div id="filters">
+            <label>
+                <input type="checkbox" id="applicationFilter"> 지원하기! 만 보기
+            </label>
+            <div id="departmentFilters"></div>
         </div>
+        <div id="notionList"></div>
     </div>
     <script src="script.js"></script>
 </body>
