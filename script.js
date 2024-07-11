@@ -53,7 +53,7 @@ async function fetchNotionData() {
 
             const departmentBox = document.createElement('div');
             departmentBox.className = 'department-box';
-            departmentBox.textContent = page.properties['분과']?.select?.name || page.properties['분과']?.multi_select?.map(d => d.name).join(', ') || 'No Department';
+            departmentBox.textContent = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
 
             const description = document.createElement('p');
             description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
