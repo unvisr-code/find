@@ -51,6 +51,7 @@ async function fetchNotionData() {
         });
 
         const applicationFilterButton = document.getElementById('applicationFilterButton');
+        const showAllClubsButton = document.getElementById('showAllClubsButton');
         const departmentFilterCheckboxes = document.querySelectorAll('.department-filter');
 
         function filterAndDisplayResults() {
@@ -181,6 +182,12 @@ async function fetchNotionData() {
 
         applicationFilterButton.addEventListener('click', () => {
             applicationFilterButton.classList.toggle('active');
+            filterAndDisplayResults();
+        });
+
+        showAllClubsButton.addEventListener('click', () => {
+            departmentFilterCheckboxes.forEach(checkbox => checkbox.checked = false);
+            applicationFilterButton.classList.remove('active');
             filterAndDisplayResults();
         });
 
