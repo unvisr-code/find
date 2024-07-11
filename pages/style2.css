@@ -1,5 +1,5 @@
 /* 기본 스타일 설정 */
-html, body {
+body {
     overflow: hidden; /* 스크롤 고정 */
     display: flex;
     justify-content: center;
