@@ -171,7 +171,11 @@ async function fetchNotionData() {
                         monthPoint.addEventListener('click', () => {
                             detailDiv.style.display = 'block';
                             setTimeout(() => {
-                                detailDiv.style.display = 'none';
+                                detailDiv.classList.add('fade-out');
+                                setTimeout(() => {
+                                    detailDiv.style.display = 'none';
+                                    detailDiv.classList.remove('fade-out');
+                                }, 500); // duration of fade-out animation
                             }, 1000);
                         });
                     }

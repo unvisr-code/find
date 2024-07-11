@@ -353,3 +353,15 @@ button:hover {
         font-size: 10px; /* 커리큘럼 포인트 텍스트 크기 줄이기 */
     }
 }
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.month-detail.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
