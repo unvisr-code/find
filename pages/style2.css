@@ -159,3 +159,17 @@ body {
     animation: swipe-up 1s ease-out;
     z-index: 9999;
 }
+/* Responsive styles */
+@media (min-width: 600px) {
+    .header h1 {
+        font-size: 32px;
+    }
+
+    .main-content p {
+        font-size: 20px;
+    }
+
+    .footer p {
+        font-size: 16px;
+    }
+}
