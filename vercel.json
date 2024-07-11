@@ -1,7 +1,12 @@
 {
-    "redirects": [
-      { "source": "/pages/landing", "destination": "/pages/landing.html", "permanent": true },
-      { "source": "/index", "destination": "/index.html", "permanent": true }
-    ]
-  }
-  
+  "rewrites": [
+    {
+      "source": "/pages/landing",
+      "destination": "/pages/landing.html"
+    },
+    {
+      "source": "/index",
+      "destination": "/index.html"
+    }
+  ]
+}
