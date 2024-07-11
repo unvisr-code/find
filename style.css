@@ -27,15 +27,49 @@ h1 {
     margin-bottom: 20px;
 }
 
-#filters label {
-    margin-right: 20px;
+#filters button {
+    background-color: #F2A0B0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#filters button:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#departmentFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 #departmentFilters label {
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 14px;
+    background-color: #f2a0b0;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#departmentFilters label:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#departmentFilters input[type="checkbox"] {
+    display: none;
+}
+
+#departmentFilters input[type="checkbox"]:checked + label {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .list-item {
@@ -76,7 +110,7 @@ h1 {
 
 .department-box {
     display: inline-block;
-    background-color: #F2A0B0; /* 버튼 색상 코드 */
+    background-color: #F2A0B0;
     color: white;
     padding: 5px 10px;
     margin-left: 10px;
@@ -99,7 +133,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-    background-color: #F2A0B0; /* 버튼 색상 코드 */
+    background-color: #F2A0B0;
     transition: background-color 0.3s, box-shadow 0.3s;
 }
 
@@ -118,10 +152,10 @@ button:hover {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: #F2A0B0; /* 버튼 색상 코드 */
+    background-color: #F2A0B0;
     border-radius: 5px;
     padding: 5px;
-    overflow: hidden; /* 내부 포인트가 넘치지 않도록 설정 */
+    overflow: hidden;
     margin-left: 20px;
 }
 
@@ -129,9 +163,9 @@ button:hover {
     display: flex;
     align-items: center;
     height: 10px;
-    background-color: #F2A0B0; /* 버튼 색상 코드 */
+    background-color: #F2A0B0;
     border-radius: 5px;
-    overflow: hidden; /* 내부 포인트가 넘치지 않도록 설정 */
+    overflow: hidden;
 }
 
 .month-point {
@@ -144,7 +178,7 @@ button:hover {
     color: #F2A0B0;
     border-radius: 50%;
     cursor: pointer;
-    margin-right: 10px; /* 포인트 간의 간격 */
+    margin-right: 10px;
 }
 
 .month-detail {
@@ -159,7 +193,7 @@ button:hover {
     padding: 10px;
     border-radius: 5px;
     white-space: nowrap;
-    z-index: 9999; /* 모든 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
+    z-index: 9999;
 }
 
 .month-point:hover .month-detail,

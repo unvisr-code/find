@@ -50,11 +50,11 @@ async function fetchNotionData() {
             departmentFilters.appendChild(label);
         });
 
-        const applicationFilter = document.getElementById('applicationFilter');
+        const applicationFilterButton = document.getElementById('applicationFilterButton');
         const departmentFilterCheckboxes = document.querySelectorAll('.department-filter');
 
         function filterAndDisplayResults() {
-            const onlyApplication = applicationFilter.checked;
+            const onlyApplication = applicationFilterButton.classList.contains('active');
             const selectedDepartments = Array.from(departmentFilterCheckboxes)
                 .filter(checkbox => checkbox.checked)
                 .map(checkbox => checkbox.value);
@@ -185,7 +185,11 @@ async function fetchNotionData() {
             });
         }
 
-        applicationFilter.addEventListener('change', filterAndDisplayResults);
+        applicationFilterButton.addEventListener('click', () => {
+            applicationFilterButton.classList.toggle('active');
+            filterAndDisplayResults();
+        });
+
         departmentFilterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterAndDisplayResults));
 
         filterAndDisplayResults(); // 초기 표시
