@@ -47,7 +47,7 @@ html, body {
 }
 
 .mid-content {
-    top: 65%; /* 적당한 아래 위치 */
+    top: 75%; /* 적당한 아래 위치 */
     left: 0;
     right: 0;
     position: absolute;
