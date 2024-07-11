@@ -1,23 +1,23 @@
 /* 기본 스타일 설정 */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
+html, body {
+    overflow: hidden; /* 스크롤 고정 */
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden; /* 스크롤 고정 */
     align-items: flex-start; /* 콘텐츠를 위쪽으로 배치 */
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    text-align: center;
-    max-width: 48rem;
     width: 100%;
-    margin: auto;
-    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 0;
+    margin-top: 0;
+    min-height: 100vh; /* 화면 전체 높이를 차지하도록 설정 */
 }
 
 .video-container {
