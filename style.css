@@ -293,6 +293,7 @@ button:hover {
         width: 100%; /* 버튼 크기 늘리기 */
         margin-bottom: 0; /* 버튼과 드롭다운 사이 간격 제거 */
         padding: 5px 10px; /* 버튼 크기 줄이기 */
+        font-size: 12px; /* 버튼 텍스트 크기 줄이기 */
     }
 
     .list-item {
@@ -367,8 +368,10 @@ button:hover {
         max-width: none;
         margin-left: 10px;
         padding: 5px 10px; /* 드롭다운 크기 줄이기 */
+        font-size: 12px; /* 드롭다운 텍스트 크기 줄이기 */
     }
 }
+
 
 
 
