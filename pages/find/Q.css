@@ -1,0 +1,137 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 배경 이미지 추가 부분 */
+body::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%; /* 배경 이미지 크기 조정 */
+    height: 30%; /* 배경 이미지 크기 조정 */
+    background-image: url('/pages/find/donghwa.png'); /* 로컬 이미지 경로 */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* filter: blur(2px); 흐림 효과 추가 */
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.progress-container {
+    width: 80%;
+    margin: 20px;
+    display: flex;
+    flex-direction: column; /* 수정: 텍스트와 프로그레스 바를 세로로 정렬 */
+    align-items: center;
+    position: relative;
+    top: 5%; /* 상단에 위치시키기 위해 조정 */
+}
+
+.progress-bar-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px; /* 텍스트와의 간격 추가 */
+}
+
+.progress-bar-container {
+    width: 100%;
+    height: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    position: relative;
+    overflow: visible; /* 아이콘이 잘리지 않도록 설정 */
+    margin-right: 10px; /* 퍼센트와의 간격 추가 */
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #FF6384;
+    border-radius: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.progress-icon {
+    position: absolute;
+    top: -10px; /* 아이콘 위치 조정 */
+    width: 30px; /* 아이콘 크기 조정 */
+    height: 30px; /* 아이콘 크기 조정 */
+    background-image: url('/pages/find/donghwa.png'); /* 진행 상태 아이콘 경로 */
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: left 0.3s ease;
+    z-index: 2; /* 아이콘이 가장 위에 오도록 z-index 설정 */
+}
+
+.progress-text {
+    font-size: 1em;
+    color: #333;
+    font-weight: bold;
+}
+
+.question-container {
+    text-align: center;
+    width: 80%;
+    max-width: 600px;
+    position: relative;
+    top: 15%; /* 아래로 위치시키기 위해 추가 */
+}
+
+.question {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    margin-top: 60px;
+    font-weight: bold; /* 질문 텍스트 볼드 처리 */
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: fixed; /* absolute에서 fixed로 변경 */
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.option {
+    margin: 10px;
+    padding: 15px;
+    background-color: #FF6384;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    width: 80%;
+    max-width: 300px;
+}
+
+.option:hover {
+    background-color: #e55370;
+}
+
+.result-image {
+    width: 100px; /* 결과 창에 표시할 이미지 크기 조정 */
+    height: 100px;
+    margin-top: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}

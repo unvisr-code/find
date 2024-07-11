@@ -1,12 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/pages/landing",
+      "source": "landing",
       "destination": "/pages/landing.html"
     },
     {
       "source": "/index",
       "destination": "/index.html"
+    },
+    {
+      "source": "/find",
+      "destination": "/pages/find/Q.html"
     }
   ]
 }
