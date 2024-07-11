@@ -115,15 +115,18 @@ h1 {
 }
 
 .department-box {
-    display: inline-block;
+    display: flex;
+    align-items: center; /* 텍스트를 수직으로 가운데 정렬 */
+    justify-content: center; /* 텍스트를 수평으로 가운데 정렬 (필요 시) */
     background-color: #F2A0B0;
     color: white;
-    padding: -10px 5px;
+    padding: 5px 10px; /* padding 값을 양수로 수정 */
     margin-left: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
     font-size: 14px;
 }
+
 
 .list-item-content p {
     margin: 5px 0;
