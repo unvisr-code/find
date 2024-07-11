@@ -186,12 +186,22 @@ async function fetchNotionData() {
         });
 
         showAllClubsButton.addEventListener('click', () => {
-            departmentFilterCheckboxes.forEach(checkbox => checkbox.checked = false);
+            departmentFilterCheckboxes.forEach(checkbox => {
+                checkbox.checked = false;
+                checkbox.parentElement.classList.remove('active');
+            });
+            applicationFilterButton.classList.remove('active');
             filterAndDisplayResults();
         });
 
         departmentFilterCheckboxes.forEach(checkbox => {
             checkbox.addEventListener('change', () => {
+                departmentFilterCheckboxes.forEach(cb => {
+                    if (cb !== checkbox) {
+                        cb.checked = false;
+                        cb.parentElement.classList.remove('active');
+                    }
+                });
                 const label = checkbox.parentElement;
                 if (checkbox.checked) {
                     label.classList.add('active');
