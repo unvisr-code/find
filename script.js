@@ -162,6 +162,13 @@ async function fetchNotionData() {
 
                     monthPoint.appendChild(detailDiv);
                     curriculumBar.appendChild(monthPoint);
+
+                    // 모바일에서는 클릭 시 디테일 표시
+                    if (window.innerWidth <= 600) {
+                        monthPoint.addEventListener('click', () => {
+                            detailDiv.style.display = detailDiv.style.display === 'block' ? 'none' : 'block';
+                        });
+                    }
                 });
 
                 curriculum.appendChild(curriculumBar);

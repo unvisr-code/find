@@ -291,11 +291,12 @@ button:hover {
     #filters button {
         width: 48%;
         margin-bottom: 10px;
+        padding: 5px 10px; /* 버튼 크기 줄이기 */
     }
 
     .list-item {
         flex-direction: row; /* 이미지와 콘텐츠를 가로로 배치 */
-        align-items: flex-start;
+        align-items: center;
         padding: 10px;
     }
 
@@ -305,6 +306,7 @@ button:hover {
         margin-right: 10px; /* 이미지와 콘텐츠 사이의 간격 */
         border-radius: 8px;
         border: 1px solid #ddd;
+        align-self: center; /* 수직 가운데 정렬 */
     }
 
     .list-item-content {
@@ -312,9 +314,8 @@ button:hover {
         text-align: left;
     }
 
-    .list-item-content h2, 
-    .list-item-content p {
-        text-align: left;
+    .department-box {
+        margin-left: 0; /* 분과 정보 위치 조정 */
     }
 
     .curriculum-bar-container {
