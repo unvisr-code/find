@@ -23,7 +23,19 @@ h1 {
 #filters {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+}
+
+#filters label {
+    margin-right: 20px;
+    font-size: 14px;
+}
+
+#departmentFilters label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
 }
 
 .list-item {
@@ -87,8 +99,7 @@ button {
 .curriculum-bar-container {
     display: flex;
     align-items: center;
-    position: relative;
-    height: 20px;
+    height: 40px;
     background-color: #F2A0B0; /* 버튼 색상 코드 */
     border-radius: 5px;
     padding: 5px;
@@ -99,7 +110,6 @@ button {
 .curriculum-bar {
     display: flex;
     align-items: center;
-    position: relative;
     height: 10px;
     background-color: #F2A0B0; /* 버튼 색상 코드 */
     border-radius: 5px;
@@ -109,7 +119,6 @@ button {
 .month-point {
     height: 20px;
     width: 20px;
-    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
