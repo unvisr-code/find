@@ -105,15 +105,13 @@ h1 {
 }
 
 .list-item-content {
-    display: flex;
-    /* align-items: center; h2와 department-box의 높이를 동일하게 맞춤 */
+    flex: 1;
 }
 
 .list-item-content h2 {
-    margin: 0; /* 기본 마진 제거 */
+    margin: 0 0 0px; 
     color: #333;
     display: inline-block;
-    line-height: 1.5; /* 높이 조정을 위해 line-height를 사용 */
 }
 
 .department-box {
@@ -122,11 +120,10 @@ h1 {
     color: white;
     padding: 5px 10px;
     margin-left: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
     font-size: 14px;
-    line-height: 1.5; /* h2와 동일한 line-height 사용 */
 }
-
 
 .list-item-content p {
     margin: 5px 0;
