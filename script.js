@@ -157,16 +157,19 @@ async function fetchNotionData() {
                     const monthPoint = document.createElement('div');
                     monthPoint.className = 'month-point';
                     monthPoint.textContent = month.slice(0, -1); // "월" 제거하여 숫자만 표시
-                    monthPoint.style.left = `${(index / (activeMonths.length - 1)) * 100}%`;
-
+                    
+                    // Adjust left position to ensure the last point is correctly aligned
+                    const leftPosition = (index / (activeMonths.length - 1)) * 100;
+                    monthPoint.style.left = `${leftPosition}%`;
+                
                     const detailDiv = document.createElement('div');
                     detailDiv.className = 'month-detail';
                     detailDiv.innerHTML = monthDetails[month].join('<br>');
-
+                
                     monthPoint.appendChild(detailDiv);
                     curriculumBar.appendChild(monthPoint);
-
-                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정, 1.3초로 변경
+                
+                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정
                     if (window.innerWidth <= 600) {
                         monthPoint.addEventListener('click', () => {
                             detailDiv.style.display = 'block';
@@ -180,6 +183,7 @@ async function fetchNotionData() {
                         });
                     }
                 });
+                
 
                 curriculum.appendChild(curriculumBar);
 
