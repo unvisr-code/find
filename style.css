@@ -152,9 +152,9 @@ button:hover {
     display: flex;
     align-items: center;
     height: 50px;
-    margin-left: 10px; /* 왼쪽 패딩 줄이기 */
+    margin-left: 20px; /* 왼쪽 여백 추가 */
     position: relative;
-    width: 100%;
+    width: 50%; /* 바 전체 길이를 50%로 조정 */
 }
 
 .curriculum-bar {
@@ -201,3 +201,4 @@ button:hover {
 .month-point:focus .month-detail {
     display: block;
 }
+
