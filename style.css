@@ -337,6 +337,7 @@ button:hover {
     .popup {
         width: 90%;
     }
+
     .list-item-content h2 {
         font-size: 14px; /* 제목 텍스트 크기 줄이기 */
     }
@@ -352,7 +353,30 @@ button:hover {
     .month-point {
         font-size: 10px; /* 커리큘럼 포인트 텍스트 크기 줄이기 */
     }
+
+    #filters {
+        flex-direction: row; /* 필터 컨테이너를 가로로 배치 */
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .button-container {
+        flex: 1;
+    }
+
+    #departmentFiltersContainer {
+        flex: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    #departmentFilters {
+        width: 100%;
+        max-width: 150px;
+        margin-left: 10px;
+    }
 }
+
 @keyframes fadeOut {
     from {
         opacity: 1;
