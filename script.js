@@ -117,14 +117,17 @@ async function fetchNotionData() {
 
                 if (isTodayBetweenDates(startDate, endDate)) {
                     applicationButton.textContent = '지원하기 !';
+                    applicationButton.style.backgroundColor = '#F2A0B0';
+                    applicationButton.style.color = 'white';
                     applicationButton.onclick = () => window.open(applicationUrl, '_blank');
                 } else {
                     const daysLeft = calculateDaysLeft(startDate);
                     applicationButton.textContent = `D-${daysLeft}`;
+                    applicationButton.style.backgroundColor = 'white';
+                    applicationButton.style.color = '#F2A0B0';
+                    applicationButton.style.border = '1px solid #F2A0B0';
                     applicationButton.onclick = () => showPopup(`${daysLeft}일 뒤에 지원 가능합니다!`);
                 }
-
-                applicationButton.style.backgroundColor = '#F2A0B0';
 
                 const curriculum = document.createElement('div');
                 curriculum.className = 'curriculum-bar-container';
@@ -163,13 +166,13 @@ async function fetchNotionData() {
                     monthPoint.appendChild(detailDiv);
                     curriculumBar.appendChild(monthPoint);
 
-                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정
+                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정, 1초로 변경
                     if (window.innerWidth <= 600) {
                         monthPoint.addEventListener('click', () => {
                             detailDiv.style.display = 'block';
                             setTimeout(() => {
                                 detailDiv.style.display = 'none';
-                            }, 1500);
+                            }, 1000);
                         });
                     }
                 });
