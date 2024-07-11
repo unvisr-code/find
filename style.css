@@ -106,7 +106,7 @@ h1 {
 
 .list-item-content {
     display: flex;
-    align-items: center; /* h2와 department-box의 높이를 동일하게 맞춤 */
+    /* align-items: center; h2와 department-box의 높이를 동일하게 맞춤 */
 }
 
 .list-item-content h2 {
