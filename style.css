@@ -152,32 +152,32 @@ button:hover {
     display: flex;
     align-items: center;
     height: 50px;
-    margin-left: 20px;
+    margin-left: 10px; /* 왼쪽 패딩 줄이기 */
     position: relative;
-    width: 100%; /* Add this line to make sure the container spans the full width */
+    width: 100%;
 }
 
 .curriculum-bar {
     height: 5px;
     background-color: #F2A0B0;
-    width: 100%; /* Ensure the bar spans the full width */
+    width: 100%;
     position: relative;
     border-radius: 2.5px;
 }
 
 .month-point {
-    height: 15px;
-    width: 15px;
+    height: 30px; /* 크기 50% 증가 */
+    width: 30px; /* 크기 50% 증가 */
     background-color: white;
     color: #F2A0B0;
     border-radius: 50%;
     cursor: pointer;
     position: absolute;
-    top: -5px;
+    top: -12.5px; /* 크기 증가에 따라 위치 조정 */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px;
+    font-size: 12px; /* 크기에 맞게 폰트 크기 증가 */
     line-height: 1;
     z-index: 1;
 }
@@ -185,7 +185,7 @@ button:hover {
 .month-detail {
     display: none;
     position: absolute;
-    top: 25px;
+    top: 35px; /* 위치 조정 */
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
