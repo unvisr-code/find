@@ -241,3 +241,23 @@ button:hover {
     background-color: #e8909e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+/* 반응형 스타일 */
+@media (min-width: 600px) {
+    .list-item {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .list-item img {
+        margin-bottom: 0;
+        margin-right: 20px;
+    }
+
+    .list-item-content {
+        text-align: left;
+    }
+
+    .list-item-content p {
+        text-align: left;
+    }
+}
