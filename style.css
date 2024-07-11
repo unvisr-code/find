@@ -160,7 +160,7 @@ button:hover {
     height: 50px;
     margin-left: 20px;
     position: relative;
-    width: 100%; /* 바 전체 길이를 100%로 조정 */
+    width: 50%; /* 바 전체 길이를 50%로 조정 */
 }
 
 .curriculum-bar {
@@ -169,22 +169,21 @@ button:hover {
     width: 100%;
     position: relative;
     border-radius: 2.5px;
-    overflow: hidden; /* 커리큘럼 바가 컨테이너를 넘지 않도록 함 */
 }
 
 .month-point {
-    height: 20px; /* 크기 감소 */
-    width: 20px; /* 크기 감소 */
+    height: 30px; /* 크기 50% 증가 */
+    width: 30px; /* 크기 50% 증가 */
     background-color: white;
     color: #F2A0B0;
     border-radius: 50%;
     cursor: pointer;
     position: absolute;
-    top: -7.5px; /* 위치 조정 */
+    top: -12.5px; /* 크기 증가에 따라 위치 조정 */
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 10px; /* 폰트 크기 감소 */
+    font-size: 12px; /* 크기에 맞게 폰트 크기 증가 */
     line-height: 1;
     z-index: 1;
 }
@@ -192,7 +191,7 @@ button:hover {
 .month-detail {
     display: none;
     position: absolute;
-    top: 25px; /* 위치 조정 */
+    top: 35px; /* 위치 조정 */
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
@@ -208,7 +207,6 @@ button:hover {
 .month-point:focus .month-detail {
     display: block;
 }
-
 /* 팝업 스타일 */
 .popup {
     position: fixed;
@@ -282,7 +280,7 @@ button:hover {
 
     .list-item {
         flex-direction: row; /* 이미지와 콘텐츠를 가로로 배치 */
-        align-items: center;
+        align-items: flex-start;
         padding: 10px;
     }
 
@@ -292,8 +290,6 @@ button:hover {
         margin-right: 10px; /* 이미지와 콘텐츠 사이의 간격 */
         border-radius: 8px;
         border: 1px solid #ddd;
-        object-fit: cover;
-        align-self: center; /* 리스트의 높이에서 가운데로 위치 */
     }
 
     .list-item-content {
@@ -301,29 +297,9 @@ button:hover {
         text-align: left;
     }
 
-    .list-item-content h2 {
-        display: inline-block;
-    }
-
-    .department-box {
-        display: inline-block;
-        margin-left: 10px; /* 동아리명 옆에 위치 */
-    }
-
     .list-item-content h2, 
     .list-item-content p {
         text-align: left;
-    }
-
-    .action-container {
-        flex-direction: column;
-        align-items: flex-start;
-        width: 100%;
-    }
-
-    button {
-        font-size: 12px; /* 버튼 크기 감소 */
-        padding: 5px 10px; /* 버튼 크기 감소 */
     }
 
     .curriculum-bar-container {
@@ -336,9 +312,9 @@ button:hover {
     }
 
     .month-point {
-        width: 20px;
-        height: 20px;
-        top: -7.5px;
+        width: 25px;
+        height: 25px;
+        top: -10px;
         font-size: 10px;
     }
 
