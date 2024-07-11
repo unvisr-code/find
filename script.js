@@ -191,32 +191,20 @@ async function fetchNotionData() {
             filterAndDisplayResults();
         });
 
-        departmentFilterCheckboxes.forEach(checkbox => checkbox.addEventListener('change', filterAndDisplayResults));
+        departmentFilterCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', filterAndDisplayResults);
+            checkbox.addEventListener('change', () => {
+                const activeCheckboxes = Array.from(departmentFilterCheckboxes).filter(cb => cb.checked);
+                if (activeCheckboxes.length > 0) {
+                    showAllClubsButton.classList.add('active');
+                } else {
+                    showAllClubsButton.classList.remove('active');
+                }
+            });
+        });
 
         filterAndDisplayResults(); // 초기 표시
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
-applicationFilterButton.addEventListener('click', () => {
-    applicationFilterButton.classList.toggle('active');
-    filterAndDisplayResults();
-});
-
-showAllClubsButton.addEventListener('click', () => {
-    departmentFilterCheckboxes.forEach(checkbox => checkbox.checked = false);
-    applicationFilterButton.classList.remove('active');
-    filterAndDisplayResults();
-});
-
-departmentFilterCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', filterAndDisplayResults);
-    checkbox.addEventListener('change', () => {
-        const activeCheckboxes = Array.from(departmentFilterCheckboxes).filter(cb => cb.checked);
-        if (activeCheckboxes.length > 0) {
-            showAllClubsButton.classList.add('active');
-        } else {
-            showAllClubsButton.classList.remove('active');
-        }
-    });
-});
