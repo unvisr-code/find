@@ -1,5 +1,20 @@
 document.addEventListener('DOMContentLoaded', fetchNotionData);
 
+function calculateDaysLeft(startDate) {
+    const today = new Date();
+    const start = new Date(startDate);
+    const difference = start.getTime() - today.getTime();
+    const daysLeft = Math.ceil(difference / (1000 * 3600 * 24));
+    return daysLeft;
+}
+
+function isTodayBetweenDates(startDate, endDate) {
+    const today = new Date();
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    return today >= start && today <= end;
+}
+
 async function fetchNotionData() {
     try {
         const response = await fetch('/api/fetchNotionData');
@@ -51,8 +66,15 @@ async function fetchNotionData() {
             period.textContent = `모집 기간: ${startDate} ~ ${endDate}`;
 
             const applicationButton = document.createElement('button');
-            applicationButton.textContent = '지원하기 !';
             const applicationUrl = page.properties['신청방법']?.url || '#';
+
+            if (isTodayBetweenDates(startDate, endDate)) {
+                applicationButton.textContent = '지원하기 !';
+            } else {
+                const daysLeft = calculateDaysLeft(startDate);
+                applicationButton.textContent = `D-${daysLeft}`;
+            }
+
             applicationButton.onclick = () => window.open(applicationUrl, '_blank');
             applicationButton.style.backgroundColor = '#F2A0B0';
 
