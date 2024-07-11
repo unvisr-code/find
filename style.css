@@ -88,7 +88,7 @@ button {
     display: flex;
     align-items: center;
     position: relative;
-    height: 20px;
+    height: 40px;
     background-color: #F2A0B0; /* 버튼 색상 코드 */
     border-radius: 5px;
     padding: 5px;
@@ -117,7 +117,7 @@ button {
     color: #F2A0B0;
     border-radius: 50%;
     cursor: pointer;
-    margin-right: 20px; /* 포인트 간 간격 */
+    margin-right: 10px; /* 포인트 간의 간격 */
 }
 
 .month-detail {
