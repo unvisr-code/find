@@ -53,7 +53,7 @@ async function fetchNotionData() {
 
         const departments = new Set();
         data.results.forEach(page => {
-            const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
+            const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'N/A';
             departments.add(department);
         });
 
@@ -95,7 +95,7 @@ async function fetchNotionData() {
 
                 const departmentBox = document.createElement('div');
                 departmentBox.className = 'department-box';
-                const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
+                const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'N/A';
                 departmentBox.textContent = department;
 
                 const description = document.createElement('p');
