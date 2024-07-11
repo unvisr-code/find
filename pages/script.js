@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     findClubButton.addEventListener('click', () => {
         showLoadingAnimation();
         setTimeout(() => {
-            window.location.href = '/pages/find/Q';
+            window.location.href = '/find';
         }, 1000); // 애니메이션 시간과 일치하도록 설정
     });
 
