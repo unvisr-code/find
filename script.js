@@ -51,6 +51,10 @@ async function fetchNotionData() {
             const clubName = document.createElement('h2');
             clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
 
+            const departmentBox = document.createElement('div');
+            departmentBox.className = 'department-box';
+            departmentBox.textContent = page.properties['분과']?.select?.name || 'No Department';
+
             const description = document.createElement('p');
             description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
 
@@ -79,7 +83,10 @@ async function fetchNotionData() {
             applicationButton.style.backgroundColor = '#F2A0B0';
 
             const curriculum = document.createElement('div');
-            curriculum.className = 'curriculum-bar';
+            curriculum.className = 'curriculum-bar-container';
+            const curriculumBar = document.createElement('div');
+            curriculumBar.className = 'curriculum-bar';
+
             const curriculumText = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || 'N/A';
 
             // 커리큘럼 텍스트를 월별로 분리
@@ -99,12 +106,12 @@ async function fetchNotionData() {
 
             const activeMonths = months.filter(month => monthDetails[month]);
             const totalPoints = activeMonths.length;
-            const pointSize = 40; // 포인트의 크기(px)
-            const gapSize = 10; // 포인트 간의 간격(px)
+            const pointSize = 20; // 포인트의 크기(px)
+            const gapSize = 20; // 포인트 간의 간격(px)
             const barWidth = (pointSize + gapSize) * totalPoints - gapSize; // 바의 전체 너비 계산
 
             // curriculum-bar의 가로 크기를 설정
-            curriculum.style.width = `${barWidth}px`;
+            curriculumBar.style.width = `${barWidth}px`;
 
             activeMonths.forEach(month => {
                 const monthPoint = document.createElement('div');
@@ -116,16 +123,25 @@ async function fetchNotionData() {
                 detailDiv.innerHTML = monthDetails[month].join('<br>');
 
                 monthPoint.appendChild(detailDiv);
-                curriculum.appendChild(monthPoint);
+                curriculumBar.appendChild(monthPoint);
             });
 
+            curriculum.appendChild(curriculumBar);
+
             listItemContent.appendChild(clubName);
+            listItemContent.appendChild(departmentBox);
             listItemContent.appendChild(description);
             listItemContent.appendChild(representative);
             listItemContent.appendChild(address);
             listItemContent.appendChild(period);
-            listItemContent.appendChild(applicationButton);
-            listItemContent.appendChild(curriculum);
+
+            // 버튼과 커리큘럼 바를 가로로 배치
+            const actionContainer = document.createElement('div');
+            actionContainer.className = 'action-container';
+            actionContainer.appendChild(applicationButton);
+            actionContainer.appendChild(curriculum);
+
+            listItemContent.appendChild(actionContainer);
 
             listItem.appendChild(logoImg);
             listItem.appendChild(listItemContent);

@@ -41,6 +41,17 @@ h1 {
 .list-item-content h2 {
     margin: 0 0 10px;
     color: #333;
+    display: inline-block;
+}
+
+.department-box {
+    display: inline-block;
+    background-color: #F2A0B0; /* 버튼 색상 코드 */
+    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    font-size: 14px;
 }
 
 .list-item-content p {
@@ -56,53 +67,45 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin-top: 10px;
     cursor: pointer;
     border-radius: 5px;
     background-color: #F2A0B0; /* 버튼 색상 코드 */
 }
 
-.curriculum-bar {
+.action-container {
     display: flex;
     align-items: center;
     margin-top: 10px;
+}
+
+.curriculum-bar-container {
+    display: flex;
+    align-items: center;
     position: relative;
-    height: 50px;
-    background-color: #e0e0e0;
+    height: 20px;
+    background-color: #F2A0B0; /* 버튼 색상 코드 */
     border-radius: 5px;
     padding: 5px;
+    overflow: hidden; /* 내부 포인트가 넘치지 않도록 설정 */
+    margin-left: 20px;
+}
+
+.curriculum-bar {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 10px;
+    background-color: #F2A0B0; /* 버튼 색상 코드 */
+    border-radius: 5px;
+    overflow: hidden; /* 내부 포인트가 넘치지 않도록 설정 */
 }
 
 .month-point {
-    height: 40px;
-    width: 40px;
+    height: 20px;
+    width: 20px;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #F2A0B0; /* 포인트 색상 코드 */
-    color: white;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-right: 10px; /* 포인트 간 간격 조정 */
-}
-
-.month-detail {
-    display: none;
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    white-space: nowrap;
-    z-index: 9999; /* 모든 다른 요소 위에 표시되도록 z-index 값을 높게 설정 */
-}
-
-.month-point:hover .month-detail,
-.month-point:focus .month-detail {
-    display: block;
+    background-color: white; 
 }
