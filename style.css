@@ -27,6 +27,14 @@ h1 {
     margin-bottom: 20px;
 }
 
+.button-container {
+    display: flex;
+}
+
+.button-container button {
+    margin-right: 10px;
+}
+
 /* 필터 버튼의 기본 스타일 */
 #filters button {
     background-color: #F2A0B0;
@@ -52,29 +60,28 @@ h1 {
 }
 
 /* 분과 필터의 기본 스타일 */
-#departmentFilters label {
-    background-color: #F2A0B0;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+#departmentFiltersContainer {
+    position: relative;
 }
 
-#departmentFilters label:hover {
-    background-color: #e8909e;
+#departmentFilters {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#departmentFilters:focus {
+    outline: none;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 분과 필터가 활성화된 상태 */
-#departmentFilters label.active {
+#departmentFilters option {
+    padding: 10px;
     background-color: white;
-    color: #F2A0B0;
-    border: 1px solid #F2A0B0; /* 활성화된 필터에 테두리 추가 */
-}
-
-#departmentFilters input[type="checkbox"] {
-    display: none;
+    color: #333;
 }
 
 .list-item {
@@ -208,6 +215,7 @@ button:hover {
 .month-point:focus .month-detail {
     display: block;
 }
+
 /* 팝업 스타일 */
 .popup {
     position: fixed;
@@ -274,8 +282,14 @@ button:hover {
         align-items: stretch;
     }
 
-    #filters button {
+    .button-container {
         width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #filters button {
+        width: 48%;
         margin-bottom: 10px;
     }
 
@@ -322,27 +336,4 @@ button:hover {
     .popup {
         width: 90%;
     }
-}
-#departmentFiltersContainer {
-    position: relative;
-}
-
-#departmentFilters {
-    padding: 10px;
-    font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-
-#departmentFilters:focus {
-    outline: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#departmentFilters option {
-    padding: 10px;
-    background-color: white;
-    color: #333;
 }
