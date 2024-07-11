@@ -51,30 +51,32 @@ h1 {
     border: 1px solid #F2A0B0; /* 활성화된 버튼에 테두리 추가 */
 }
 
-#departmentFilters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
+/* 분과 필터의 기본 스타일 */
 #departmentFilters label {
-    background-color: #f2a0b0;
+    background-color: #F2A0B0;
     color: white;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
+#departmentFilters label:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 분과 필터가 활성화된 상태 */
 #departmentFilters label.active {
     background-color: white;
     color: #F2A0B0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid #F2A0B0; /* 활성화된 필터에 테두리 추가 */
 }
 
 #departmentFilters input[type="checkbox"] {
     display: none;
 }
+
 
 
 .list-item {

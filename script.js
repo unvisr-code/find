@@ -187,19 +187,18 @@ async function fetchNotionData() {
 
         showAllClubsButton.addEventListener('click', () => {
             departmentFilterCheckboxes.forEach(checkbox => checkbox.checked = false);
-            applicationFilterButton.classList.remove('active');
             filterAndDisplayResults();
         });
 
         departmentFilterCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', filterAndDisplayResults);
             checkbox.addEventListener('change', () => {
-                const activeCheckboxes = Array.from(departmentFilterCheckboxes).filter(cb => cb.checked);
-                if (activeCheckboxes.length > 0) {
-                    showAllClubsButton.classList.add('active');
+                const label = checkbox.parentElement;
+                if (checkbox.checked) {
+                    label.classList.add('active');
                 } else {
-                    showAllClubsButton.classList.remove('active');
+                    label.classList.remove('active');
                 }
+                filterAndDisplayResults();
             });
         });
 
