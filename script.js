@@ -67,7 +67,7 @@ async function fetchNotionData() {
         });
 
         const applicationFilterButton = document.getElementById('applicationFilterButton');
-        const showAllClubsButton = document.getElementById('showAllClubsButton');
+        // const showAllClubsButton = document.getElementById('showAllClubsButton');
 
         function filterAndDisplayResults() {
             const onlyApplication = applicationFilterButton.classList.contains('active');
@@ -166,7 +166,7 @@ async function fetchNotionData() {
                     monthPoint.appendChild(detailDiv);
                     curriculumBar.appendChild(monthPoint);
 
-                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정, 1초로 변경
+                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정, 1.3초로 변경
                     if (window.innerWidth <= 600) {
                         monthPoint.addEventListener('click', () => {
                             detailDiv.style.display = 'block';
@@ -176,7 +176,7 @@ async function fetchNotionData() {
                                     detailDiv.style.display = 'none';
                                     detailDiv.classList.remove('fade-out');
                                 }, 500); // duration of fade-out animation
-                            }, 1000);
+                            }, 1300);
                         });
                     }
                 });
@@ -216,11 +216,11 @@ async function fetchNotionData() {
             filterAndDisplayResults();
         });
 
-        showAllClubsButton.addEventListener('click', () => {
-            departmentFilters.value = '';
-            applicationFilterButton.classList.remove('active');
-            filterAndDisplayResults();
-        });
+        // showAllClubsButton.addEventListener('click', () => {
+        //     departmentFilters.value = '';
+        //     applicationFilterButton.classList.remove('active');
+        //     filterAndDisplayResults();
+        // });
 
         departmentFilters.addEventListener('change', () => {
             filterAndDisplayResults();
