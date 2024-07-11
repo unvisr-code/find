@@ -26,6 +26,18 @@ html, body {
     flex-direction: column;
 }
 
+.background-image {
+    background-image: url('/pages/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
 .absolute {
     position: absolute;
 }
@@ -47,7 +59,7 @@ html, body {
 }
 
 .mid-content {
-    top: 75%; /* 적당한 아래 위치 */
+    top: 65%; /* 적당한 아래 위치 */
     left: 0;
     right: 0;
     position: absolute;
