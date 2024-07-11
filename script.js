@@ -134,18 +134,12 @@ async function fetchNotionData() {
                 });
 
                 const activeMonths = months.filter(month => monthDetails[month]);
-                const totalPoints = activeMonths.length;
-                const pointSize = 20; // 포인트의 크기(px)
-                const gapSize = 20; // 포인트 간의 간격(px)
-                const barWidth = (pointSize + gapSize) * totalPoints - gapSize; // 바의 전체 너비 계산
 
-                // curriculum-bar의 가로 크기를 설정
-                curriculumBar.style.width = `${barWidth}px`;
-
-                activeMonths.forEach(month => {
+                activeMonths.forEach((month, index) => {
                     const monthPoint = document.createElement('div');
                     monthPoint.className = 'month-point';
-                    monthPoint.textContent = month;
+                    monthPoint.textContent = month.slice(0, -1); // "월" 제거하여 숫자만 표시
+                    monthPoint.style.left = `${(index / (activeMonths.length - 1)) * 100}%`;
 
                     const detailDiv = document.createElement('div');
                     detailDiv.className = 'month-detail';

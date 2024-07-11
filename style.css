@@ -152,39 +152,39 @@ button:hover {
     display: flex;
     align-items: center;
     height: 40px;
-    background-color: #F2A0B0;
-    border-radius: 5px;
-    padding: 5px;
-    overflow: hidden;
     margin-left: 20px;
+    position: relative;
 }
 
 .curriculum-bar {
-    display: flex;
-    align-items: center;
-    height: 10px;
+    height: 5px;
     background-color: #F2A0B0;
-    border-radius: 5px;
-    overflow: hidden;
+    width: 100%;
+    position: relative;
+    border-radius: 2.5px;
 }
 
 .month-point {
-    height: 20px;
-    width: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 15px;
+    width: 15px;
     background-color: white;
     color: #F2A0B0;
     border-radius: 50%;
     cursor: pointer;
-    margin-right: 10px;
+    position: absolute;
+    top: -5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    line-height: 1;
+    z-index: 1;
 }
 
 .month-detail {
     display: none;
     position: absolute;
-    top: 30px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
@@ -200,3 +200,4 @@ button:hover {
 .month-point:focus .month-detail {
     display: block;
 }
+
