@@ -9,6 +9,7 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden; /* 스크롤 고정 */
+    align-items: flex-start; /* 콘텐츠를 위쪽으로 배치 */
 }
 
 .container {
