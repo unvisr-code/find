@@ -27,6 +27,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+/* 필터 버튼의 기본 스타일 */
 #filters button {
     background-color: #F2A0B0;
     color: white;
@@ -35,20 +36,21 @@ h1 {
     font-size: 14px;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-}
-
-#filters button.active {
-    background-color: white;
-    color: #F2A0B0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
 #filters button:hover {
     background-color: #e8909e;
-    color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+/* 필터 버튼이 활성화된 상태 */
+#filters button.active {
+    background-color: white;
+    color: #F2A0B0;
+    border: 1px solid #F2A0B0; /* 활성화된 버튼에 테두리 추가 */
+}
+
 
 #departmentFilters {
     display: flex;
