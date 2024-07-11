@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "landing",
+      "source": "/landing",
       "destination": "/pages/landing.html"
     },
     {
