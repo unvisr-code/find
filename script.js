@@ -52,7 +52,7 @@ async function fetchNotionData() {
             clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
 
             const departmentBox = document.createElement('div');
-            departmentBox.className = 'department-box';
+            // departmentBox.className = 'department-box';
             departmentBox.textContent = page.properties['분과']?.select?.name || 'No Department';
 
             const description = document.createElement('p');
