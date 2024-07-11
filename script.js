@@ -158,8 +158,14 @@ async function fetchNotionData() {
                     monthPoint.className = 'month-point';
                     monthPoint.textContent = month.slice(0, -1); // "월" 제거하여 숫자만 표시
                     
-                    // Adjust left position to ensure the last point is correctly aligned
-                    const leftPosition = (index / (activeMonths.length - 1)) * 100;
+                    // Adjust left position
+                    let leftPosition = (index / (activeMonths.length - 1)) * 100;
+                
+                    // Shift the last point slightly to the left
+                    if (index === activeMonths.length - 1) {
+                        leftPosition -= 2; // Adjust this value as needed
+                    }
+                
                     monthPoint.style.left = `${leftPosition}%`;
                 
                     const detailDiv = document.createElement('div');
@@ -169,7 +175,7 @@ async function fetchNotionData() {
                     monthPoint.appendChild(detailDiv);
                     curriculumBar.appendChild(monthPoint);
                 
-                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정
+                    // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정, 1.3초로 변경
                     if (window.innerWidth <= 600) {
                         monthPoint.addEventListener('click', () => {
                             detailDiv.style.display = 'block';
@@ -183,6 +189,7 @@ async function fetchNotionData() {
                         });
                     }
                 });
+                
                 
 
                 curriculum.appendChild(curriculumBar);
