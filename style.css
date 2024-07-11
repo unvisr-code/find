@@ -209,8 +209,35 @@ button:hover {
     display: block;
 }
 /* 팝업 스타일 */
+/* 팝업 스타일 */
 .popup {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.popup-content {
+    text-align: center;
+}
+
+.popup-button {
+    background-color: #F2A0B0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.popup-button:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
