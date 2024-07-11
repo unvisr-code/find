@@ -151,15 +151,16 @@ button:hover {
 .curriculum-bar-container {
     display: flex;
     align-items: center;
-    height: 40px;
+    height: 50px;
     margin-left: 20px;
     position: relative;
+    width: 100%; /* Add this line to make sure the container spans the full width */
 }
 
 .curriculum-bar {
     height: 5px;
     background-color: #F2A0B0;
-    width: 100%;
+    width: 100%; /* Ensure the bar spans the full width */
     position: relative;
     border-radius: 2.5px;
 }
@@ -184,7 +185,7 @@ button:hover {
 .month-detail {
     display: none;
     position: absolute;
-    top: 20px;
+    top: 25px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #fff;
@@ -200,4 +201,3 @@ button:hover {
 .month-point:focus .month-detail {
     display: block;
 }
-
