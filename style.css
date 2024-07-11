@@ -184,7 +184,7 @@ button:hover {
     width: 30px; /* 크기 50% 증가 */
     background-color: white;
     color: #F2A0B0;
-    border: 2px solid #F2A0B0; /* 테두리 추가 */
+    border: 1px solid #F2A0B0; /* 테두리 추가 */
     border-radius: 50%;
     cursor: pointer;
     position: absolute;
