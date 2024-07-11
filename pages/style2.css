@@ -50,9 +50,12 @@ html, body {
     top: 65%; /* 적당한 아래 위치 */
     left: 0;
     right: 0;
-    /* bottom: 0%; */
     position: absolute;
     transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .content-wrapper {
