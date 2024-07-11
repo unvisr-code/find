@@ -128,7 +128,7 @@ async function fetchNotionData() {
                 } else {
                     const daysLeft = calculateDaysLeft(startDate);
                     applicationButton.textContent = `D-${daysLeft}`;
-                    applicationButton.onclick = () => showPopup(`${daysLeft}일 뒤에 지원이 가능합니다!`);
+                    applicationButton.onclick = () => showPopup(`${daysLeft}일 뒤에 지원 가능합니다!`);
                 }
 
                 applicationButton.style.backgroundColor = '#F2A0B0';
