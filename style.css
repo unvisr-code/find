@@ -315,12 +315,12 @@ button:hover {
     }
 
     .department-box {
-        margin-left: 0; /* 분과 정보 위치 조정 */
+        margin-left: 5px; /* 분과 정보 위치 조정 */
     }
 
     .curriculum-bar-container {
         width: 50%;
-        margin-left: 0;
+        margin-left: 5px;
     }
 
     .curriculum-bar {
@@ -336,5 +336,20 @@ button:hover {
 
     .popup {
         width: 90%;
+    }
+    .list-item-content h2 {
+        font-size: 14px; /* 제목 텍스트 크기 줄이기 */
+    }
+
+    .list-item-content p {
+        font-size: 12px; /* 일반 텍스트 크기 줄이기 */
+    }
+
+    .department-box {
+        font-size: 12px; /* 분과 텍스트 크기 줄이기 */
+    }
+
+    .month-point {
+        font-size: 10px; /* 커리큘럼 포인트 텍스트 크기 줄이기 */
     }
 }
