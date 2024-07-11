@@ -88,7 +88,7 @@ button {
     display: flex;
     align-items: center;
     position: relative;
-    height: 40px;
+    height: 20px;
     background-color: #F2A0B0; /* 버튼 색상 코드 */
     border-radius: 5px;
     padding: 5px;
