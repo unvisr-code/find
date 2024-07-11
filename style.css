@@ -261,3 +261,59 @@ button:hover {
         text-align: left;
     }
 }
+/* 모바일 최적화를 위한 추가 스타일 */
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    #filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #filters button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .list-item {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .list-item img {
+        width: 80%;
+        margin-bottom: 10px;
+    }
+
+    .list-item-content {
+        text-align: center;
+    }
+
+    .list-item-content p {
+        text-align: center;
+    }
+
+    .curriculum-bar-container {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .curriculum-bar {
+        width: 100%;
+    }
+
+    .month-point {
+        width: 20px;
+        height: 20px;
+        top: -8px;
+        font-size: 10px;
+    }
+
+    .popup {
+        width: 90%;
+    }
+}
