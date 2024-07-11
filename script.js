@@ -15,6 +15,26 @@ function isTodayBetweenDates(startDate, endDate) {
     return today >= start && today <= end;
 }
 
+function showPopup(message) {
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    const popupContent = document.createElement('div');
+    popupContent.className = 'popup-content';
+
+    const messageElement = document.createElement('p');
+    messageElement.textContent = message;
+    popupContent.appendChild(messageElement);
+
+    const closeButton = document.createElement('button');
+    closeButton.textContent = '확인';
+    closeButton.className = 'popup-button';
+    closeButton.onclick = () => document.body.removeChild(popup);
+    popupContent.appendChild(closeButton);
+
+    popup.appendChild(popupContent);
+    document.body.appendChild(popup);
+}
+
 async function fetchNotionData() {
     try {
         const response = await fetch('/api/fetchNotionData');
@@ -104,12 +124,13 @@ async function fetchNotionData() {
 
                 if (isTodayBetweenDates(startDate, endDate)) {
                     applicationButton.textContent = '지원하기 !';
+                    applicationButton.onclick = () => window.open(applicationUrl, '_blank');
                 } else {
                     const daysLeft = calculateDaysLeft(startDate);
                     applicationButton.textContent = `D-${daysLeft}`;
+                    applicationButton.onclick = () => showPopup(`${daysLeft}일 뒤에 지원이 가능합니다!`);
                 }
 
-                applicationButton.onclick = () => window.open(applicationUrl, '_blank');
                 applicationButton.style.backgroundColor = '#F2A0B0';
 
                 const curriculum = document.createElement('div');

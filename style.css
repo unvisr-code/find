@@ -208,3 +208,9 @@ button:hover {
 .month-point:focus .month-detail {
     display: block;
 }
+/* 팝업 스타일 */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
