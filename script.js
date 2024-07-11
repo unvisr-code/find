@@ -168,6 +168,16 @@ async function fetchNotionData() {
                     detailDiv.innerHTML = monthDetails[month].join('<br>');
 
                     monthPoint.appendChild(detailDiv);
+                    monthPoint.onclick = () => {
+                        const currentlyDisplayed = document.querySelector('.month-detail.displayed');
+                        if (currentlyDisplayed && currentlyDisplayed !== detailDiv) {
+                            currentlyDisplayed.classList.remove('displayed');
+                            currentlyDisplayed.style.display = 'none';
+                        }
+                        detailDiv.style.display = detailDiv.style.display === 'block' ? 'none' : 'block';
+                        detailDiv.classList.toggle('displayed');
+                    };
+                    
                     curriculumBar.appendChild(monthPoint);
                 });
 
