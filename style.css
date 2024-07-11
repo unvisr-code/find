@@ -262,10 +262,12 @@ button:hover {
     }
 }
 /* 모바일 최적화를 위한 추가 스타일 */
+/* 기존 스타일 유지 */
+
 @media (max-width: 600px) {
     .container {
-        width: 100%;
-        margin: 0;
+        width: 95%;
+        margin: 0 auto;
         padding: 10px;
     }
 
@@ -281,20 +283,25 @@ button:hover {
 
     .list-item {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        padding: 10px;
     }
 
     .list-item img {
-        width: 80%;
+        width: 100%;
         margin-bottom: 10px;
     }
 
     .list-item-content {
-        text-align: center;
+        width: 100%;
+    }
+
+    .list-item-content h2 {
+        text-align: left;
     }
 
     .list-item-content p {
-        text-align: center;
+        text-align: left;
     }
 
     .curriculum-bar-container {
@@ -307,9 +314,9 @@ button:hover {
     }
 
     .month-point {
-        width: 20px;
-        height: 20px;
-        top: -8px;
+        width: 25px;
+        height: 25px;
+        top: -10px;
         font-size: 10px;
     }
 
