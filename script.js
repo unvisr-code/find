@@ -129,4 +129,26 @@ async function fetchNotionData() {
             curriculum.appendChild(curriculumBar);
 
             listItemContent.appendChild(clubName);
-            listItemContent.appendChild(department
+            listItemContent.appendChild(departmentBox);
+            listItemContent.appendChild(description);
+            listItemContent.appendChild(representative);
+            listItemContent.appendChild(address);
+            listItemContent.appendChild(period);
+
+            // 버튼과 커리큘럼 바를 가로로 배치
+            const actionContainer = document.createElement('div');
+            actionContainer.className = 'action-container';
+            actionContainer.appendChild(applicationButton);
+            actionContainer.appendChild(curriculum);
+
+            listItemContent.appendChild(actionContainer);
+
+            listItem.appendChild(logoImg);
+            listItem.appendChild(listItemContent);
+
+            notionList.appendChild(listItem);
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
