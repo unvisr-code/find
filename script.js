@@ -60,25 +60,18 @@ async function fetchNotionData() {
         // Render department filters
         const departmentFilters = document.getElementById('departmentFilters');
         departments.forEach(department => {
-            const label = document.createElement('label');
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.value = department;
-            checkbox.className = 'department-filter';
-            label.appendChild(checkbox);
-            label.appendChild(document.createTextNode(department));
-            departmentFilters.appendChild(label);
+            const option = document.createElement('option');
+            option.value = department;
+            option.textContent = department;
+            departmentFilters.appendChild(option);
         });
 
         const applicationFilterButton = document.getElementById('applicationFilterButton');
         const showAllClubsButton = document.getElementById('showAllClubsButton');
-        const departmentFilterCheckboxes = document.querySelectorAll('.department-filter');
 
         function filterAndDisplayResults() {
             const onlyApplication = applicationFilterButton.classList.contains('active');
-            const selectedDepartments = Array.from(departmentFilterCheckboxes)
-                .filter(checkbox => checkbox.checked)
-                .map(checkbox => checkbox.value);
+            const selectedDepartment = departmentFilters.value;
 
             notionList.innerHTML = '';
 
@@ -193,7 +186,7 @@ async function fetchNotionData() {
 
                 // 필터 조건 확인
                 const matchesApplicationFilter = !onlyApplication || applicationButton.textContent === '지원하기 !';
-                const matchesDepartmentFilter = selectedDepartments.length === 0 || selectedDepartments.includes(department);
+                const matchesDepartmentFilter = !selectedDepartment || selectedDepartment === department;
 
                 if (matchesApplicationFilter && matchesDepartmentFilter) {
                     notionList.appendChild(listItem);
@@ -207,30 +200,13 @@ async function fetchNotionData() {
         });
 
         showAllClubsButton.addEventListener('click', () => {
-            departmentFilterCheckboxes.forEach(checkbox => {
-                checkbox.checked = false;
-                checkbox.parentElement.classList.remove('active');
-            });
+            departmentFilters.value = '';
             applicationFilterButton.classList.remove('active');
             filterAndDisplayResults();
         });
 
-        departmentFilterCheckboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-                departmentFilterCheckboxes.forEach(cb => {
-                    if (cb !== checkbox) {
-                        cb.checked = false;
-                        cb.parentElement.classList.remove('active');
-                    }
-                });
-                const label = checkbox.parentElement;
-                if (checkbox.checked) {
-                    label.classList.add('active');
-                } else {
-                    label.classList.remove('active');
-                }
-                filterAndDisplayResults();
-            });
+        departmentFilters.addEventListener('change', () => {
+            filterAndDisplayResults();
         });
 
         filterAndDisplayResults(); // 초기 표시

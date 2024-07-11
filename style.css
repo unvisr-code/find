@@ -323,3 +323,26 @@ button:hover {
         width: 90%;
     }
 }
+#departmentFiltersContainer {
+    position: relative;
+}
+
+#departmentFilters {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#departmentFilters:focus {
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#departmentFilters option {
+    padding: 10px;
+    background-color: white;
+    color: #333;
+}
