@@ -139,7 +139,7 @@ function displayResults() {
     // 결과 분과 리스트 표시
     const departmentList = [
         { keyword: '문화', name: 'Cultural Department' },
-        { keyword: '학술', name: 'Academic Department' },
+        { keyword: '학술', name: '학술' },
         { keyword: '체육', name: 'Sports Department' },
         { keyword: '종교', name: 'Religious Department' },
         { keyword: '공연', name: 'Performance Department' },
