@@ -145,6 +145,8 @@ body::before {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-top: 40px;
     border-radius: 8px;
+    max-height: 60vh;
+    overflow-y: auto; /* 결과 창에서 스크롤 가능하도록 설정 */
 }
 
 .list-item {

@@ -133,6 +133,8 @@ async function displayResults() {
     console.log('Fetched data:', data); // 데이터를 확인하기 위해 콘솔에 출력
 
     const notionList = document.querySelector('#notionList');
+    notionList.style.display = 'block'; // 결과창에서 표시
+
     notionList.innerHTML = '';
 
     data.results.forEach(page => {
