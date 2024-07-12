@@ -115,64 +115,50 @@ async function displayResults() {
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
 
-    questionElement.innerHTML = "노션 데이터 테이블";
+    let maxKey = null;
+    let maxScore = -1;
+
+    for (let key in scores) {
+        if (scores[key] > maxScore) {
+            maxScore = scores[key];
+            maxKey = key;
+        }
+    }
+
+    questionElement.innerHTML = `가장 높은 점수의 키 값은: ${maxKey}`;
     optionsElement.innerHTML = "";
 
     progressBar.style.width = '100%';
     progressPercent.innerHTML = '100%';
-    progressIcon.style.left = `calc(100% - 10px)`;
+    progressIcon.style.left = `calc(100% - 10px)`; // 아이콘을 프로그레스 바 끝에 위치
 
     // 결과 이미지 표시
     const resultImage = document.getElementById("result-image");
-    resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
+    resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')"; // 결과 이미지 경로 설정
 
     // Fetch data from the server
     const response = await fetch('/api/fetchNotionData');
     const data = await response.json();
 
-    // 결과 테이블 표시
-    const resultTableContainer = document.getElementById('result-table-container');
-    resultTableContainer.innerHTML = '';
+    // Get the matching rows from the data based on the maxKey
+    const matchingRows = data.filter(row => row.keyword === maxKey);
 
-    const table = document.createElement('table');
-    table.className = 'result-table';
+    // 결과 분과 리스트 표시
+    const resultDepartmentContainer = document.getElementById('result-department');
+    resultDepartmentContainer.innerHTML = '';
 
-    // 테이블 헤더
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    const headers = ['동아리명', '대표자 성함', '동아리방 주소', '한줄소개'];
-    headers.forEach(headerText => {
-        const th = document.createElement('th');
-        th.textContent = headerText;
-        headerRow.appendChild(th);
-    });
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    // 테이블 바디
-    const tbody = document.createElement('tbody');
-    data.forEach(row => {
-        const tr = document.createElement('tr');
-        
-        const tdClubName = document.createElement('td');
-        tdClubName.textContent = row.properties['동아리명'].title[0]?.text?.content || '';
-        const tdRepresentativeName = document.createElement('td');
-        tdRepresentativeName.textContent = row.properties['대표자 성함'].rich_text[0]?.text?.content || '';
-        const tdClubRoomAddress = document.createElement('td');
-        tdClubRoomAddress.textContent = row.properties['동아리방 주소'].rich_text[0]?.text?.content || '';
-        const tdIntroduction = document.createElement('td');
-        tdIntroduction.textContent = row.properties['한줄소개'].rich_text[0]?.text?.content || '';
-
-        tr.appendChild(tdClubName);
-        tr.appendChild(tdRepresentativeName);
-        tr.appendChild(tdClubRoomAddress);
-        tr.appendChild(tdIntroduction);
-
-        tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
-
-    resultTableContainer.appendChild(table);
+    if (matchingRows.length > 0) {
+        matchingRows.forEach(row => {
+            const div = document.createElement('div');
+            div.className = `departmentBox ${row.department}`;
+            div.innerText = `분과: ${row.department}`;
+            resultDepartmentContainer.appendChild(div);
+        });
+    } else {
+        resultDepartmentContainer.innerHTML = `
+            <p>No matching department found</p>
+        `;
+    }
 }
 
 // 초기 질문 표시
