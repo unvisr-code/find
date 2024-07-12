@@ -162,10 +162,10 @@ async function displayResults() {
         description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
 
         const representative = document.createElement('p');
-        representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || 'N/A'`;
+        representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || 'N/A'}`;
 
         const address = document.createElement('p');
-        address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || 'N/A'`;
+        address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || 'N/A'}`;
 
         listItemContent.appendChild(clubName);
         listItemContent.appendChild(departmentBox);
