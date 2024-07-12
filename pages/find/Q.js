@@ -159,6 +159,46 @@ async function displayResults() {
             <p>No matching department found</p>
         `;
     }
+
+    // 결과 테이블 표시
+    const resultTableContainer = document.getElementById('result-table-container');
+    resultTableContainer.innerHTML = '';
+
+    const table = document.createElement('table');
+    table.className = 'result-table';
+
+    // 테이블 헤더
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    const headers = ['키워드', '부서', '기타']; // 필요에 따라 열 이름 수정
+    headers.forEach(headerText => {
+        const th = document.createElement('th');
+        th.textContent = headerText;
+        headerRow.appendChild(th);
+    });
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // 테이블 바디
+    const tbody = document.createElement('tbody');
+    matchingRows.forEach(row => {
+        const tr = document.createElement('tr');
+        const tdKeyword = document.createElement('td');
+        tdKeyword.textContent = row.keyword;
+        const tdDepartment = document.createElement('td');
+        tdDepartment.textContent = row.department;
+        const tdOther = document.createElement('td');
+        tdOther.textContent = row.other; // 기타 데이터에 맞게 조정
+
+        tr.appendChild(tdKeyword);
+        tr.appendChild(tdDepartment);
+        tr.appendChild(tdOther);
+
+        tbody.appendChild(tr);
+    });
+    table.appendChild(tbody);
+
+    resultTableContainer.appendChild(table);
 }
 
 // 초기 질문 표시

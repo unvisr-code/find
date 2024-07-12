@@ -135,3 +135,56 @@ body::before {
     background-repeat: no-repeat;
     background-position: center;
 }
+
+/* 결과 분과 리스트 스타일 */
+.result-department {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    width: 100%;
+}
+
+.result-department ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.result-department li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+.result-department li:last-child {
+    border-bottom: none;
+}
+
+/* 테이블 스타일 */
+.result-table-container {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    max-width: 600px;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.result-table th, .result-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.result-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
