@@ -115,7 +115,7 @@ async function displayResults() {
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
 
-    questionElement.innerHTML = "동아리 리스트";
+    questionElement.innerHTML = "노션 데이터 테이블";
     optionsElement.innerHTML = "";
 
     progressBar.style.width = '100%';
@@ -152,6 +152,11 @@ async function displayResults() {
     notionList.innerHTML = '';
 
     data.results.forEach(page => {
+        const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
+        if (department !== maxDepartment) {
+            return; // 필터링: 가장 높은 가중치 분과와 일치하지 않는 경우 건너뜀
+        }
+
         const listItem = document.createElement('div');
         listItem.className = 'list-item';
 
@@ -171,7 +176,6 @@ async function displayResults() {
 
         const departmentBox = document.createElement('div');
         departmentBox.className = 'department-box';
-        const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
         departmentBox.textContent = department;
 
         const description = document.createElement('p');
@@ -188,9 +192,6 @@ async function displayResults() {
         const startDate = page.properties['모집 시작일']?.date?.start || 'N/A';
         const endDate = page.properties['모집 마감일']?.date?.start || 'N/A';
         recruitmentPeriod.textContent = `모집 기간: ${startDate} ~ ${endDate}`;
-
-        const applicationMethod = document.createElement('p');
-        // applicationMethod.innerHTML = `신청 방법: <a href="${page.properties['신청방법']?.url || '#'}" target="_blank">링크</a>`;
 
         // 커리큘럼 표시
         const curriculumBarContainer = document.createElement('div');
@@ -285,7 +286,6 @@ async function displayResults() {
         listItemContent.appendChild(representative);
         listItemContent.appendChild(address);
         listItemContent.appendChild(recruitmentPeriod);
-        listItemContent.appendChild(applicationMethod);
         listItemContent.appendChild(actionContainer); // actionContainer 추가
 
         listItem.appendChild(logoImg);
