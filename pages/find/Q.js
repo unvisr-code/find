@@ -108,7 +108,7 @@ function handleAnswer(weight) {
     }
 }
 
-function displayResults() {
+async function displayResults() {
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
     const progressBar = document.getElementById("progress-bar");
@@ -136,31 +136,24 @@ function displayResults() {
     const resultImage = document.getElementById("result-image");
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')"; // 결과 이미지 경로 설정
 
+    // Fetch data from the server
+    const response = await fetch('/api/fetchNotionData');
+    const data = await response.json();
+
+    // Get the matching rows from the data based on the maxKey
+    const matchingRows = data.filter(row => row.keyword === maxKey);
+
     // 결과 분과 리스트 표시
-    const departmentList = [
-        { keyword: '문화', className: 'Dept1' },
-        { keyword: '학술', className: 'Dept2' },
-        { keyword: '체육', className: 'Dept3' },
-        { keyword: '종교', className: 'Dept4' },
-        { keyword: '공연', className: 'Dept5' },
-        { keyword: '봉사', className: 'Dept6' }
-    ];
-
-    const matchingDepartment = departmentList.find(dept => dept.keyword === maxKey);
     const resultDepartmentContainer = document.getElementById('result-department');
+    resultDepartmentContainer.innerHTML = '';
 
-    if (matchingDepartment) {
-        const departmentElements = document.getElementsByClassName(matchingDepartment.className);
-        if (departmentElements.length > 0) {
-            resultDepartmentContainer.innerHTML = '';
-            Array.from(departmentElements).forEach(element => {
-                resultDepartmentContainer.appendChild(element.cloneNode(true));
-            });
-        } else {
-            resultDepartmentContainer.innerHTML = `
-                <p>No matching department found</p>
-            `;
-        }
+    if (matchingRows.length > 0) {
+        matchingRows.forEach(row => {
+            const div = document.createElement('div');
+            div.className = `departmentBox ${row.department}`;
+            div.innerText = `분과: ${row.department}`;
+            resultDepartmentContainer.appendChild(div);
+        });
     } else {
         resultDepartmentContainer.innerHTML = `
             <p>No matching department found</p>
