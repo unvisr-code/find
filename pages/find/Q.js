@@ -126,6 +126,20 @@ async function displayResults() {
     const resultImage = document.getElementById("result-image");
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
 
+    // 가장 높은 가중치 분과 찾기
+    let maxScore = -1;
+    let maxDepartment = '';
+    for (let key in scores) {
+        if (scores[key] > maxScore) {
+            maxScore = scores[key];
+            maxDepartment = key;
+        }
+    }
+
+    // 결과 분과 표시
+    const resultDepartment = document.getElementById("result-department");
+    resultDepartment.innerHTML = `가장 높은 점수의 분과: ${maxDepartment}`;
+
     // Fetch data from the server
     const response = await fetch('/api/fetchNotionData');
     const data = await response.json();
