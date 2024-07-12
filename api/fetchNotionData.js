@@ -23,18 +23,8 @@ module.exports = async (req, res) => {
             return res.status(response.status).json({ error: 'Failed to fetch data from Notion', details: errorText });
         }
 
-        const notionData = await response.json();
-        console.log('Notion API response data:', notionData);
-
-        // Extract key, keyword, and department information from the Notion response
-        const data = notionData.results.map((entry) => {
-            return {
-                key: entry.properties.key.number,
-                keyword: entry.properties.keyword.rich_text[0].text.content,
-                department: entry.properties.분과.select.name // '분과' 컬럼 값 가져오기
-            };
-        });
-
+        const data = await response.json();
+        console.log('Notion API response data:', data);
         return res.status(200).json(data);
     } catch (error) {
         console.error('Error fetching data from Notion:', error);
