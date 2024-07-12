@@ -115,7 +115,7 @@ async function displayResults() {
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
 
-    questionElement.innerHTML = "노션 데이터 테이블";
+    questionElement.innerHTML = "동아리 리스트";
     optionsElement.innerHTML = "";
 
     progressBar.style.width = '100%';
