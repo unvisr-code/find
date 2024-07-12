@@ -160,33 +160,6 @@ async function displayResults() {
         `;
     }
 }
-document.addEventListener('DOMContentLoaded', function () {
-    fetchNotionData();
-});
-
-function fetchNotionData() {
-    fetch('/path/to/fetchNotionData.js') // Adjust the path as needed
-        .then(response => response.json())
-        .then(data => {
-            displayResults(data);
-        })
-        .catch(error => {
-            console.error('Error fetching data:', error);
-        });
-}
-
-function displayResults(data) {
-    const resultContainer = document.getElementById('result-department');
-    const ul = document.createElement('ul');
-
-    data.forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item.name; // Adjust this according to your data structure
-        ul.appendChild(li);
-    });
-
-    resultContainer.appendChild(ul);
-}
 
 // 초기 질문 표시
 displayQuestion();
