@@ -190,7 +190,7 @@ async function displayResults() {
         recruitmentPeriod.textContent = `모집 기간: ${startDate} ~ ${endDate}`;
 
         const applicationMethod = document.createElement('p');
-        applicationMethod.innerHTML = `신청 방법: <a href="${page.properties['신청방법']?.url || '#'}" target="_blank">링크</a>`;
+        // applicationMethod.innerHTML = `신청 방법: <a href="${page.properties['신청방법']?.url || '#'}" target="_blank">링크</a>`;
 
         // 커리큘럼 표시
         const curriculumBarContainer = document.createElement('div');
