@@ -31,3 +31,21 @@ module.exports = async (req, res) => {
         return res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };
+async function fetchNotionData() {
+    const response = await fetch('https://api.notion.com/v1/databases/{database_id}/query', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${process.env.NOTION_API_KEY}`,
+            'Content-Type': 'application/json',
+            'Notion-Version': '2021-08-16'
+        }
+    });
+
+    const data = await response.json();
+    return data.results.map(result => {
+        return {
+            name: result.properties.Name.title[0].text.content
+        };
+    });
+}
+
