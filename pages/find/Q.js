@@ -183,11 +183,22 @@ async function displayResults() {
         const address = document.createElement('p');
         address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || 'N/A'}`;
 
+        // 추가 데이터 표시
+        const recruitmentPeriod = document.createElement('p');
+        const startDate = page.properties['모집 시작일']?.date?.start || 'N/A';
+        const endDate = page.properties['모집 마감일']?.date?.start || 'N/A';
+        recruitmentPeriod.textContent = `모집 기간: ${startDate} ~ ${endDate}`;
+
+        const applicationMethod = document.createElement('p');
+        applicationMethod.innerHTML = `신청 방법: <a href="${page.properties['신청방법']?.url || '#'}" target="_blank">링크</a>`;
+
         listItemContent.appendChild(clubName);
         listItemContent.appendChild(departmentBox);
         listItemContent.appendChild(description);
         listItemContent.appendChild(representative);
         listItemContent.appendChild(address);
+        listItemContent.appendChild(recruitmentPeriod);
+        listItemContent.appendChild(applicationMethod);
 
         listItem.appendChild(logoImg);
         listItem.appendChild(listItemContent);
