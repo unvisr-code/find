@@ -135,6 +135,29 @@ function displayResults() {
     // 결과 이미지 표시
     const resultImage = document.getElementById("result-image");
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')"; // 결과 이미지 경로 설정
+
+    // 결과 분과 리스트 표시
+    const departmentList = [
+        { keyword: '문화', name: 'Cultural Department' },
+        { keyword: '학술', name: 'Academic Department' },
+        { keyword: '체육', name: 'Sports Department' },
+        { keyword: '종교', name: 'Religious Department' },
+        { keyword: '공연', name: 'Performance Department' },
+        { keyword: '봉사', name: 'Volunteer Department' }
+    ];
+
+    const matchingDepartment = departmentList.find(dept => dept.keyword === maxKey);
+    const resultDepartmentContainer = document.getElementById('result-department');
+
+    if (matchingDepartment) {
+        resultDepartmentContainer.innerHTML = `
+            <p>Matching Department: ${matchingDepartment.name}</p>
+        `;
+    } else {
+        resultDepartmentContainer.innerHTML = `
+            <p>No matching department found</p>
+        `;
+    }
 }
 
 // 초기 질문 표시
