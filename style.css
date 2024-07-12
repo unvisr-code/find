@@ -65,18 +65,28 @@ h1 {
 }
 
 #departmentFilters {
-    padding: 10px;
+    background-color: #F2A0B0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
     font-size: 14px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
 }
 
-#departmentFilters:focus {
-    outline: none;
+#departmentFilters:hover {
+    background-color: #e8909e;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+/* #departmentFilters:focus {
+    background-color: white;
+    color: #F2A0B0;
+    border: 1px solid #F2A0B0;
+    outline: none;
+} */
+
 
 #departmentFilters option {
     padding: 10px;
