@@ -132,49 +132,52 @@ async function displayResults() {
 
     console.log('Fetched data:', data); // 데이터를 확인하기 위해 콘솔에 출력
 
-    // 결과 테이블 표시
-    const resultTableContainer = document.getElementById('result-table-container');
-    resultTableContainer.innerHTML = '';
+    const notionList = document.querySelector('#notionList');
+    notionList.innerHTML = '';
 
-    const table = document.createElement('table');
-    table.className = 'result-table';
+    data.results.forEach(page => {
+        const listItem = document.createElement('div');
+        listItem.className = 'list-item';
 
-    // 테이블 헤더
-    const thead = document.createElement('thead');
-    const headerRow = document.createElement('tr');
-    const headers = ['동아리명', '대표자 성함', '동아리방 주소', '한줄소개'];
-    headers.forEach(headerText => {
-        const th = document.createElement('th');
-        th.textContent = headerText;
-        headerRow.appendChild(th);
+        const logoImg = document.createElement('img');
+        const logoUrl = page.properties['로고']?.files?.[0]?.external?.url || '';
+        if (logoUrl) {
+            logoImg.src = logoUrl;
+        } else {
+            logoImg.alt = 'No logo';
+        }
+
+        const listItemContent = document.createElement('div');
+        listItemContent.className = 'list-item-content';
+
+        const clubName = document.createElement('h2');
+        clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
+
+        const departmentBox = document.createElement('div');
+        departmentBox.className = 'department-box';
+        const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
+        departmentBox.textContent = department;
+
+        const description = document.createElement('p');
+        description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
+
+        const representative = document.createElement('p');
+        representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || 'N/A'`;
+
+        const address = document.createElement('p');
+        address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || 'N/A'`;
+
+        listItemContent.appendChild(clubName);
+        listItemContent.appendChild(departmentBox);
+        listItemContent.appendChild(description);
+        listItemContent.appendChild(representative);
+        listItemContent.appendChild(address);
+
+        listItem.appendChild(logoImg);
+        listItem.appendChild(listItemContent);
+
+        notionList.appendChild(listItem);
     });
-    thead.appendChild(headerRow);
-    table.appendChild(thead);
-
-    // 테이블 바디
-    const tbody = document.createElement('tbody');
-    data.results.forEach(row => {
-        const tr = document.createElement('tr');
-
-        const tdClubName = document.createElement('td');
-        tdClubName.textContent = row.properties['동아리명'].title[0]?.plain_text || '';
-        const tdRepresentativeName = document.createElement('td');
-        tdRepresentativeName.textContent = row.properties['대표자 성함'].rich_text[0]?.plain_text || '';
-        const tdClubRoomAddress = document.createElement('td');
-        tdClubRoomAddress.textContent = row.properties['동아리방 주소'].rich_text[0]?.plain_text || '';
-        const tdIntroduction = document.createElement('td');
-        tdIntroduction.textContent = row.properties['한줄소개'].rich_text[0]?.plain_text || '';
-
-        tr.appendChild(tdClubName);
-        tr.appendChild(tdRepresentativeName);
-        tr.appendChild(tdClubRoomAddress);
-        tr.appendChild(tdIntroduction);
-
-        tbody.appendChild(tr);
-    });
-    table.appendChild(tbody);
-
-    resultTableContainer.appendChild(table);
 }
 
 // 초기 질문 표시

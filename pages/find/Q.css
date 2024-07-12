@@ -1,137 +1,243 @@
 body {
     font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    height: 100vh;
+    background-color: #f9f9f9;
     margin: 0;
-    background-color: #ffffff;
-    position: relative;
-    overflow: hidden;
+    padding: 0;
 }
 
-/* 배경 이미지 추가 부분 */
-body::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 30%; /* 배경 이미지 크기 조정 */
-    height: 30%; /* 배경 이미지 크기 조정 */
-    background-image: url('/pages/find/donghwa.png'); /* 로컬 이미지 경로 */
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    /* filter: blur(2px); 흐림 효과 추가 */
-    transform: translate(-50%, -50%);
-    z-index: -1;
-}
-
-.progress-container {
+.container {
     width: 80%;
-    margin: 20px;
-    display: flex;
-    flex-direction: column; /* 수정: 텍스트와 프로그레스 바를 세로로 정렬 */
-    align-items: center;
-    position: relative;
-    top: 5%; /* 상단에 위치시키기 위해 조정 */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    border-radius: 8px;
 }
 
-.progress-bar-wrapper {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    margin-top: 10px; /* 텍스트와의 간격 추가 */
-}
-
-.progress-bar-container {
-    width: 100%;
-    height: 10px;
-    background-color: #e0e0e0;
-    border-radius: 5px;
-    position: relative;
-    overflow: visible; /* 아이콘이 잘리지 않도록 설정 */
-    margin-right: 10px; /* 퍼센트와의 간격 추가 */
-}
-
-.progress-bar {
-    width: 0;
-    height: 100%;
-    background-color: #FF6384;
-    border-radius: 5px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: width 0.3s ease;
-}
-
-.progress-icon {
-    position: absolute;
-    top: -10px; /* 아이콘 위치 조정 */
-    width: 30px; /* 아이콘 크기 조정 */
-    height: 30px; /* 아이콘 크기 조정 */
-    background-image: url('/pages/find/donghwa.png'); /* 진행 상태 아이콘 경로 */
-    background-size: cover;
-    background-repeat: no-repeat;
-    transition: left 0.3s ease;
-    z-index: 2; /* 아이콘이 가장 위에 오도록 z-index 설정 */
-}
-
-.progress-text {
-    font-size: 1em;
-    color: #333;
-    font-weight: bold;
-}
-
-.question-container {
+h1 {
     text-align: center;
-    width: 80%;
-    max-width: 600px;
-    position: relative;
-    top: 15%; /* 아래로 위치시키기 위해 추가 */
+    color: #333;
 }
 
-.question {
-    font-size: 1.5em;
-    margin-bottom: 20px;
-    margin-top: 60px;
-    font-weight: bold; /* 질문 텍스트 볼드 처리 */
-}
-
-.options {
+.list-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* 이미지와 콘텐츠를 가로로 배치 */
     align-items: center;
-    width: 100%;
-    position: fixed; /* absolute에서 fixed로 변경 */
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
 }
 
-.option {
-    margin: 10px;
-    padding: 15px;
-    background-color: #FF6384;
+.list-item:hover {
+    background-color: #f1f1f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.list-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.list-item-content {
+    flex: 1;
+}
+
+.list-item-content h2 {
+    margin: 0 0 0px; 
+    color: #333;
+    display: inline-block;
+}
+
+.department-box {
+    display: inline-block;
+    background-color: #F2A0B0;
+    color: white;
+    padding: 0px 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.list-item-content p {
+    margin: 5px 0;
+    color: #666;
+}
+
+button {
     color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 1em;
-    width: 80%;
-    max-width: 300px;
+    border-radius: 5px;
+    background-color: #F2A0B0;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
-.option:hover {
-    background-color: #e55370;
+button:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.result-image {
-    width: 100px; /* 결과 창에 표시할 이미지 크기 조정 */
-    height: 100px;
-    margin-top: 20px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
+.action-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.curriculum-bar-container {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-left: 20px;
+    position: relative;
+    width: 50%; /* 바 전체 길이를 50%로 조정 */
+}
+
+.curriculum-bar {
+    height: 5px;
+    background-color: #F2A0B0;
+    width: 100%;
+    position: relative;
+    border-radius: 2.5px;
+}
+
+.month-point {
+    height: 30px; /* 크기 50% 증가 */
+    width: 30px; /* 크기 50% 증가 */
+    background-color: white;
+    color: #F2A0B0;
+    border: 1px solid #F2A0B0; /* 테두리 추가 */
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    top: -12.5px; /* 크기 증가에 따라 위치 조정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px; /* 크기에 맞게 폰트 크기 증가 */
+    line-height: 1;
+    z-index: 1;
+}
+
+.month-detail {
+    display: none;
+    position: absolute;
+    top: 35px; /* 위치 조정 */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    z-index: 9999;
+}
+
+.month-point:hover .month-detail,
+.month-point:focus .month-detail {
+    display: block;
+}
+
+/* 반응형 스타일 */
+@media (min-width: 600px) {
+    .list-item {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    .list-item img {
+        margin-bottom: 0;
+        margin-right: 20px;
+    }
+
+    .list-item-content {
+        text-align: left;
+    }
+
+    .list-item-content p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .list-item {
+        flex-direction: row; /* 이미지와 콘텐츠를 가로로 배치 */
+        align-items: center;
+        padding: 10px;
+    }
+
+    .list-item img {
+        width: 80px; /* 이미지 크기 조정 */
+        height: 80px; /* 이미지 높이 조정 */
+        margin-right: 10px; /* 이미지와 콘텐츠 사이의 간격 */
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        align-self: center; /* 수직 가운데 정렬 */
+    }
+
+    .list-item-content {
+        flex: 1;
+        text-align: left;
+    }
+
+    .department-box {
+        margin-left: 5px; /* 분과 정보 위치 조정 */
+    }
+
+    .curriculum-bar-container {
+        width: 50%;
+        margin-left: 10px;
+    }
+
+    .curriculum-bar {
+        width: 100%;
+    }
+
+    .month-point {
+        width: 25px;
+        height: 25px;
+        top: -10px;
+        font-size: 10px;
+    }
+
+    .popup {
+        width: 90%;
+    }
+
+    .list-item-content h2 {
+        font-size: 14px; /* 제목 텍스트 크기 줄이기 */
+    }
+
+    .list-item-content p {
+        font-size: 12px; /* 일반 텍스트 크기 줄이기 */
+    }
+
+    .department-box {
+        font-size: 12px; /* 분과 텍스트 크기 줄이기 */
+    }
+
+    .month-point {
+        font-size: 10px; /* 커리큘럼 포인트 텍스트 크기 줄이기 */
+    }
 }
