@@ -138,21 +138,29 @@ function displayResults() {
 
     // 결과 분과 리스트 표시
     const departmentList = [
-        { keyword: '문화', name: 'Cultural Department' },
-        { keyword: '학술', name: '학술' },
-        { keyword: '체육', name: 'Sports Department' },
-        { keyword: '종교', name: 'Religious Department' },
-        { keyword: '공연', name: 'Performance Department' },
-        { keyword: '봉사', name: 'Volunteer Department' }
+        { keyword: '문화', className: 'Dept1' },
+        { keyword: '학술', className: 'Dept2' },
+        { keyword: '체육', className: 'Dept3' },
+        { keyword: '종교', className: 'Dept4' },
+        { keyword: '공연', className: 'Dept5' },
+        { keyword: '봉사', className: 'Dept6' }
     ];
 
     const matchingDepartment = departmentList.find(dept => dept.keyword === maxKey);
     const resultDepartmentContainer = document.getElementById('result-department');
 
     if (matchingDepartment) {
-        resultDepartmentContainer.innerHTML = `
-            <p>Matching Department: ${matchingDepartment.name}</p>
-        `;
+        const departmentElements = document.getElementsByClassName(matchingDepartment.className);
+        if (departmentElements.length > 0) {
+            resultDepartmentContainer.innerHTML = '';
+            Array.from(departmentElements).forEach(element => {
+                resultDepartmentContainer.appendChild(element.cloneNode(true));
+            });
+        } else {
+            resultDepartmentContainer.innerHTML = `
+                <p>No matching department found</p>
+            `;
+        }
     } else {
         resultDepartmentContainer.innerHTML = `
             <p>No matching department found</p>
