@@ -28,7 +28,7 @@ function showPopup(message) {
     // 이메일 입력 칸 추가
     const emailInput = document.createElement('input');
     emailInput.type = 'email';
-    emailInput.placeholder = '이메일을 입력하세요';
+    emailInput.placeholder = '전화번호를 입력해주시면 알림을 드릴게요!';
     emailInput.className = 'email-input';
     popupContent.appendChild(emailInput);
 
