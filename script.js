@@ -34,7 +34,7 @@ function showPopup(message) {
 
     // Kakao 링크 버튼 추가
     const kakaoLinkButton = document.createElement('button');
-    kakaoLinkButton.textContent = '카카오톡으로 연결';
+    kakaoLinkButton.textContent = '카톡 채널 추가';
     kakaoLinkButton.className = 'popup-button';
     kakaoLinkButton.onclick = () => window.open('http://pf.kakao.com/_xjsxmXG', '_blank');
     popupContent.appendChild(kakaoLinkButton);
