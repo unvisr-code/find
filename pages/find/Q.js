@@ -335,7 +335,7 @@ async function savePhoneNumber(clubName, phoneNumber) {
     }
 }
 
-function showPopup(message, clubName) {
+function showPopup(message) {
     const popup = document.createElement('div');
     popup.className = 'popup';
     const popupContent = document.createElement('div');
@@ -345,33 +345,50 @@ function showPopup(message, clubName) {
     messageElement.textContent = message;
     popupContent.appendChild(messageElement);
 
-    // 전화번호 입력 칸 추가
-    const phoneNumberInput = document.createElement('input');
-    phoneNumberInput.type = 'tel';
-    phoneNumberInput.placeholder = '전화번호를 입력하세요';
-    phoneNumberInput.className = 'phone-input';
-    popupContent.appendChild(phoneNumberInput);
+    // 이메일 입력 칸 추가
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.placeholder = '전화번호를 입력해주시면 알림을 드릴게요!';
+    emailInput.className = 'email-input';
+    popupContent.appendChild(emailInput);
 
-    // X 아이콘 추가.
-    const closeButton = document.createElement('span');
+    // Close button (x) 추가
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'x';
     closeButton.className = 'close-button';
-    closeButton.innerHTML = '&times;';
     closeButton.onclick = () => document.body.removeChild(popup);
     popupContent.appendChild(closeButton);
 
-    const submitButton = document.createElement('button');
-    submitButton.textContent = '저장';
-    submitButton.className = 'submit-button';
-    submitButton.onclick = () => {
-        const phoneNumber = phoneNumberInput.value;
-        if (phoneNumber) {
-            savePhoneNumber(clubName, phoneNumber);
-            document.body.removeChild(popup);
+    // Kakao 링크 버튼 추가
+    const saveButton = document.createElement('button');
+    saveButton.textContent = '저장';
+    saveButton.className = 'popup-button';
+    saveButton.onclick = async () => {
+        const email = emailInput.value;
+        if (email) {
+            try {
+                const response = await fetch('/api/savePhoneNumber', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ phone: email })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to save phone number');
+                }
+
+                // 성공적으로 저장된 후에 카카오톡 링크로 이동
+                window.open('http://pf.kakao.com/_xjsxmXG', '_blank');
+            } catch (error) {
+                console.error('Error saving phone number:', error);
+            }
         } else {
             alert('전화번호를 입력해주세요.');
         }
     };
-    popupContent.appendChild(submitButton);
+    popupContent.appendChild(saveButton);
 
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
