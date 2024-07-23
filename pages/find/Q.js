@@ -617,4 +617,3 @@ async function displayResults() {
 
 // 초기 질문 표시
 displayQuestion();
-
