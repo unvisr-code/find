@@ -381,6 +381,7 @@ function showPopup(message) {
 
                 // 성공적으로 저장된 후에 카카오톡 링크로 이동
                 window.open('http://pf.kakao.com/_xjsxmXG', '_blank');
+                document.body.removeChild(popup);
             } catch (error) {
                 console.error('Error saving phone number:', error);
             }
@@ -393,3 +394,46 @@ function showPopup(message) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
+
+// 스타일 추가
+const style = document.createElement('style');
+style.innerHTML = `
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+.popup-content {
+    position: relative;
+}
+.email-input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+}
+.popup-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #F2A0B0;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+`;
+document.head.appendChild(style);
