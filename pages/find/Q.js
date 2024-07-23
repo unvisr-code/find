@@ -18,7 +18,7 @@ const questions = [
         ]
     },
     {
-        "question": "친한 친구와 여행을 계획중이에요. 어떤 종류의 여행을 좋아하나요?",
+        "question": "MT를 가는데 종류의 여행을 좋아하나요?",
         "options": [
             {"answer": "동해 바다로 놀러가요", "weight": {"문화": 1}},
             {"answer": "스키장에 가요", "weight": {"체육": 1}},
@@ -272,7 +272,7 @@ async function displayResults() {
             applicationButton.style.backgroundColor = 'white';
             applicationButton.style.color = '#F2A0B0';
             applicationButton.style.border = '1px solid #F2A0B0';
-            applicationButton.onclick = () => showPopup(`${daysLeft}일 뒤에 지원 가능합니다!`);
+            applicationButton.onclick = () => showPopup(`${daysLeft}일 뒤에 지원 가능합니다!`, clubName.textContent);
         }
 
         const actionContainer = document.createElement('div');
@@ -314,7 +314,28 @@ function isTodayBetweenDates(startDate, endDate) {
     return today >= start && today <= end;
 }
 
-function showPopup(message) {
+async function savePhoneNumber(clubName, phoneNumber) {
+    try {
+        const response = await fetch('/api/savePhoneNumber', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ clubName, phoneNumber })
+        });
+
+        if (response.ok) {
+            alert('전화번호가 저장되었습니다.');
+        } else {
+            alert('전화번호 저장에 실패했습니다.');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert('전화번호 저장 중 오류가 발생했습니다.');
+    }
+}
+
+function showPopup(message, clubName) {
     const popup = document.createElement('div');
     popup.className = 'popup';
     const popupContent = document.createElement('div');
@@ -324,18 +345,33 @@ function showPopup(message) {
     messageElement.textContent = message;
     popupContent.appendChild(messageElement);
 
-    // 이메일 입력 칸 추가
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.placeholder = '이메일을 입력하세요';
-    emailInput.className = 'email-input';
-    popupContent.appendChild(emailInput);
+    // 전화번호 입력 칸 추가
+    const phoneNumberInput = document.createElement('input');
+    phoneNumberInput.type = 'tel';
+    phoneNumberInput.placeholder = '전화번호를 입력하세요';
+    phoneNumberInput.className = 'phone-input';
+    popupContent.appendChild(phoneNumberInput);
 
-    const closeButton = document.createElement('button');
-    closeButton.textContent = '확인';
-    closeButton.className = 'popup-button';
+    // X 아이콘 추가
+    const closeButton = document.createElement('span');
+    closeButton.className = 'close-button';
+    closeButton.innerHTML = '&times;';
     closeButton.onclick = () => document.body.removeChild(popup);
     popupContent.appendChild(closeButton);
+
+    const submitButton = document.createElement('button');
+    submitButton.textContent = '저장';
+    submitButton.className = 'submit-button';
+    submitButton.onclick = () => {
+        const phoneNumber = phoneNumberInput.value;
+        if (phoneNumber) {
+            savePhoneNumber(clubName, phoneNumber);
+            document.body.removeChild(popup);
+        } else {
+            alert('전화번호를 입력해주세요.');
+        }
+    };
+    popupContent.appendChild(submitButton);
 
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
