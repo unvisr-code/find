@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
 
     try {
         const body = await json(req);
+        console.log('Request body:', body);
         const { phone } = body;
 
         if (!phone) {
