@@ -352,7 +352,7 @@ function showPopup(message, clubName) {
     phoneNumberInput.className = 'phone-input';
     popupContent.appendChild(phoneNumberInput);
 
-    // X 아이콘 추가
+    // X 아이콘 추가.
     const closeButton = document.createElement('span');
     closeButton.className = 'close-button';
     closeButton.innerHTML = '&times;';
