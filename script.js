@@ -32,6 +32,13 @@ function showPopup(message) {
     emailInput.className = 'email-input';
     popupContent.appendChild(emailInput);
 
+    // Kakao 링크 버튼 추가
+    const kakaoLinkButton = document.createElement('button');
+    kakaoLinkButton.textContent = '카카오톡으로 연결';
+    kakaoLinkButton.className = 'popup-button';
+    kakaoLinkButton.onclick = () => window.open('http://pf.kakao.com/_xjsxmXG', '_blank');
+    popupContent.appendChild(kakaoLinkButton);
+
     const closeButton = document.createElement('button');
     closeButton.textContent = '확인';
     closeButton.className = 'popup-button';
@@ -41,6 +48,7 @@ function showPopup(message) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
+
 
 async function fetchNotionData() {
     try {
