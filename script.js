@@ -131,7 +131,7 @@ async function fetchNotionData() {
                 const applicationUrl = page.properties['신청방법']?.url || '#';
 
                 if (isTodayBetweenDates(startDate, endDate)) {
-                    applicationButton.textContent = '지원하기 !';
+                    applicationButton.textContent = '지원하기 !!!';
                     applicationButton.style.backgroundColor = '#F2A0B0';
                     applicationButton.style.color = 'white';
                     applicationButton.onclick = () => window.open(applicationUrl, '_blank');
@@ -226,7 +226,7 @@ async function fetchNotionData() {
                 listItem.appendChild(listItemContent);
 
                 // 필터 조건 확인
-                const matchesApplicationFilter = !onlyApplication || applicationButton.textContent === '지원하기 !';
+                const matchesApplicationFilter = !onlyApplication || applicationButton.textContent === '지원하기 !!!';
                 const matchesDepartmentFilter = !selectedDepartment || selectedDepartment === department;
 
                 if (matchesApplicationFilter && matchesDepartmentFilter) {
