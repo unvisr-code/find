@@ -262,7 +262,7 @@ async function displayResults() {
         const applicationUrl = page.properties['신청방법']?.url || '#';
 
         if (isTodayBetweenDates(startDate, endDate)) {
-            applicationButton.textContent = '지원하기 !';
+            applicationButton.textContent = '지원하기 !!!';
             applicationButton.style.backgroundColor = '#F2A0B0';
             applicationButton.style.color = 'white';
             applicationButton.onclick = () => window.open(applicationUrl, '_blank');
