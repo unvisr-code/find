@@ -6,7 +6,7 @@ const questions = [
             {"answer": "근처 북카페에 가서 책을 읽는다", "weight": {"학술": 1}},
             {"answer": "어린이대공원에 ", "weight": {"봉사": 1}},
             {"answer": "음악 연습을 하러 간다", "weight": {"공연": 1}}
-            {"answer": "잘 모르겠음"} 
+            {"answer": "잘 모르겠음", "weight": {}} 
         ]
     },
     {
@@ -16,7 +16,7 @@ const questions = [
             {"answer": "액티비티", "weight": {"체육": 1}},
             {"answer": "봉사,공익적 활동", "weight": {"봉사": 1}},
             {"answer": "노래,춤,힙합", "weight": {"공연": 1}}
-            {"answer": "잘 모르겠음"}
+            {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
     {
@@ -26,7 +26,7 @@ const questions = [
             {"answer": "액티비티 여행", "weight": {"체육": 1}},
             {"answer": "문화유산 탐방", "weight": {"학술": 1}},
             {"answer": "해외 선도??.. 활동 겸 여행", "weight": {"종교": 1}}
-            {"answer": "잘 모르겠음"}
+            {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
     {
@@ -36,7 +36,7 @@ const questions = [
             {"answer": "-", "weight": {"종교": 1}},
             {"answer": "런닝 30분 빡세게 뛰기", "weight": {"체육": 1}},
             {"answer": "동방가서 음악 연습하고 오기", "weight": {"공연": 1}}
-            {"answer": "잘 모르겠음"}
+            {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
     {
@@ -46,7 +46,7 @@ const questions = [
             {"answer": "채플", "weight": {"종교": 1}},
             {"answer": "세종사회봉사", "weight": {"봉사": 1}},
             {"answer": "공연예술감상", "weight": {"공연": 1}}
-            {"answer": "잘 모르겠음"}
+            {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
     {
@@ -56,7 +56,7 @@ const questions = [
             {"answer": "활동적인 사람", "weight": {"체육": 1}},
             {"answer": "타인을 돕는 걸 좋아하는 사람", "weight": {"봉사": 1}},
             {"answer": "자신의 생각을 설득력있게 전달하는 사람", "weight": {"종교": 1}}
-            {"answer": "잘 모르겠음"}
+            {"answer": "잘 모르겠음", "weight": {}}
         ]
     }
 ];
