@@ -4,8 +4,8 @@ const questions = [
         "options": [
             {"answer": "보고싶었던 영화를 보러간다", "weight": {"문화": 1}},
             {"answer": "근처 북카페에 가서 책을 읽는다", "weight": {"학술": 1}},
-            {"answer": "어린이대공원에 ", "weight": {"봉사": 1}},
-            {"answer": "음악 연습을 하러 간다", "weight": {"공연": 1}}
+            {"answer": "어린이대공원에 간다", "weight": {"봉사": 1}},
+            {"answer": "음악 연습을 하러 간다", "weight": {"공연": 1}},
             {"answer": "잘 모르겠음", "weight": {}} 
         ]
     },
@@ -15,7 +15,7 @@ const questions = [
             {"answer": "학점,자기개발,갓생", "weight": {"학술": 1}},
             {"answer": "액티비티", "weight": {"체육": 1}},
             {"answer": "봉사,공익적 활동", "weight": {"봉사": 1}},
-            {"answer": "노래,춤,힙합", "weight": {"공연": 1}}
+            {"answer": "노래,춤,힙합", "weight": {"공연": 1}},
             {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
@@ -25,7 +25,7 @@ const questions = [
             {"answer": "감성 여행", "weight": {"문화": 1}},
             {"answer": "액티비티 여행", "weight": {"체육": 1}},
             {"answer": "문화유산 탐방", "weight": {"학술": 1}},
-            {"answer": "해외 선도??.. 활동 겸 여행", "weight": {"종교": 1}}
+            {"answer": "해외 선교 활동 겸 여행", "weight": {"종교": 1}},
             {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
@@ -33,9 +33,9 @@ const questions = [
         "question": "지긋지긋한 시험기간.. 딴짓하고 싶은데 어떤 걸 하면 좋을까?",
         "options": [
             {"answer": "신나는 유튜브 플리로 기분전환", "weight": {"문화": 1}},
-            {"answer": "-", "weight": {"종교": 1}},
+            {"answer": "종교 활동", "weight": {"종교": 1}},
             {"answer": "런닝 30분 빡세게 뛰기", "weight": {"체육": 1}},
-            {"answer": "동방가서 음악 연습하고 오기", "weight": {"공연": 1}}
+            {"answer": "동방가서 음악 연습하고 오기", "weight": {"공연": 1}},
             {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
@@ -45,7 +45,7 @@ const questions = [
             {"answer": "성(性)과 문화", "weight": {"문화": 1}},
             {"answer": "채플", "weight": {"종교": 1}},
             {"answer": "세종사회봉사", "weight": {"봉사": 1}},
-            {"answer": "공연예술감상", "weight": {"공연": 1}}
+            {"answer": "공연예술감상", "weight": {"공연": 1}},
             {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
@@ -55,11 +55,12 @@ const questions = [
             {"answer": "스펙쌓기에 진심인 사람", "weight": {"학술": 1}},
             {"answer": "활동적인 사람", "weight": {"체육": 1}},
             {"answer": "타인을 돕는 걸 좋아하는 사람", "weight": {"봉사": 1}},
-            {"answer": "자신의 생각을 설득력있게 전달하는 사람", "weight": {"종교": 1}}
+            {"answer": "자신의 생각을 설득력있게 전달하는 사람", "weight": {"종교": 1}},
             {"answer": "잘 모르겠음", "weight": {}}
         ]
     }
 ];
+
 
 // Shuffle function to randomize array elements
 function shuffle(array) {
