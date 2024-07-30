@@ -43,7 +43,7 @@ const questions = [
         "question": "수강 신청 마감 5분전, 수강 여석이 하나씩 남았다! 수강할 과목은?",
         "options": [
             {"answer": "성(性)과 문화", "weight": {"문화": 1}},
-            {"answer": "채플", "weight": {"종교": 1}},
+            {"answer": "채플", "weight": {"종교": }},
             {"answer": "세종사회봉사", "weight": {"봉사": 1}},
             {"answer": "공연예술감상", "weight": {"공연": 1}},
             {"answer": "잘 모르겠음", "weight": {}}
@@ -73,9 +73,10 @@ function shuffle(array) {
 let currentQuestion = 0;
 const scores = { "문화": 0, "학술": 0, "체육": 0, "종교": 0, "공연": 0, "봉사": 0 };
 
-// Shuffle questions and options
-// shuffle(questions);
-// questions.forEach(question => shuffle(question.options));
+// shuufle function to randomize 답변
+Shuffle questions and options
+shuffle(questions);
+questions.forEach(question => shuffle(question.options));
 
 function displayQuestion() {
     const questionElement = document.getElementById("question");
