@@ -346,7 +346,6 @@ async function displayResults(subCategory) {
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
 
     // 결과 텍스트 및 설명 추가
-    resultDepartment.innerHTML = ""; // 초기화
     const resultText = document.createElement("div");
     resultText.className = "result-text";
     resultText.innerHTML = `${subCategory} 분과를 추천드려요!`;
@@ -366,14 +365,12 @@ async function displayResults(subCategory) {
             notionList.style.display = 'none';
             resultDepartment.classList.remove("show-content");
             resultDepartment.classList.add("center-content");
-            resultImage.classList.add("center-content");
             showButton.innerText = "세부 분과 보기";
         } else {
+            loadNotionData(subCategory);
             notionList.style.display = 'block';
             resultDepartment.classList.add("show-content");
             resultDepartment.classList.remove("center-content");
-            resultImage.classList.add("show-content");
-            resultImage.classList.remove("center-content");
             showButton.innerText = "세부 분과 닫기";
         }
     };
@@ -531,7 +528,6 @@ async function loadNotionData(subCategory) {
         notionList.innerHTML = `<p>데이터를 가져오는 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>`;
     }
 }
-
 
 // 초기 질문 표시
 displayQuestion();
