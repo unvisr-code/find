@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire</title>
     <link rel="stylesheet" href="/pages/find/Q.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
 </head>
 <body>
     <div class="progress-container">
@@ -22,11 +22,12 @@
         <div id="question" class="question"></div>
         <div id="options" class="options"></div>
     </div>
-    <div class="result-container">
-        <div id="result-image" class="result-image"></div>
+    <div id="result-container" class="result-container center-content">
+        <div id="result-image" class="result-image"></div> <!-- 결과 이미지 표시 영역 -->
         <div id="result-department" class="result-department"></div>
     </div>
-    <!-- 리스트를 표시할 영역 -->
+
+    <!-- 리스트를 표시할 영역 추가 -->
     <div id="notionList" class="container" style="display: none;"></div>
 
     <script src="/pages/find/Q.js"></script>

@@ -391,13 +391,14 @@ async function displayResults(subCategory) {
 
 function downloadScreenshot() {
     const element = document.querySelector('.result-container');
-    html2canvas(element, { scale: 2 }).then(canvas => {
+    html2canvas(element, { width: 1920, height: 1080 }).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
         link.download = 'screenshot.png';
         link.click();
     });
 }
+
 
 
 // **수정된 부분 끝**
