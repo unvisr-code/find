@@ -465,39 +465,36 @@ async function savePhoneNumber(clubName, phoneNumber) {
     }
 }
 
-function showPopup(message, clubName) {
+function showPopup(message) {
     const popup = document.createElement('div');
     popup.className = 'popup';
     const popupContent = document.createElement('div');
     popupContent.className = 'popup-content';
+
     const messageElement = document.createElement('p');
     messageElement.textContent = message;
     popupContent.appendChild(messageElement);
-    // 전화번호 입력 칸 추가
-    const phoneNumberInput = document.createElement('input');
-    phoneNumberInput.type = 'tel';
-    phoneNumberInput.placeholder = '전화번호를 입력하세요';
-    phoneNumberInput.className = 'phone-input';
-    popupContent.appendChild(phoneNumberInput);
-    // X 아이콘 추가
-    const closeButton = document.createElement('span');
-    closeButton.className = 'close-button';
-    closeButton.innerHTML = '&times;';
+
+    // 이메일 입력 칸 추가
+    const emailInput = document.createElement('input');
+    emailInput.type = 'email';
+    emailInput.placeholder = '총동아리연합회 카톡 채널을 추가하고 전화번호를 입력해주시면 카톡을 드릴게요!';
+    emailInput.className = 'email-input';
+    popupContent.appendChild(emailInput);
+
+    // Kakao 링크 버튼 추가
+    const kakaoLinkButton = document.createElement('button');
+    kakaoLinkButton.textContent = '카톡 채널 추가';
+    kakaoLinkButton.className = 'popup-button';
+    kakaoLinkButton.onclick = () => window.open('http://pf.kakao.com/_xjsxmXG', '_blank');
+    popupContent.appendChild(kakaoLinkButton);
+
+    const closeButton = document.createElement('button');
+    closeButton.textContent = '확인';
+    closeButton.className = 'popup-button';
     closeButton.onclick = () => document.body.removeChild(popup);
     popupContent.appendChild(closeButton);
-    const submitButton = document.createElement('button');
-    submitButton.textContent = '저장';
-    submitButton.className = 'submit-button';
-    submitButton.onclick = () => {
-        const phoneNumber = phoneNumberInput.value;
-        if (phoneNumber) {
-            savePhoneNumber(clubName, phoneNumber);
-            document.body.removeChild(popup);
-        } else {
-            alert('전화번호를 입력해주세요');
-        }
-    };
-    popupContent.appendChild(submitButton);
+
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
