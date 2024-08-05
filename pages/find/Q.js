@@ -375,6 +375,7 @@ async function displayResults(subCategory) {
             resultContainer.classList.remove("show-content");
             resultContainer.classList.add("center-content");
             showButton.innerText = "세부 분과 보기";
+            downloadButton.style.display = 'inline-block'; // 다운로드 버튼 다시 표시
         } else {
             loadNotionData(subCategory);
             notionList.style.display = 'block';
@@ -382,6 +383,7 @@ async function displayResults(subCategory) {
             resultContainer.classList.add("show-content");
             resultContainer.classList.remove("center-content");
             showButton.innerText = "세부 분과 닫기";
+            downloadButton.style.display = 'none'; // 다운로드 버튼 숨기기
         }
     };
 
@@ -390,14 +392,14 @@ async function displayResults(subCategory) {
 }
 
 function downloadScreenshot() {
-    const element = document.querySelector('.result-container');
-    html2canvas(element, { width: 1920, height: 1080 }).then(canvas => {
+    html2canvas(document.body).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
         link.download = 'screenshot.png';
         link.click();
     });
 }
+
 
 
 
