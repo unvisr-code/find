@@ -134,12 +134,23 @@ body.no-background::before {
     background-color: #e55370;
 }
 
+.result-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
 .result-image {
-    width: 100px; /* 결과 창에 표시할 이미지 크기 조정 */
+    width: 100px;
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* 결과 텍스트와 설명 */
