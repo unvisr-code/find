@@ -140,6 +140,8 @@ body.no-background::before {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    text-align: center;
+    transition: all 0.5s ease-in-out;
 }
 
 .result-image {
@@ -148,17 +150,14 @@ body.no-background::before {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* 결과 텍스트와 설명 */
 .result-department {
     text-align: center;
     margin-top: 20px;
 }
 
+/* 결과 텍스트와 설명 */
 .result-text {
     font-size: 1.5em;
     margin-bottom: 10px;
@@ -196,7 +195,7 @@ body.no-background::before {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
+    margin-top: 20px; /* 간격 조정 */
     border-radius: 8px;
     max-height: 60vh;
     overflow-y: auto; /* 결과 창에서 스크롤 가능하도록 설정 */
@@ -390,7 +389,7 @@ button:hover {
 }
 
 .show-content {
-    margin-top: -300px;
+    margin-top: -200px; /* 수정: 상단 간격 조정 */
     transition: all 0.5s ease-in-out;
 }
 

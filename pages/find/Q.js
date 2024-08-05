@@ -192,6 +192,14 @@ const subCategoryQuestions = {
 };
 
 
+const questions = [
+    // ... (기존 질문 내용)
+];
+
+const subCategoryQuestions = {
+    // ... (기존 세부 분과 질문 내용)
+};
+
 let currentQuestion = 0;
 let subQuestionIndex = 0;
 let currentCategory = '';
@@ -200,25 +208,12 @@ let subCategoryScores = {};
 let totalQuestions = questions.length; // 전체 질문 수
 let totalSubQuestions = 0; // 세부분과 질문 수
 
-// 세부 분과 설명 객체
 const subCategoryDescriptions = {
-    '종교': '다양한 종교 활동을 통해 신앙을 나누고 삶의 가르침을 배우는 분과입니다.',
-    '봉사': '다양한 봉사 활동을 통해 사회에 기여하고 나눔의 가치를 실천하는 분과입니다.',
-    '정보과학': '정보 과학을 탐구하며 여러 첨단 기술을 학습하고 응용하는 분과입니다.',
-    '학술교양': '다양한 학문과 교양 지식을 탐구하며 경험과 지적 성장을 추구하는 분과입니다.',
-    '창작예술': '창의력을 통한 예술을 표현할 수 있는 분과입니다.',
-    '문화': '다양한 문화 생활을 함께 즐기며 추억을 쌓아가는 분과입니다.',
-    '생활체육': '이색적인 스포츠를 일상 속에서 함께 즐길 수 있는 분과입니다.',
-    '음악연주': '서로 다른 악기로 아름다운 화음을 만들어가는 분과입니다.',
-    '공연예술': '수많은 연습으로 빛나는 무대를 만들어가는 분과입니다.',
-    '구기체육': '같은 스포츠를 좋아하는 사람들과 함께 열정을 나누는 분과입니다.',
-    '무술체육': '함께 무술을 연마하며 심신을 단련하는 분과입니다.'
+    // ... (기존 세부 분과 설명 내용)
 };
 
-// 초기 질문 표시
 displayQuestion();
 
-// 진행 바 업데이트 함수
 function updateProgressBar() {
     const progressBar = document.getElementById("progress-bar");
     const progressPercent = document.getElementById("progress-percent");
@@ -244,7 +239,7 @@ function displayQuestion() {
     const dontKnowOption = options.find(option => option.answer === "잘 모르겠음");
     options = options.filter(option => option.answer !== "잘 모르겠음");
     shuffle(options);
-    options.push(dontKnowOption); // "잘 모르겠음"을 맨 아래로 이동
+    options.push(dontKnowOption);
 
     options.forEach(option => {
         const button = document.createElement("button");
@@ -254,7 +249,7 @@ function displayQuestion() {
         optionsElement.appendChild(button);
     });
 
-    updateProgressBar(); // 진행 바 업데이트
+    updateProgressBar();
 }
 
 function handleAnswer(weight) {
@@ -277,7 +272,7 @@ function determineCategory() {
     if (subCategoryQuestions[currentCategory]) {
         subCategoryScores = {};
         subQuestionIndex = 0;
-        totalSubQuestions = subCategoryQuestions[currentCategory].length; // 세부분과 질문 수 추가
+        totalSubQuestions = subCategoryQuestions[currentCategory].length;
         displaySubCategoryQuestion();
     } else {
         displayResults(currentCategory);
@@ -299,7 +294,7 @@ function displaySubCategoryQuestion() {
         optionsElement.appendChild(button);
     });
 
-    updateProgressBar(); // 진행 바 업데이트
+    updateProgressBar();
 }
 
 function handleSubAnswer(weight) {
@@ -331,8 +326,8 @@ async function displayResults(subCategory) {
     const resultImage = document.getElementById("result-image");
     const resultDepartment = document.getElementById("result-department");
     const notionList = document.getElementById("notionList");
+    const resultContainer = document.querySelector('.result-container');
 
-    // 배경 이미지 제거
     document.body.classList.add("no-background");
 
     questionElement.innerHTML = "";
@@ -341,58 +336,48 @@ async function displayResults(subCategory) {
     progressPercent.innerHTML = '100%';
     progressIcon.style.left = `calc(100% - 10px)`;
 
-    // 결과 이미지 표시
     resultImage.style.display = 'block';
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
 
-    // 결과 텍스트 및 설명 추가
-    const resultText = document.createElement("div");
-    resultText.className = "result-text";
-    resultText.innerHTML = `${subCategory} 분과를 추천드려요!`;
-    resultDepartment.appendChild(resultText);
+    resultDepartment.innerHTML = `
+        <div class="result-text">${subCategory} 분과를 추천드려요!</div>
+        <div class="description-text">${subCategoryDescriptions[subCategory]}</div>
+    `;
 
-    const descriptionText = document.createElement("div");
-    descriptionText.className = "description-text";
-    descriptionText.innerHTML = subCategoryDescriptions[subCategory];
-    resultDepartment.appendChild(descriptionText);
-
-    // "세부 분과 보기" 버튼 추가
     const showButton = document.createElement("button");
     showButton.className = "show-button";
     showButton.innerText = "세부 분과 보기";
     showButton.onclick = () => {
         if (notionList.style.display === 'block') {
             notionList.style.display = 'none';
-            resultDepartment.classList.remove("show-content");
-            resultDepartment.classList.add("center-content");
+            resultContainer.classList.remove("show-content");
+            resultContainer.classList.add("center-content");
             showButton.innerText = "세부 분과 보기";
         } else {
             loadNotionData(subCategory);
             notionList.style.display = 'block';
-            resultDepartment.classList.add("show-content");
-            resultDepartment.classList.remove("center-content");
+            resultContainer.classList.add("show-content");
+            resultContainer.classList.remove("center-content");
             showButton.innerText = "세부 분과 닫기";
         }
     };
     resultDepartment.appendChild(showButton);
 
-    // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
 
 async function loadNotionData(subCategory) {
     try {
-        // Fetch data from the server
         const response = await fetch('/api/fetchNotionData');
         const data = await response.json();
-        console.log('Fetched data:', data); // 데이터를 확인하기 위해 콘솔에 출력
+        console.log('Fetched data:', data);
         const notionList = document.querySelector('#notionList');
         notionList.innerHTML = '';
         data.results.forEach(page => {
             const subDepartment = page.properties['세부 분과']?.rich_text?.[0]?.plain_text || 'No SubDepartment';
-            console.log('SubDepartment:', subDepartment); // 필터링 조건 확인
+            console.log('SubDepartment:', subDepartment);
             if (subDepartment !== subCategory) {
-                return; // 필터링: 가장 높은 가중치 세부 분과와 일치하지 않는 경우 건너뜀
+                return;
             }
             const listItem = document.createElement('div');
             listItem.className = 'list-item';
@@ -416,7 +401,6 @@ async function loadNotionData(subCategory) {
             representative.textContent = `대표자 성함: ${page.properties['대표자 성함']?.rich_text?.[0]?.plain_text || 'N/A'}`;
             const address = document.createElement('p');
             address.textContent = `동아리방 주소: ${page.properties['동아리방 주소']?.rich_text?.[0]?.plain_text || 'N/A'}`;
-            // 추가 데이터 표시
             const recruitmentPeriod = document.createElement('p');
             const startDate = page.properties['모집 시작일']?.date?.start || 'N/A';
             const endDate = page.properties['모집 마감일']?.date?.start || 'N/A';
@@ -445,8 +429,6 @@ async function loadNotionData(subCategory) {
             curriculumBar.className = 'curriculum-bar';
 
             const curriculumText = page.properties['커리큘럼']?.rich_text?.[0]?.plain_text || 'N/A';
-
-            // 커리큘럼 텍스트를 월별로 분리
             const curriculumItems = curriculumText.split('\n');
             const months = ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'];
             let monthDetails = {};
@@ -466,14 +448,12 @@ async function loadNotionData(subCategory) {
             activeMonths.forEach((month, index) => {
                 const monthPoint = document.createElement('div');
                 monthPoint.className = 'month-point';
-                monthPoint.textContent = month.slice(0, -1); // "월" 제거하여 숫자만 표시
-                
-                // Adjust left position to ensure the last point is correctly aligned
+                monthPoint.textContent = month.slice(0, -1);
+
                 let leftPosition = (index / (activeMonths.length - 1)) * 100;
 
-                // Shift the last point slightly to the left
                 if (index === activeMonths.length - 1) {
-                    leftPosition -= 2; // Adjust this value as needed
+                    leftPosition -= 2;
                 }
 
                 monthPoint.style.left = `${leftPosition}%`;
@@ -485,7 +465,6 @@ async function loadNotionData(subCategory) {
                 monthPoint.appendChild(detailDiv);
                 curriculumBar.appendChild(monthPoint);
 
-                // 모바일에서는 클릭 시 디테일 표시 후 1.5초 뒤에 사라지게 설정,1.3초로 변경
                 if (window.innerWidth <= 600) {
                     monthPoint.addEventListener('click', () => {
                         detailDiv.style.display = 'block';
@@ -494,7 +473,7 @@ async function loadNotionData(subCategory) {
                             setTimeout(() => {
                                 detailDiv.style.display = 'none';
                                 detailDiv.classList.remove('fade-out');
-                            }, 500); // duration of fade-out animation
+                            }, 500);
                         }, 1300);
                     });
                 }
@@ -509,7 +488,6 @@ async function loadNotionData(subCategory) {
             listItemContent.appendChild(address);
             listItemContent.appendChild(recruitmentPeriod);
 
-            // 버튼과 커리큘럼 바를 가로로 배치
             const actionContainer = document.createElement('div');
             actionContainer.className = 'action-container';
             actionContainer.appendChild(applicationButton);
@@ -529,10 +507,8 @@ async function loadNotionData(subCategory) {
     }
 }
 
-// 초기 질문 표시
 displayQuestion();
 
-// 보조 함수
 function calculateDaysLeft(startDate) {
     const today = new Date();
     const start = new Date(startDate);
@@ -558,7 +534,6 @@ function showPopup(message, clubName) {
     messageElement.textContent = message;
     popupContent.appendChild(messageElement);
 
-    // 전화번호 입력 칸 추가
     const phoneInput = document.createElement('input');
     phoneInput.type = 'tel';
     phoneInput.placeholder = '총동아리연합회 카톡 채널을 추가하고 전화번호를 입력해주시면 카톡을 드릴게요!';
@@ -570,7 +545,7 @@ function showPopup(message, clubName) {
     closeButton.className = 'popup-button';
     closeButton.onclick = async () => {
         const phoneNumber = phoneInput.value;
-        console.log('Entered phone number:', phoneNumber); // 로그 추가
+        console.log('Entered phone number:', phoneNumber);
         if (phoneNumber) {
             const isSaved = await savePhoneNumber(clubName, phoneNumber);
             if (isSaved) {
@@ -589,7 +564,7 @@ function showPopup(message, clubName) {
 
 async function savePhoneNumber(clubName, phoneNumber) {
     console.log('savePhoneNumber function called');
-    const pageUrl = window.location.href; // 현재 페이지 URL 가져오기
+    const pageUrl = window.location.href;
     try {
         const response = await fetch('/api/savePhoneNumber', {
             method: 'POST',
@@ -612,7 +587,6 @@ async function savePhoneNumber(clubName, phoneNumber) {
     }
 }
 
-// 보조 함수
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -620,5 +594,4 @@ function shuffle(array) {
     }
 }
 
-// 초기 질문 표시
 displayQuestion();
