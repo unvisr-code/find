@@ -160,6 +160,7 @@ const subCategoryQuestions = {
     ]
 };
 
+
 let currentQuestion = 0;
 let subQuestionIndex = 0;
 let currentCategory = '';
@@ -482,4 +483,3 @@ function showPopup(message, clubName) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
-           
