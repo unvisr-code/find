@@ -6,7 +6,7 @@ const questions = [
             {"answer": "근처 북카페에 가서 책을 읽는다", "weight": {"학술": 1}},
             {"answer": "어린이대공원에 간다", "weight": {"봉사": 1}},
             {"answer": "음악 연습을 하러 간다", "weight": {"공연": 1}},
-            {"answer": "잘 모르겠음", "weight": {}} 
+            {"answer": "잘 모르겠음", "weight": {}}
         ]
     },
     {
@@ -60,6 +60,112 @@ const questions = [
         ]
     }
 ];
+
+const subCategoryQuestions = {
+    '공연': [
+        {
+            "question": "공연에서 어떤 역할을 하고 싶나요?",
+            "options": [
+                {"answer": "노래 부르기", "weight": {"음악연주": 1}},
+                {"answer": "연극 공연", "weight": {"공연예술": 1}}
+            ]
+        },
+        {
+            "question": "공연 준비 과정 중 어떤 활동을 좋아하나요?",
+            "options": [
+                {"answer": "밴드 연주", "weight": {"음악연주": 1}},
+                {"answer": "연기 연습", "weight": {"공연예술": 1}}
+            ]
+        }
+    ],
+    '문화': [
+        {
+            "question": "문화 활동 중 어떤 것을 좋아하나요?",
+            "options": [
+                {"answer": "그림 그리기", "weight": {"창작예술": 1}},
+                {"answer": "책 읽기", "weight": {"문화": 1}}
+            ]
+        },
+        {
+            "question": "어떤 종류의 문화를 좋아하나요?",
+            "options": [
+                {"answer": "사진 찍기", "weight": {"창작예술": 1}},
+                {"answer": "영화 보기", "weight": {"문화": 1}}
+            ]
+        }
+    ],
+    '봉사': [
+        {
+            "question": "어떤 봉사 활동을 선호하나요?",
+            "options": [
+                {"answer": "교육 봉사", "weight": {"봉사": 1}},
+                {"answer": "환경 봉사", "weight": {"봉사": 1}}
+            ]
+        },
+        {
+            "question": "봉사 활동의 주된 목적은 무엇인가요?",
+            "options": [
+                {"answer": "사회적 기여", "weight": {"봉사": 1}},
+                {"answer": "개인적 성취", "weight": {"봉사": 1}}
+            ]
+        }
+    ],
+    '종교': [
+        {
+            "question": "종교 활동에서 어떤 역할을 선호하나요?",
+            "options": [
+                {"answer": "예배 참여", "weight": {"종교": 1}},
+                {"answer": "기도 모임", "weight": {"종교": 1}}
+            ]
+        },
+        {
+            "question": "종교 활동 중 어떤 것을 더 선호하나요?",
+            "options": [
+                {"answer": "봉사 활동", "weight": {"종교": 1}},
+                {"answer": "교회 모임", "weight": {"종교": 1}}
+            ]
+        }
+    ],
+    '체육': [
+        {
+            "question": "어떤 체육 활동을 좋아하나요?",
+            "options": [
+                {"answer": "축구", "weight": {"구기체육": 1}},
+                {"answer": "마라톤", "weight": {"생활체육": 1}}
+            ]
+        },
+        {
+            "question": "체육 활동 중 어떤 것을 더 좋아하나요?",
+            "options": [
+                {"answer": "농구", "weight": {"구기체육": 1}},
+                {"answer": "수영", "weight": {"생활체육": 1}}
+            ]
+        }
+    ],
+    '학술': [
+        {
+            "question": "학술 활동 중 어떤 것을 좋아하나요?",
+            "options": [
+                {"answer": "코딩", "weight": {"정보과학": 1}},
+                {"answer": "독서", "weight": {"학술교양": 1}}
+            ]
+        },
+        {
+            "question": "어떤 학술 분야에 관심이 있나요?",
+            "options": [
+                {"answer": "데이터 분석", "weight": {"정보과학": 1}},
+                {"answer": "문학 연구", "weight": {"학술교양": 1}}
+            ]
+        }
+    ]
+};
+
+let currentQuestion = 0;
+let subQuestionIndex = 0;
+let currentCategory = '';
+const scores = { "문화": 0, "학술": 0, "체육": 0, "종교": 0, "공연": 0, "봉사": 0 };
+let subCategoryScores = {};
+
 // Shuffle function to randomize array elements
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -67,14 +173,10 @@ function shuffle(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 }
-let currentQuestion = 0;
-const scores = { "문화": 0, "학술": 0, "체육": 0, "종교": 0, "공연": 0, "봉사": 0 };
 
 // Shuffle questions and options
 shuffle(questions);
 questions.forEach(question => shuffle(question.options));
-// shuffle(questions);
-// questions.forEach(question => shuffle(question.options));
 
 function displayQuestion() {
     const questionElement = document.getElementById("question");
@@ -96,6 +198,7 @@ function displayQuestion() {
     progressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
     progressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
 }
+
 function handleAnswer(weight) {
     for (let key in weight) {
         if (weight.hasOwnProperty(key)) {
@@ -106,10 +209,58 @@ function handleAnswer(weight) {
     if (currentQuestion < questions.length) {
         displayQuestion();
     } else {
-        displayResults();
+        determineCategory();
     }
 }
-async function displayResults() {
+
+function determineCategory() {
+    const topCategory = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    console.log(`당신의 분과 종류는: ${topCategory}`);
+    currentCategory = topCategory;
+    if (subCategoryQuestions[currentCategory]) {
+        subCategoryScores = {};
+        subQuestionIndex = 0;
+        displaySubCategoryQuestion();
+    } else {
+        displayResults(currentCategory);
+    }
+}
+
+function displaySubCategoryQuestion() {
+    const questionElement = document.getElementById("question");
+    const optionsElement = document.getElementById("options");
+    questionElement.innerHTML = subCategoryQuestions[currentCategory][subQuestionIndex].question;
+    optionsElement.innerHTML = "";
+    subCategoryQuestions[currentCategory][subQuestionIndex].options.forEach(option => {
+        const button = document.createElement("button");
+        button.innerText = option.answer;
+        button.className = "option";
+        button.onclick = () => handleSubAnswer(option.weight);
+        optionsElement.appendChild(button);
+    });
+}
+
+function handleSubAnswer(weight) {
+    for (let key in weight) {
+        if (weight.hasOwnProperty(key)) {
+            subCategoryScores[key] = (subCategoryScores[key] || 0) + weight[key];
+        }
+    }
+    subQuestionIndex++;
+    if (subQuestionIndex < subCategoryQuestions[currentCategory].length) {
+        displaySubCategoryQuestion();
+    } else {
+        determineSubCategory();
+    }
+}
+
+function determineSubCategory() {
+    const topSubCategory = Object.keys(subCategoryScores).reduce((a, b) => subCategoryScores[a] > subCategoryScores[b] ? a : b);
+    console.log(`당신의 세부 분과는: ${topSubCategory}`);
+    displayResults(topSubCategory);
+}
+
+async function displayResults(subCategory) {
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
     const progressBar = document.getElementById("progress-bar");
@@ -123,18 +274,6 @@ async function displayResults() {
     // 결과 이미지 표시
     const resultImage = document.getElementById("result-image");
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
-    // 가장 높은 가중치 분과 찾기
-    let maxScore = -1;
-    let maxDepartment = '';
-    for (let key in scores) {
-        if (scores[key] > maxScore) {
-            maxScore = scores[key];
-            maxDepartment = key;
-        }
-    }
-    // 결과 분과 표시
-    const resultDepartment = document.getElementById("result-department");
-    resultDepartment.innerHTML = `가장 높은 점수의 분과: ${maxDepartment}`;
     // Fetch data from the server
     const response = await fetch('/api/fetchNotionData');
     const data = await response.json();
@@ -144,8 +283,9 @@ async function displayResults() {
     notionList.innerHTML = '';
     data.results.forEach(page => {
         const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
-        if (department !== maxDepartment) {
-            return; // 필터링: 가장 높은 가중치 분과와 일치하지 않는 경우 건너뜀
+        const subDepartment = page.properties['세부 분과']?.rich_text?.[0]?.plain_text || 'No SubDepartment';
+        if (subDepartment !== subCategory) {
+            return; // 필터링: 가장 높은 가중치 세부 분과와 일치하지 않는 경우 건너뜀
         }
         const listItem = document.createElement('div');
         listItem.className = 'list-item';
@@ -162,7 +302,7 @@ async function displayResults() {
         clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
         const departmentBox = document.createElement('div');
         departmentBox.className = 'department-box';
-        departmentBox.textContent = department;
+        departmentBox.textContent = `${department} - ${subDepartment}`;
         const description = document.createElement('p');
         description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
         const representative = document.createElement('p');
@@ -257,8 +397,10 @@ async function displayResults() {
         notionList.appendChild(listItem);
     });
 }
+
 // 초기 질문 표시
 displayQuestion();
+
 // 보조 함수
 function calculateDaysLeft(startDate) {
     const today = new Date();
@@ -267,12 +409,14 @@ function calculateDaysLeft(startDate) {
     const daysLeft = Math.ceil(difference / (1000 * 3600 * 24));
     return daysLeft;
 }
+
 function isTodayBetweenDates(startDate, endDate) {
     const today = new Date();
     const start = new Date(startDate);
     const end = new Date(endDate);
     return today >= start && today <= end;
 }
+
 async function savePhoneNumber(clubName, phoneNumber) {
     try {
         const response = await fetch('/api/savePhoneNumber', {
@@ -292,6 +436,7 @@ async function savePhoneNumber(clubName, phoneNumber) {
         alert('전화번호 저장 중 오류가 발생했습니다.');
     }
 }
+
 function showPopup(message, clubName) {
     const popup = document.createElement('div');
     popup.className = 'popup';
@@ -328,3 +473,5 @@ function showPopup(message, clubName) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
+           
+        
