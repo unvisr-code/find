@@ -216,20 +216,30 @@ function displayQuestion() {
     const progressBar = document.getElementById("progress-bar");
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
+
     questionElement.innerHTML = questions[currentQuestion].question;
     optionsElement.innerHTML = "";
-    questions[currentQuestion].options.forEach(option => {
+
+    let options = questions[currentQuestion].options;
+    const dontKnowOption = options.find(option => option.answer === "잘 모르겠음");
+    options = options.filter(option => option.answer !== "잘 모르겠음");
+    shuffle(options);
+    options.push(dontKnowOption); // "잘 모르겠음"을 맨 아래로 이동
+
+    options.forEach(option => {
         const button = document.createElement("button");
         button.innerText = option.answer;
         button.className = "option";
         button.onclick = () => handleAnswer(option.weight);
         optionsElement.appendChild(button);
     });
+
     const progressPercentage = (currentQuestion / questions.length) * 100;
     progressBar.style.width = progressPercentage + '%';
     progressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
     progressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
 }
+
 
 function handleAnswer(weight) {
     for (let key in weight) {
