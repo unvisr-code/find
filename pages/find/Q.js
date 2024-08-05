@@ -366,6 +366,7 @@ async function displayResults(subCategory) {
         } else {
             loadNotionData(subCategory);
             notionList.style.display = 'block';
+            notionList.classList.add("notion-list");
             resultContainer.classList.add("show-content");
             resultContainer.classList.remove("center-content");
             showButton.innerText = "세부 분과 닫기";
@@ -376,6 +377,7 @@ async function displayResults(subCategory) {
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
 // **수정된 부분 끝**
 
 async function loadNotionData(subCategory) {

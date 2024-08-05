@@ -389,8 +389,11 @@ button:hover {
 }
 
 .show-content {
-    margin-top: -200px; /* 수정: 상단 간격 조정 */
+    margin-top: -150px; /* 기존보다 더 작은 값으로 조정하여 더 아래로 이동 */
     transition: all 0.5s ease-in-out;
+}
+.notion-list {
+    margin-top: 20px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
 }
 
 /* 반응형 스타일 */
