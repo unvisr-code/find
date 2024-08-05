@@ -478,3 +478,22 @@ function showPopup(message, clubName) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
+
+// 초기 질문 표시
+displayQuestion();
+
+// 보조 함수
+function calculateDaysLeft(startDate) {
+    const today = new Date();
+    const start = new Date(startDate);
+    const difference = start.getTime() - today.getTime();
+    const daysLeft = Math.ceil(difference / (1000 * 3600 * 24));
+    return daysLeft;
+}
+
+function isTodayBetweenDates(startDate, endDate) {
+    const today = new Date();
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    return today >= start && today <= end;
+}
