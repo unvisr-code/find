@@ -7,8 +7,8 @@ const WRITE_DATABASE_ID = '04440d29bcd64fa0ac738cb43a183906'; // 새로운 쓰�
 module.exports = async (req, res) => {
     console.log('savePhoneNumber endpoint called');
     try {
-        const { clubName, phoneNumber } = req.body;
-        console.log('Received data:', { clubName, phoneNumber });
+        const { clubName, phoneNumber, pageUrl } = req.body;
+        console.log('Received data:', { clubName, phoneNumber, pageUrl });
 
         // 모집 시작일과 마감일을 읽어오는 부분
         const queryResponse = await fetch(`https://api.notion.com/v1/databases/${READ_DATABASE_ID}/query`, {
@@ -44,7 +44,6 @@ module.exports = async (req, res) => {
         const clubData = queryData.results[0];
         const startDate = clubData.properties['모집 시작일']?.date?.start || '';
         const endDate = clubData.properties['모집 마감일']?.date?.start || '';
-        const pageUrl = clubData.url; // Notion 페이지 URL
 
         // 현재 시간(타임스탬프)
         const timestamp = new Date().toISOString();

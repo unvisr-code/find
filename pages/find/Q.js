@@ -488,13 +488,14 @@ function showPopup(message, clubName) {
 
 async function savePhoneNumber(clubName, phoneNumber) {
     console.log('savePhoneNumber function called');
+    const pageUrl = window.location.href; // 현재 페이지 URL 가져오기
     try {
         const response = await fetch('/api/savePhoneNumber', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ clubName, phoneNumber })
+            body: JSON.stringify({ clubName, phoneNumber, pageUrl })
         });
         if (response.ok) {
             console.log('Phone number saved successfully');
