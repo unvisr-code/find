@@ -462,13 +462,6 @@ function showPopup(message, clubName) {
     phoneInput.className = 'phone-input';
     popupContent.appendChild(phoneInput);
 
-    // Kakao 링크 버튼 추가
-    const kakaoLinkButton = document.createElement('button');
-    kakaoLinkButton.textContent = '카톡 채널 추가';
-    kakaoLinkButton.className = 'popup-button';
-    kakaoLinkButton.onclick = () => window.open('http://pf.kakao.com/_xjsxmXG', '_blank');
-    popupContent.appendChild(kakaoLinkButton);
-
     const closeButton = document.createElement('button');
     closeButton.textContent = '확인';
     closeButton.className = 'popup-button';
@@ -476,7 +469,12 @@ function showPopup(message, clubName) {
         const phoneNumber = phoneInput.value;
         console.log('Entered phone number:', phoneNumber); // 로그 추가
         if (phoneNumber) {
-            await savePhoneNumber(clubName, phoneNumber);
+            const isSaved = await savePhoneNumber(clubName, phoneNumber);
+            if (isSaved) {
+                window.location.href = 'http://pf.kakao.com/_xjsxmXG';
+            } else {
+                alert('전화번호 저장에 실패했습니다.');
+            }
         }
         document.body.removeChild(popup);
     };
@@ -499,15 +497,16 @@ async function savePhoneNumber(clubName, phoneNumber) {
         });
         if (response.ok) {
             console.log('Phone number saved successfully');
-            alert('전화번호가 저장되었습니다.');
+            return true;
         } else {
             const errorText = await response.text();
             console.error('Failed to save phone number:', errorText);
-            alert('전화번호 저장에 실패했습니다.');
+            return false;
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('전화번호 저장 중 오류가 발생했습니다.');
+        return false;
     }
 }
+
 
