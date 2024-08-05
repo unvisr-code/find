@@ -471,7 +471,7 @@ function showPopup(message, clubName) {
             savePhoneNumber(clubName, phoneNumber);
             document.body.removeChild(popup);
         } else {
-            alert('전화번호를 입력해주세요.');
+            alert('전화번호를 입력해주세요');
         }
     };
     popupContent.appendChild(submitButton);
