@@ -324,6 +324,32 @@ button:hover {
     border-radius: 5px;
     font-size: 14px;
 }
+.bottom-sheet {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-height: 50%;
+    overflow-y: auto;
+    transition: max-height 0.3s ease-in-out;
+}
+
+.bottom-sheet.full-screen {
+    max-height: 100%;
+}
+
+.scroll-indicator {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    font-size: 14px;
+}
+
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
 
 /* 반응형 스타일 */
 @media (min-width: 600px) {

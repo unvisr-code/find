@@ -328,8 +328,10 @@ async function displayResults(subCategory) {
         const response = await fetch('/api/fetchNotionData');
         const data = await response.json();
         console.log('Fetched data:', data); // 데이터를 확인하기 위해 콘솔에 출력
+
+        // Bottom Sheet 스타일 적용
         const notionList = document.querySelector('#notionList');
-        notionList.style.display = 'block'; // 결과창에서 표시
+        notionList.classList.add('bottom-sheet');
         notionList.innerHTML = '';
         data.results.forEach(page => {
             const subDepartment = page.properties['세부 분과']?.rich_text?.[0]?.plain_text || 'No SubDepartment';
@@ -465,12 +467,33 @@ async function displayResults(subCategory) {
 
             notionList.appendChild(listItem);
         });
+
+        addScrollIndicator(notionList);
+
     } catch (error) {
         console.error('Error fetching data from Notion:', error);
         const notionList = document.querySelector('#notionList');
-        notionList.style.display = 'block'; // 결과창에서 표시
+        notionList.classList.add('bottom-sheet');
         notionList.innerHTML = `<p>데이터를 가져오는 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>`;
     }
+}
+
+function addScrollIndicator(notionList) {
+    const scrollIndicator = document.createElement('div');
+    scrollIndicator.className = 'scroll-indicator';
+    scrollIndicator.innerHTML = 'Swipe up to see more';
+
+    notionList.insertBefore(scrollIndicator, notionList.firstChild);
+
+    let isScrolled = false;
+
+    notionList.addEventListener('scroll', () => {
+        if (!isScrolled && notionList.scrollTop > 50) {
+            isScrolled = true;
+            scrollIndicator.style.display = 'none';
+            notionList.classList.add('full-screen');
+        }
+    });
 }
 
 // 초기 질문 표시
