@@ -285,9 +285,8 @@ async function displayResults(subCategory) {
         notionList.style.display = 'block'; // 결과창에서 표시
         notionList.innerHTML = '';
         data.results.forEach(page => {
-            const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
             const subDepartment = page.properties['세부 분과']?.rich_text?.[0]?.plain_text || 'No SubDepartment';
-            console.log('Department:', department, 'SubDepartment:', subDepartment); // 필터링 조건 확인
+            console.log('SubDepartment:', subDepartment); // 필터링 조건 확인
             if (subDepartment !== subCategory) {
                 return; // 필터링: 가장 높은 가중치 세부 분과와 일치하지 않는 경우 건너뜀
             }
@@ -304,9 +303,6 @@ async function displayResults(subCategory) {
             listItemContent.className = 'list-item-content';
             const clubName = document.createElement('h2');
             clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
-            const departmentBox = document.createElement('div');
-            departmentBox.className = 'department-box';
-            departmentBox.textContent = `${department} - ${subDepartment}`;
             const description = document.createElement('p');
             description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
             const representative = document.createElement('p');
@@ -390,7 +386,6 @@ async function displayResults(subCategory) {
             actionContainer.appendChild(applicationButton);
             actionContainer.appendChild(curriculumBarContainer);
             listItemContent.appendChild(clubName);
-            listItemContent.appendChild(departmentBox);
             listItemContent.appendChild(description);
             listItemContent.appendChild(representative);
             listItemContent.appendChild(address);
