@@ -389,11 +389,11 @@ button:hover {
 }
 
 .show-content {
-    margin-top: -100px; /* 기존보다 더 작은 값으로 조정하여 더 아래로 이동 */
+    margin-top: -80px; /* 기존보다 더 작은 값으로 조정하여 더 아래로 이동 */
     transition: all 0.5s ease-in-out;
 }
 .notion-list {
-    margin-top: 70px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
+    margin-top: 80px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
 }
 .download-button {
     background-color: #F2A0B0;
