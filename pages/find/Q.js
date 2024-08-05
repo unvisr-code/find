@@ -321,6 +321,7 @@ async function displayResults(subCategory) {
 
     // 결과 이미지 표시
     const resultImage = document.getElementById("result-image");
+    resultImage.style.display = 'block';
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
 
     try {
@@ -331,6 +332,7 @@ async function displayResults(subCategory) {
 
         // Bottom Sheet 스타일 적용
         const notionList = document.querySelector('#notionList');
+        notionList.style.display = 'block';
         notionList.classList.add('bottom-sheet');
         notionList.innerHTML = '';
         data.results.forEach(page => {
@@ -473,6 +475,7 @@ async function displayResults(subCategory) {
     } catch (error) {
         console.error('Error fetching data from Notion:', error);
         const notionList = document.querySelector('#notionList');
+        notionList.style.display = 'block';
         notionList.classList.add('bottom-sheet');
         notionList.innerHTML = `<p>데이터를 가져오는 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>`;
     }
@@ -492,9 +495,16 @@ function addScrollIndicator(notionList) {
             isScrolled = true;
             scrollIndicator.style.display = 'none';
             notionList.classList.add('full-screen');
+
+            // 전체 화면 전환 후 새로운 스크롤 인디케이터 추가
+            const fullScreenScrollIndicator = document.createElement('div');
+            fullScreenScrollIndicator.className = 'full-screen-scroll-indicator';
+            fullScreenScrollIndicator.innerHTML = 'Scroll down to see more';
+            notionList.insertBefore(fullScreenScrollIndicator, notionList.firstChild);
         }
     });
 }
+
 
 // 초기 질문 표시
 displayQuestion();
