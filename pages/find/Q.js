@@ -303,6 +303,9 @@ async function displayResults(subCategory) {
             listItemContent.className = 'list-item-content';
             const clubName = document.createElement('h2');
             clubName.textContent = page.properties['동아리명']?.title?.[0]?.plain_text || 'No Name';
+            const departmentBox = document.createElement('div');
+            departmentBox.className = 'department-box';
+            departmentBox.textContent = `${subDepartment}`;
             const description = document.createElement('p');
             description.textContent = page.properties['한줄소개']?.rich_text?.[0]?.plain_text || 'No Description';
             const representative = document.createElement('p');
