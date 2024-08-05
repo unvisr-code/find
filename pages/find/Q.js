@@ -445,27 +445,7 @@ function isTodayBetweenDates(startDate, endDate) {
     return today >= start && today <= end;
 }
 
-async function savePhoneNumber(clubName, phoneNumber) {
-    try {
-        const response = await fetch('/api/savePhoneNumber', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ clubName, phoneNumber })
-        });
-        if (response.ok) {
-            alert('전화번호가 저장되었습니다.');
-        } else {
-            alert('전화번호 저장에 실패했습니다.');
-        }
-    } catch (error) {
-        console.error('Error:', error);
-        alert('전화번호 저장 중 오류가 발생했습니다.');
-    }
-}
-
-function showPopup(message) {
+function showPopup(message, clubName) {
     const popup = document.createElement('div');
     popup.className = 'popup';
     const popupContent = document.createElement('div');
@@ -482,7 +462,6 @@ function showPopup(message) {
     phoneInput.className = 'phone-input';
     popupContent.appendChild(phoneInput);
 
-
     // Kakao 링크 버튼 추가
     const kakaoLinkButton = document.createElement('button');
     kakaoLinkButton.textContent = '카톡 채널 추가';
@@ -493,9 +472,40 @@ function showPopup(message) {
     const closeButton = document.createElement('button');
     closeButton.textContent = '확인';
     closeButton.className = 'popup-button';
-    closeButton.onclick = () => document.body.removeChild(popup);
+    closeButton.onclick = async () => {
+        const phoneNumber = phoneInput.value;
+        console.log('Entered phone number:', phoneNumber); // 로그 추가
+        if (phoneNumber) {
+            await savePhoneNumber(clubName, phoneNumber);
+        }
+        document.body.removeChild(popup);
+    };
     popupContent.appendChild(closeButton);
 
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
+}
+
+async function savePhoneNumber(clubName, phoneNumber) {
+    console.log('savePhoneNumber function called'); // 로그 추가
+    try {
+        const response = await fetch('/api/savePhoneNumber', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ clubName, phoneNumber })
+        });
+        if (response.ok) {
+            console.log('Phone number saved successfully'); // 로그 추가
+            alert('전화번호가 저장되었습니다.');
+        } else {
+            const errorText = await response.text();
+            console.error('Failed to save phone number:', errorText); // 로그 추가
+            alert('전화번호 저장에 실패했습니다.');
+        }
+    } catch (error) {
+        console.error('Error:', error); // 로그 추가
+        alert('전화번호 저장 중 오류가 발생했습니다.');
+    }
 }
