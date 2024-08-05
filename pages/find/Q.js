@@ -584,21 +584,8 @@ async function savePhoneNumber(clubName, phoneNumber) {
     }
 }
 
-function calculateDaysLeft(startDate) {
-    const today = new Date();
-    const start = new Date(startDate);
-    const difference = start.getTime() - today.getTime();
-    const daysLeft = Math.ceil(difference / (1000 * 3600 * 24));
-    return daysLeft;
-}
 
-function isTodayBetweenDates(startDate, endDate) {
-    const today = new Date();
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-    return today >= start && today <= end;
-}
-
+// 보조 함수
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
