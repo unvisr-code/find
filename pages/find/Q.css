@@ -40,6 +40,7 @@ body::before {
 
 .progress-bar-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     margin-top: 10px; /* 텍스트와의 간격 추가 */
@@ -52,7 +53,7 @@ body::before {
     border-radius: 5px;
     position: relative;
     overflow: visible; /* 아이콘이 잘리지 않도록 설정 */
-    margin-right: 10px; /* 퍼센트와의 간격 추가 */
+    margin-bottom: 20px;
 }
 
 .progress-bar {
@@ -64,19 +65,23 @@ body::before {
     top: 0;
     left: 0;
     transition: width 0.3s ease;
+    z-index: 1;
 }
 
 .progress-icon {
     position: absolute;
-    top: -10px; /* 아이콘 위치 조정 */
-    width: 30px; /* 아이콘 크기 조정 */
-    height: 30px; /* 아이콘 크기 조정 */
+    top: -10px;
+    width: 30px;
+    height: 30px;
     background-image: url('/pages/find/donghwa.png'); /* 진행 상태 아이콘 경로 */
     background-size: cover;
     background-repeat: no-repeat;
     transition: left 0.3s ease;
-    z-index: 2; /* 아이콘이 가장 위에 오도록 z-index 설정 */
+    z-index: 2;
 }
+
+
+
 
 .progress-text {
     font-size: 1em;
