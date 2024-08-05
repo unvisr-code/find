@@ -523,7 +523,12 @@ async function loadNotionData(subCategory) {
         notionList.innerHTML = `<p>데이터를 가져오는 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>`;
     }
 }
-
+function isTodayBetweenDates(startDate, endDate) {
+    const today = new Date();
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+    return today >= start && today <= end;
+}
 function showPopup(message, clubName) {
     const popup = document.createElement('div');
     popup.className = 'popup';
