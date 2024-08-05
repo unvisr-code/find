@@ -200,6 +200,21 @@ let subCategoryScores = {};
 let totalQuestions = questions.length; // 전체 질문 수
 let totalSubQuestions = 0; // 세부분과 질문 수
 
+// 세부 분과 설명 객체
+const subCategoryDescriptions = {
+    '종교': '다양한 종교 활동을 통해 신앙을 나누고 삶의 가르침을 배우는 분과입니다.',
+    '봉사': '다양한 봉사 활동을 통해 사회에 기여하고 나눔의 가치를 실천하는 분과입니다.',
+    '정보과학': '정보 과학을 탐구하며 여러 첨단 기술을 학습하고 응용하는 분과입니다.',
+    '학술교양': '다양한 학문과 교양 지식을 탐구하며 경험과 지적 성장을 추구하는 분과입니다.',
+    '창작예술': '창의력을 통한 예술을 표현할 수 있는 분과입니다.',
+    '문화': '다양한 문화 생활을 함께 즐기며 추억을 쌓아가는 분과입니다.',
+    '생활체육': '이색적인 스포츠를 일상 속에서 함께 즐길 수 있는 분과입니다.',
+    '음악연주': '서로 다른 악기로 아름다운 화음을 만들어가는 분과입니다.',
+    '공연예술': '수많은 연습으로 빛나는 무대를 만들어가는 분과입니다.',
+    '구기체육': '같은 스포츠를 좋아하는 사람들과 함께 열정을 나누는 분과입니다.',
+    '무술체육': '함께 무술을 연마하며 심신을 단련하는 분과입니다.'
+};
+
 // 초기 질문 표시
 displayQuestion();
 
@@ -313,23 +328,49 @@ async function displayResults(subCategory) {
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
 
-    questionElement.innerHTML = "당신의 분과는...";
+    const resultImage = document.getElementById("result-image");
+    const resultDepartment = document.getElementById("result-department");
+    const notionList = document.getElementById("notionList");
+
+    questionElement.innerHTML = "";
     optionsElement.innerHTML = "";
     progressBar.style.width = '100%';
     progressPercent.innerHTML = '100%';
     progressIcon.style.left = `calc(100% - 10px)`;
 
     // 결과 이미지 표시
-    const resultImage = document.getElementById("result-image");
+    resultImage.style.display = 'block';
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
 
+    // 결과 텍스트 및 설명 추가
+    const resultText = document.createElement("div");
+    resultText.className = "result-text";
+    resultText.innerHTML = `${subCategory} 분과를 추천드려요!`;
+    resultDepartment.appendChild(resultText);
+
+    const descriptionText = document.createElement("div");
+    descriptionText.className = "description-text";
+    descriptionText.innerHTML = subCategoryDescriptions[subCategory];
+    resultDepartment.appendChild(descriptionText);
+
+    // "세부 분과 보기" 버튼 추가
+    const showButton = document.createElement("button");
+    showButton.className = "show-button";
+    showButton.innerText = "세부 분과 보기";
+    showButton.onclick = () => {
+        notionList.style.display = 'block';
+        loadNotionData(subCategory);
+    };
+    resultDepartment.appendChild(showButton);
+}
+
+async function loadNotionData(subCategory) {
     try {
         // Fetch data from the server
         const response = await fetch('/api/fetchNotionData');
         const data = await response.json();
         console.log('Fetched data:', data); // 데이터를 확인하기 위해 콘솔에 출력
         const notionList = document.querySelector('#notionList');
-        notionList.style.display = 'block'; // 결과창에서 표시
         notionList.innerHTML = '';
         data.results.forEach(page => {
             const subDepartment = page.properties['세부 분과']?.rich_text?.[0]?.plain_text || 'No SubDepartment';
@@ -468,7 +509,6 @@ async function displayResults(subCategory) {
     } catch (error) {
         console.error('Error fetching data from Notion:', error);
         const notionList = document.querySelector('#notionList');
-        notionList.style.display = 'block'; // 결과창에서 표시
         notionList.innerHTML = `<p>데이터를 가져오는 중 오류가 발생했습니다. 나중에 다시 시도해주세요.</p>`;
     }
 }

@@ -138,6 +138,43 @@ body::before {
     background-position: center;
 }
 
+/* 결과 텍스트와 설명 */
+.result-department {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.result-text {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.description-text {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+/* "세부 분과 보기" 버튼 */
+.show-button {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #F2A0B0;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.show-button:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .container {
     width: 80%;
     margin: 0 auto;
