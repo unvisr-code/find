@@ -143,9 +143,9 @@ body.no-background::before {
 }
 
 /* 결과 텍스트와 설명 */
-.result-department {
-    text-align: center;
-    margin-top: 20px;
+.result-department,
+.result-image {
+    margin-bottom: 20px; /* 간격을 동일하게 유지 */
 }
 
 .result-text {
@@ -185,11 +185,19 @@ body.no-background::before {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-top: 40px;
     border-radius: 8px;
     max-height: 60vh;
     overflow-y: auto; /* 결과 창에서 스크롤 가능하도록 설정 */
-    transition: max-height 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+.container.visible {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
 }
 
 .list-item {
@@ -379,7 +387,7 @@ button:hover {
 }
 
 .show-content {
-    margin-top: -300px;
+    margin-top: -300px; /* 애니메이션을 위한 마진 조정 */
     transition: all 0.5s ease-in-out;
 }
 
