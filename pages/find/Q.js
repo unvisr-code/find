@@ -73,10 +73,10 @@ function shuffle(array) {
 let currentQuestion = 0;
 const scores = { "문화": 0, "학술": 0, "체육": 0, "종교": 0, "공연": 0, "봉사": 0 };
 
-// shuufle function to randomize 답변
-// Shuffle questions and options
-// shuffle(questions);
-// questions.forEach(question => shuffle(question.options));
+shuufle function to randomize 답변
+Shuffle questions and options
+shuffle(questions);
+questions.forEach(question => shuffle(question.options));
 
 function displayQuestion() {
     const questionElement = document.getElementById("question");
