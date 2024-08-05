@@ -487,7 +487,7 @@ function showPopup(message, clubName) {
 }
 
 async function savePhoneNumber(clubName, phoneNumber) {
-    console.log('savePhoneNumber function called'); // 로그 추가
+    console.log('savePhoneNumber function called');
     try {
         const response = await fetch('/api/savePhoneNumber', {
             method: 'POST',
@@ -497,15 +497,16 @@ async function savePhoneNumber(clubName, phoneNumber) {
             body: JSON.stringify({ clubName, phoneNumber })
         });
         if (response.ok) {
-            console.log('Phone number saved successfully'); // 로그 추가
+            console.log('Phone number saved successfully');
             alert('전화번호가 저장되었습니다.');
         } else {
             const errorText = await response.text();
-            console.error('Failed to save phone number:', errorText); // 로그 추가
+            console.error('Failed to save phone number:', errorText);
             alert('전화번호 저장에 실패했습니다.');
         }
     } catch (error) {
-        console.error('Error:', error); // 로그 추가
+        console.error('Error:', error);
         alert('전화번호 저장 중 오류가 발생했습니다.');
     }
 }
+
