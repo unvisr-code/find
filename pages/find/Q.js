@@ -473,5 +473,5 @@ function showPopup(message, clubName) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
-           
+            
         
