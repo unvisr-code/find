@@ -363,10 +363,14 @@ async function displayResults(subCategory) {
     showButton.onclick = () => {
         if (notionList.style.display === 'block') {
             notionList.style.display = 'none';
+            resultDepartment.classList.remove("show-content");
+            resultDepartment.classList.add("center-content");
             showButton.innerText = "세부 분과 보기";
         } else {
             loadNotionData(subCategory);
             notionList.style.display = 'block';
+            resultDepartment.classList.add("show-content");
+            resultDepartment.classList.remove("center-content");
             showButton.innerText = "세부 분과 닫기";
         }
     };

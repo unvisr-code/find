@@ -137,7 +137,6 @@ body.no-background::before {
 .result-image {
     width: 100px; /* 결과 창에 표시할 이미지 크기 조정 */
     height: 100px;
-    margin-top: 20px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -190,6 +189,7 @@ body.no-background::before {
     border-radius: 8px;
     max-height: 60vh;
     overflow-y: auto; /* 결과 창에서 스크롤 가능하도록 설정 */
+    transition: max-height 0.5s ease-in-out;
 }
 
 .list-item {
@@ -365,6 +365,22 @@ button:hover {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 14px;
+}
+
+/* 수직 및 수평 정렬 */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+}
+
+.show-content {
+    margin-top: -300px;
+    transition: all 0.5s ease-in-out;
 }
 
 /* 반응형 스타일 */
