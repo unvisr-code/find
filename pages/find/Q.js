@@ -286,6 +286,7 @@ async function displayResults(subCategory) {
         data.results.forEach(page => {
             const department = page.properties['분과']?.rich_text?.[0]?.plain_text || 'No Department';
             const subDepartment = page.properties['세부 분과']?.rich_text?.[0]?.plain_text || 'No SubDepartment';
+            console.log('Department:', department, 'SubDepartment:', subDepartment); // 필터링 조건 확인
             if (subDepartment !== subCategory) {
                 return; // 필터링: 가장 높은 가중치 세부 분과와 일치하지 않는 경우 건너뜀
             }
@@ -481,3 +482,4 @@ function showPopup(message, clubName) {
     popup.appendChild(popupContent);
     document.body.appendChild(popup);
 }
+           
