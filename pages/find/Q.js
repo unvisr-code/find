@@ -475,12 +475,13 @@ function showPopup(message) {
     messageElement.textContent = message;
     popupContent.appendChild(messageElement);
 
-    // 이메일 입력 칸 추가
-    const emailInput = document.createElement('input');
-    emailInput.type = 'email';
-    emailInput.placeholder = '총동아리연합회 카톡 채널을 추가하고 전화번호를 입력해주시면 카톡을 드릴게요!';
-    emailInput.className = 'email-input';
-    popupContent.appendChild(emailInput);
+    // 전화번호 입력 칸 추가
+    const phoneInput = document.createElement('input');
+    phoneInput.type = 'tel';
+    phoneInput.placeholder = '총동아리연합회 카톡 채널을 추가하고 전화번호를 입력해주시면 카톡을 드릴게요!';
+    phoneInput.className = 'phone-input';
+    popupContent.appendChild(phoneInput);
+
 
     // Kakao 링크 버튼 추가
     const kakaoLinkButton = document.createElement('button');
