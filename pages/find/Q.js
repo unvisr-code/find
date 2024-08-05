@@ -271,16 +271,38 @@ function determineCategory() {
 function displaySubCategoryQuestion() {
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
+    const subProgressBar = document.getElementById("sub-progress-bar");
+    const subProgressPercent = document.getElementById("sub-progress-percent");
+    const subProgressIcon = document.getElementById("sub-progress-icon");
+    const remainingQuestionsText = document.getElementById("remaining-questions");
+
     questionElement.innerHTML = subCategoryQuestions[currentCategory][subQuestionIndex].question;
     optionsElement.innerHTML = "";
-    subCategoryQuestions[currentCategory][subQuestionIndex].options.forEach(option => {
+
+    let options = subCategoryQuestions[currentCategory][subQuestionIndex].options;
+    const dontKnowOption = options.find(option => option.answer === "잘 모르겠음");
+    options = options.filter(option => option.answer !== "잘 모르겠음");
+    shuffle(options);
+    options.push(dontKnowOption); // "잘 모르겠음"을 맨 아래로 이동
+
+    options.forEach(option => {
         const button = document.createElement("button");
         button.innerText = option.answer;
         button.className = "option";
         button.onclick = () => handleSubAnswer(option.weight);
         optionsElement.appendChild(button);
     });
+
+    const progressPercentage = ((subQuestionIndex + 1) / subCategoryQuestions[currentCategory].length) * 100;
+    subProgressBar.style.width = progressPercentage + '%';
+    subProgressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
+    subProgressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
+
+    // 남아 있는 질문 수 표시
+    const remainingQuestions = subCategoryQuestions[currentCategory].length - subQuestionIndex - 1;
+    remainingQuestionsText.innerHTML = `마지막 ${remainingQuestions}개의 질문이 남았어요!`;
 }
+
 
 function handleSubAnswer(weight) {
     for (let key in weight) {
@@ -308,7 +330,7 @@ async function displayResults(subCategory) {
     const progressBar = document.getElementById("progress-bar");
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
-    questionElement.innerHTML = "노션 데이터 테이블";
+    questionElement.innerHTML = "당신의 분과는...";
     optionsElement.innerHTML = "";
     progressBar.style.width = '100%';
     progressPercent.innerHTML = '100%';
