@@ -182,19 +182,9 @@ questions.forEach(question => shuffle(question.options));
 function displayQuestion() {
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
-    const progressBarWrapper = document.getElementById("progress-bar-wrapper");
-
-    // 새로운 프로그레스 바 생성
-    if (currentQuestion % 6 === 0 && currentQuestion !== 0) {
-        createNewProgressBar();
-    }
-
-    const progressBarContainer = progressBarWrapper.lastElementChild;
-    const progressBar = progressBarContainer.querySelector('.progress-bar');
-    const progressIcon = progressBarContainer.querySelector('.progress-icon');
+    const progressBar = document.getElementById("progress-bar");
     const progressPercent = document.getElementById("progress-percent");
-
-    // 질문 표시
+    const progressIcon = document.getElementById("progress-icon");
     questionElement.innerHTML = questions[currentQuestion].question;
     optionsElement.innerHTML = "";
     questions[currentQuestion].options.forEach(option => {
@@ -204,25 +194,11 @@ function displayQuestion() {
         button.onclick = () => handleAnswer(option.weight);
         optionsElement.appendChild(button);
     });
-
-    // 프로그레스 바 업데이트
-    const progressPercentage = ((currentQuestion % 6) / 6) * 100; // 질문 6개 후 초기화
+    const progressPercentage = (currentQuestion / questions.length) * 100;
     progressBar.style.width = progressPercentage + '%';
     progressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
     progressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
 }
-
-function createNewProgressBar() {
-    const progressBarWrapper = document.querySelector('.progress-bar-wrapper');
-    const newProgressBarContainer = document.createElement('div');
-    newProgressBarContainer.className = 'progress-bar-container';
-    newProgressBarContainer.innerHTML = `
-        <div class="progress-bar"></div>
-        <div class="progress-icon"></div>
-    `;
-    progressBarWrapper.appendChild(newProgressBarContainer);
-}
-
 
 function handleAnswer(weight) {
     for (let key in weight) {
@@ -532,5 +508,3 @@ async function savePhoneNumber(clubName, phoneNumber) {
         return false;
     }
 }
-
-
