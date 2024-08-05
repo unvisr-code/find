@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
             body: JSON.stringify({
                 filter: {
                     property: '동아리명',
-                    text: {
+                    title: {
                         equals: clubName
                     }
                 }
@@ -44,6 +44,7 @@ module.exports = async (req, res) => {
         const clubData = queryData.results[0];
         const startDate = clubData.properties['모집 시작일']?.date?.start || '';
         const endDate = clubData.properties['모집 마감일']?.date?.start || '';
+        const pageUrl = clubData.url; // Notion 페이지 URL
 
         // 현재 시간(타임스탬프)
         const timestamp = new Date().toISOString();
@@ -78,6 +79,9 @@ module.exports = async (req, res) => {
                     date: {
                         start: timestamp
                     }
+                },
+                'URL': {
+                    url: pageUrl
                 }
             }
         };
