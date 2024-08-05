@@ -353,10 +353,22 @@ async function displayResults(subCategory) {
         <div class="description-text">${subCategoryDescriptions[subCategory]}</div>
     `;
 
-    // "세부 분과 보기" 버튼 추가
+    // "세부 분과 보기" 버튼 및 다운로드 아이콘 추가
     const showButton = document.createElement("button");
     showButton.className = "show-button";
     showButton.innerText = "세부 분과 보기";
+    
+    const downloadButton = document.createElement("button");
+    downloadButton.className = "download-button";
+    downloadButton.innerHTML = "&#128190;"; // 다운로드 아이콘 (유니코드 또는 FontAwesome 아이콘 사용 가능)
+    downloadButton.onclick = () => downloadScreenshot();
+
+    const buttonContainer = document.createElement("div");
+    buttonContainer.className = "button-container";
+    buttonContainer.appendChild(showButton);
+    buttonContainer.appendChild(downloadButton);
+    resultDepartment.appendChild(buttonContainer);
+
     showButton.onclick = () => {
         if (notionList.style.display === 'block') {
             notionList.style.display = 'none';
@@ -372,11 +384,21 @@ async function displayResults(subCategory) {
             showButton.innerText = "세부 분과 닫기";
         }
     };
-    resultDepartment.appendChild(showButton);
 
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
+function downloadScreenshot() {
+    const element = document.querySelector('.result-container');
+    html2canvas(element, { scale: 2 }).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'screenshot.png';
+        link.click();
+    });
+}
+
 
 // **수정된 부분 끝**
 

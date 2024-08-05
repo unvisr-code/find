@@ -395,6 +395,32 @@ button:hover {
 .notion-list {
     margin-top: 70px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
 }
+.download-button {
+    background-color: #F2A0B0;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.download-button:hover {
+    background-color: #e8909e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
 
 /* 반응형 스타일 */
 @media (min-width: 600px) {
