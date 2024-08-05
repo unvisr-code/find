@@ -83,10 +83,7 @@ body::before {
     font-size: 1em;
     color: #333;
     font-weight: bold;
-    margin-left: 10px; /* 프로그레스 바와 텍스트 사이의 간격 조정 */
-    white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
-    position: absolute;
-    right: 0; /* 텍스트를 오른쪽 끝에 위치시키기 */
+    margin-left: 10px;
 }
 
 .question-container {
