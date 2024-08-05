@@ -29,7 +29,6 @@ body::before {
 }
 
 
-코드 복사
 .progress-container {
     width: 80%;
     margin: 20px;
@@ -55,7 +54,6 @@ body::before {
     border-radius: 5px;
     position: relative;
     overflow: visible; /* 아이콘이 잘리지 않도록 설정 */
-    margin-right: 10px; /* 퍼센트와의 간격 추가 */
 }
 
 .progress-bar {
@@ -88,7 +86,10 @@ body::before {
     font-weight: bold;
     margin-left: 10px; /* 프로그레스 바와 텍스트 사이의 간격 조정 */
     white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
+    position: absolute;
+    right: 0; /* 텍스트를 오른쪽 끝에 위치시키기 */
 }
+
 
 .question-container {
     text-align: center;
