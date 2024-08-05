@@ -393,7 +393,7 @@ button:hover {
     transition: all 0.5s ease-in-out;
 }
 .notion-list {
-    margin-top: 20px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
+    margin-top: 60px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
 }
 
 /* 반응형 스타일 */
