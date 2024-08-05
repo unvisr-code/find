@@ -28,6 +28,8 @@ body::before {
     z-index: -1;
 }
 
+
+코드 복사
 .progress-container {
     width: 80%;
     margin: 20px;
@@ -43,6 +45,7 @@ body::before {
     align-items: center;
     width: 100%;
     margin-top: 10px; /* 텍스트와의 간격 추가 */
+    position: relative;
 }
 
 .progress-bar-container {
@@ -83,6 +86,8 @@ body::before {
     font-size: 1em;
     color: #333;
     font-weight: bold;
+    margin-left: 10px; /* 프로그레스 바와 텍스트 사이의 간격 조정 */
+    white-space: nowrap; /* 텍스트가 한 줄로 유지되도록 설정 */
 }
 
 .question-container {
