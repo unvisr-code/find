@@ -197,25 +197,30 @@ let subQuestionIndex = 0;
 let currentCategory = '';
 const scores = { "문화": 0, "학술": 0, "체육": 0, "종교": 0, "공연": 0, "봉사": 0 };
 let subCategoryScores = {};
+let totalQuestions = questions.length; // 전체 질문 수
+let totalSubQuestions = 0; // 세부분과 질문 수
 
-// Shuffle function to randomize array elements
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+// 초기 질문 표시
+displayQuestion();
+
+// 진행 바 업데이트 함수
+function updateProgressBar() {
+    const progressBar = document.getElementById("progress-bar");
+    const progressPercent = document.getElementById("progress-percent");
+    const progressIcon = document.getElementById("progress-icon");
+
+    const currentTotalQuestions = totalQuestions + totalSubQuestions;
+    const currentAnsweredQuestions = currentQuestion + subQuestionIndex;
+    const progressPercentage = (currentAnsweredQuestions / currentTotalQuestions) * 100;
+
+    progressBar.style.width = progressPercentage + '%';
+    progressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
+    progressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
 }
-
-// Shuffle questions and options
-shuffle(questions);
-questions.forEach(question => shuffle(question.options));
 
 function displayQuestion() {
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
-    const progressBar = document.getElementById("progress-bar");
-    const progressPercent = document.getElementById("progress-percent");
-    const progressIcon = document.getElementById("progress-icon");
 
     questionElement.innerHTML = questions[currentQuestion].question;
     optionsElement.innerHTML = "";
@@ -234,12 +239,8 @@ function displayQuestion() {
         optionsElement.appendChild(button);
     });
 
-    const progressPercentage = (currentQuestion / questions.length) * 100;
-    progressBar.style.width = progressPercentage + '%';
-    progressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
-    progressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
+    updateProgressBar(); // 진행 바 업데이트
 }
-
 
 function handleAnswer(weight) {
     for (let key in weight) {
@@ -257,11 +258,11 @@ function handleAnswer(weight) {
 
 function determineCategory() {
     const topCategory = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-    console.log(`당신의 분과 종류는: ${topCategory}`);
     currentCategory = topCategory;
     if (subCategoryQuestions[currentCategory]) {
         subCategoryScores = {};
         subQuestionIndex = 0;
+        totalSubQuestions = subCategoryQuestions[currentCategory].length; // 세부분과 질문 수 추가
         displaySubCategoryQuestion();
     } else {
         displayResults(currentCategory);
@@ -271,21 +272,11 @@ function determineCategory() {
 function displaySubCategoryQuestion() {
     const questionElement = document.getElementById("question");
     const optionsElement = document.getElementById("options");
-    const subProgressBar = document.getElementById("sub-progress-bar");
-    const subProgressPercent = document.getElementById("sub-progress-percent");
-    const subProgressIcon = document.getElementById("sub-progress-icon");
-    const remainingQuestionsText = document.getElementById("remaining-questions");
 
     questionElement.innerHTML = subCategoryQuestions[currentCategory][subQuestionIndex].question;
     optionsElement.innerHTML = "";
 
-    let options = subCategoryQuestions[currentCategory][subQuestionIndex].options;
-    const dontKnowOption = options.find(option => option.answer === "잘 모르겠음");
-    options = options.filter(option => option.answer !== "잘 모르겠음");
-    shuffle(options);
-    options.push(dontKnowOption); // "잘 모르겠음"을 맨 아래로 이동
-
-    options.forEach(option => {
+    subCategoryQuestions[currentCategory][subQuestionIndex].options.forEach(option => {
         const button = document.createElement("button");
         button.innerText = option.answer;
         button.className = "option";
@@ -293,16 +284,8 @@ function displaySubCategoryQuestion() {
         optionsElement.appendChild(button);
     });
 
-    const progressPercentage = ((subQuestionIndex + 1) / subCategoryQuestions[currentCategory].length) * 100;
-    subProgressBar.style.width = progressPercentage + '%';
-    subProgressPercent.innerHTML = `${progressPercentage.toFixed(0)}%`;
-    subProgressIcon.style.left = `calc(${progressPercentage}% - 10px)`;
-
-    // 남아 있는 질문 수 표시
-    const remainingQuestions = subCategoryQuestions[currentCategory].length - subQuestionIndex - 1;
-    remainingQuestionsText.innerHTML = `마지막 ${remainingQuestions}개의 질문이 남았어요!`;
+    updateProgressBar(); // 진행 바 업데이트
 }
-
 
 function handleSubAnswer(weight) {
     for (let key in weight) {
@@ -320,7 +303,6 @@ function handleSubAnswer(weight) {
 
 function determineSubCategory() {
     const topSubCategory = Object.keys(subCategoryScores).reduce((a, b) => subCategoryScores[a] > subCategoryScores[b] ? a : b);
-    console.log(`당신의 세부 분과는: ${topSubCategory}`);
     displayResults(topSubCategory);
 }
 
@@ -330,11 +312,13 @@ async function displayResults(subCategory) {
     const progressBar = document.getElementById("progress-bar");
     const progressPercent = document.getElementById("progress-percent");
     const progressIcon = document.getElementById("progress-icon");
+
     questionElement.innerHTML = "당신의 분과는...";
     optionsElement.innerHTML = "";
     progressBar.style.width = '100%';
     progressPercent.innerHTML = '100%';
     progressIcon.style.left = `calc(100% - 10px)`;
+
     // 결과 이미지 표시
     const resultImage = document.getElementById("result-image");
     resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
@@ -571,3 +555,14 @@ async function savePhoneNumber(clubName, phoneNumber) {
         return false;
     }
 }
+
+// 보조 함수
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// 초기 질문 표시
+displayQuestion();
