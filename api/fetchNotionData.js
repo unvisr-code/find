@@ -5,8 +5,6 @@ const DATABASE_ID = 'fce96a586958411d8a0b153a1563a75a';
 
 module.exports = async (req, res) => {
     try {
-        console.log('Request received');
-        
         const response = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, {
             method: 'POST',
             headers: {
@@ -19,15 +17,12 @@ module.exports = async (req, res) => {
 
         if (!response.ok) {
             const errorText = await response.text();
-            console.error('Failed to fetch data from Notion:', response.status, response.statusText, errorText);
             return res.status(response.status).json({ error: 'Failed to fetch data from Notion', details: errorText });
         }
 
         const data = await response.json();
-        console.log('Notion API response data:', data);
         return res.status(200).json(data);
     } catch (error) {
-        console.error('Error fetching data from Notion:', error);
         return res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 };
