@@ -28,6 +28,11 @@ body::before {
     z-index: -1;
 }
 
+/* 결과창에서는 배경 이미지 제거 */
+body.no-background::before {
+    display: none;
+}
+
 .progress-container {
     width: 80%;
     margin: 20px;

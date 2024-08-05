@@ -332,6 +332,9 @@ async function displayResults(subCategory) {
     const resultDepartment = document.getElementById("result-department");
     const notionList = document.getElementById("notionList");
 
+    // 배경 이미지 제거
+    document.body.classList.add("no-background");
+
     questionElement.innerHTML = "";
     optionsElement.innerHTML = "";
     progressBar.style.width = '100%';
@@ -358,10 +361,19 @@ async function displayResults(subCategory) {
     showButton.className = "show-button";
     showButton.innerText = "세부 분과 보기";
     showButton.onclick = () => {
-        notionList.style.display = 'block';
-        loadNotionData(subCategory);
+        if (notionList.style.display === 'block') {
+            notionList.style.display = 'none';
+            showButton.innerText = "세부 분과 보기";
+        } else {
+            loadNotionData(subCategory);
+            notionList.style.display = 'block';
+            showButton.innerText = "세부 분과 닫기";
+        }
     };
     resultDepartment.appendChild(showButton);
+
+    // 바로 데이터를 로딩 시작
+    loadNotionData(subCategory);
 }
 
 async function loadNotionData(subCategory) {
