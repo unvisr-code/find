@@ -356,7 +356,7 @@ async function displayResults(subCategory) {
     // "세부 분과 보기" 버튼 및 다운로드 아이콘 추가
     const showButton = document.createElement("button");
     showButton.className = "show-button";
-    showButton.innerText = "세부 분과 보기";
+    showButton.innerText = "세부 동아리 보기";
     
     const downloadButton = document.createElement("button");
     downloadButton.className = "download-button";
@@ -374,7 +374,7 @@ async function displayResults(subCategory) {
             notionList.style.display = 'none';
             resultContainer.classList.remove("show-content");
             resultContainer.classList.add("center-content");
-            showButton.innerText = "세부 분과 보기";
+            showButton.innerText = "세부 동아리 보기";
             downloadButton.style.display = 'inline-block'; // 다운로드 버튼 다시 표시
         } else {
             loadNotionData(subCategory);
@@ -382,7 +382,7 @@ async function displayResults(subCategory) {
             notionList.classList.add("notion-list");
             resultContainer.classList.add("show-content");
             resultContainer.classList.remove("center-content");
-            showButton.innerText = "세부 분과 닫기";
+            showButton.innerText = "세부 동아리 닫기";
             downloadButton.style.display = 'none'; // 다운로드 버튼 숨기기
         }
     };
