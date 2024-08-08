@@ -1,41 +1,23 @@
-/* 기본 스타일 설정 */
-html, body {
+body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-    overflow: hidden; /* 스크롤 고정 */
 }
 
-.container {
-    text-align: center;
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.video-container {
+.relative {
     position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
 }
 
-.background-image {
-    background-image: url('/pages/cat.jpg');
-    background-size: cover;
-    background-position: center center;
-    width: 100vw;
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.h-screen {
     height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
 }
 
 .absolute {
@@ -46,8 +28,12 @@ html, body {
     width: 100vw;
 }
 
-.h-screen {
-    height: 100vh;
+.bg-gradient-to-t {
+    background: linear-gradient(to top, black, transparent);
+}
+
+.opacity-90 {
+    opacity: 0.9;
 }
 
 .z-4 {
@@ -58,34 +44,67 @@ html, body {
     z-index: 10;
 }
 
-.mid-content {
-    top: 75%; /* 적당한 아래 위치 */
-    left: 50%; /* 화면의 중앙 위치 */
-    transform: translate(-50%, -50%); /* 중앙 정렬 */
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.content-wrapper {
-    width: 100%;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    justify content: center;
-    align-items: center;
-    text-align: center;
-
+.bottom-20 {
+    bottom: 5rem;
 }
 
 .w-full {
     width: 100%;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.mb-2 {
+    margin-bottom: 0.5rem;
+}
+
+.text-white {
+    color: white;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+.leading-normal {
+    line-height: 1.5;
+}
+
+.gradient-effect-text {
+    background: linear-gradient(90deg, #f3ec78, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.mb-5 {
+    margin-bottom: 1.25rem;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-row {
+    flex-direction: row;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
 .bg-primary {
-    background-color: #F2A0B0; /* 예시 색상, 실제 색상으로 변경하세요 */
+    background-color: var(--color-primary);
 }
 
 .px-4 {
@@ -106,6 +125,73 @@ html, body {
     cursor: pointer;
 }
 
+.font-extrabold {
+    font-weight: 800;
+}
+
+.find-club-button {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.icon {
+    margin-right: 0.5rem;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.relative {
+    position: relative;
+}
+
+.max-w-3xl {
+    max-width: 48rem;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.h-screen {
+    height: 100vh;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.w-screen {
+    width: 100vw;
+}
+
+.bg-gradient-to-t {
+    background: linear-gradient(to top, black, transparent);
+}
+
+.opacity-90 {
+    opacity: 0.9;
+}
+
+.z-4 {
+    z-index: 4;
+}
+
+.z-10 {
+    z-index: 10;
+}
+
+.bottom-20 {
+    bottom: 5rem;
+}
+
+.w-full {
+    width: 100%;
+}
+
 .text-center {
     text-align: center;
 }
@@ -115,7 +201,7 @@ html, body {
 }
 
 .text-white {
-    color: #fff;
+    color: white;
 }
 
 .font-bold {
@@ -124,10 +210,17 @@ html, body {
 
 .text-4xl {
     font-size: 2.25rem;
+    line-height: 2.5rem;
 }
 
 .leading-normal {
     line-height: 1.5;
+}
+
+.gradient-effect-text {
+    background: linear-gradient(90deg, #f3ec78, #af4261);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .text-lg {
@@ -142,85 +235,46 @@ html, body {
     display: flex;
 }
 
+.flex-row {
+    flex-direction: row;
+}
+
 .justify-center {
     justify-content: center;
 }
 
-.items-center {
-    align-items: center;
+.bg-primary {
+    background-color: var(--color-primary);
 }
 
-.w-6 {
-    width: 1.5rem;
+.px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
-.h-6 {
-    height: 1.5rem;
+.py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
 }
 
-.mr-2 {
-    margin-right: 0.5rem;
+.rounded-2xl {
+    border-radius: 1rem;
 }
 
-.inline-block {
-    display: inline-block;
+.cursor-pointer {
+    cursor: pointer;
 }
 
-/* 로딩 애니메이션 스타일 */
-@keyframes swipe-up {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
+.font-extrabold {
+    font-weight: 800;
 }
 
-.loading-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: white;
+.find-club-button {
     display: flex;
-    justify-content: center;
     align-items: center;
-    animation: swipe-up 1s ease-out;
-    z-index: 9999;
+    text-decoration: none;
 }
 
-/* Responsive styles */
-@media (min-width: 600px) {
-    .container {
-        max-width: 60rem;
-    }
-
-    .text-4xl {
-        font-size: 2.5rem;
-    }
-
-    .text-lg {
-        font-size: 1.25rem;
-    }
-}
-
-@media (max-width: 599px) {
-    .text-4xl {
-        font-size: 1.75rem;
-    }
-
-    .text-lg {
-        font-size: 1rem;
-    }
-
-    .px-4 {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
-
-    .py-3 {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-    }
+.icon {
+    margin-right: 0.5rem;
 }

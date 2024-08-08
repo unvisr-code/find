@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+ocument.addEventListener('DOMContentLoaded', () => {
     const findClubButton = document.getElementById('findClubButton');
 
     findClubButton.addEventListener('click', () => {

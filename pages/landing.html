@@ -1,43 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>총동아리연합회</title>
-    <link rel="icon" href="../favicon.ico">
-    <link rel="stylesheet" href="/pages/style2.css">
+    <meta name="description" content="세종대학교 총동아리연합회">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
-    <div class="container">
-        <div class="video-container">
-            <div class="background-image"></div>
-            <div class="absolute z-4 w-full h-screen bg-gradient-to-t from-black to-[#ffffff00] opacity-90"></div>
-            <div class="absolute z-10 mid-content w-full">
-                <div class="content-wrapper">
+    <div class="relative max-w-3xl mx-auto">
+        <div class="video-container relative h-screen">
+            <img class="background-image absolute w-screen h-screen" src="/test background.jpg" alt="Background Image">
+            <div class="overlay absolute z-4 w-full h-screen bg-gradient-to-t from-black to-transparent opacity-90"></div>
+            <div class="content absolute z-10 bottom-20 w-full">
+                <div>
                     <p class="text-center mb-2 text-white font-bold text-4xl leading-normal">
-                        내게 맞는 동아리 찾기<br>
+                        내게 맞는<br>
+                        <span class="gradient-effect-text font-extrabold">동아리</span> 찾아보기
                     </p>
                     <p class="text-lg text-center text-white mb-5">
-                        sub-title: “40개가 넘는 동아리가 여러분을 기다리고 있어요!” ← 학생 주관적인 느낌으로 바꿀 필요 있음
+                        40개가 넘는 동아리가 <br>
+                        여러분을 기다리고 있어요!
                     </p>
-                    <div class="flex justify-center">
-                        <button id="findClubButton" class="bg-primary px-4 py-3 rounded-2xl cursor-pointer">
+                    <div class="flex flex-row justify-center">
+                        <a href="/find" class="find-club-button bg-primary px-4 py-3 rounded-2xl cursor-pointer">
                             <span class="font-bold text-lg text-white flex items-center">
-                                지원하기!
+                                <img class="icon w-6 h-6 mr-2 inline-block" src="/toss-emojis/4x/u1F50D.png" alt="Icon">
+                                지금 찾아보기
                             </span>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="map-view center-content">
-            <!-- MapView Component Placeholder -->
-        </div>
-        <div class="footer center-content">
-            <!-- Footer Component Placeholder -->
-        </div>
+        <!-- MapView Component -->
+        <div id="map-view"></div>
+        <!-- Footer Component -->
+        <div id="footer"></div>
     </div>
 
-    <script src="/pages/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
