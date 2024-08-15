@@ -133,6 +133,7 @@ body {
     display: flex;
     align-items: center;
     text-decoration: none;
+    
 }
 
 .icon {
@@ -277,4 +278,21 @@ body {
 
 .icon {
     margin-right: 0.5rem;
+}
+.button {
+    background-color: var(--color-primary);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 12px;
+    max-width: 300px;
+    margin: 0 auto;
+    justify-content: center; /* 가로 가운데 정렬 */
+    align-items: center; /* 세로 가운데 정렬 */
+    margin-bottom: 10px; /* 버튼을 위로 10px 이동 */
 }

@@ -7,39 +7,88 @@
     <meta name="description" content="세종대학교 총동아리연합회">
     <link rel="icon" href="/favicon.ico">
     <link rel="stylesheet" href="/pages/style2.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 340px;
+            height: 100vh;
+            background: url('/src/page_cover.png') no-repeat center center;
+            background-size: contain;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* 세로 가운데 정렬 */
+            align-items: center; /* 가로 가운데 정렬 */
+            color: white;
+            text-align: center;
+            transition: transform 1s ease-in-out;
+        }
+
+        .gradient-effect-text {
+            background: linear-gradient(90deg, #f3ec78, #af4261);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .button {
+            background-color: var(--color-primary);
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 12px;
+            max-width: 300px;
+            margin: 0 auto;
+            justify-content: center; /* 가로 가운데 정렬 */
+            align-items: center; /* 세로 가운데 정렬 */
+        }
+
+        @media (max-width: 768px) {
+            body, .container {
+                width: 100vw;
+                height: 100vh;
+                background-color: black;
+            }
+
+            .container {
+                background-size: cover; /* 화면에 꽉 차도록 설정 */
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="relative max-w-3xl mx-auto">
-        <div class="video-container relative h-screen">
-            <img class="background-image absolute w-screen h-screen" src="/background.jpeg" alt="Background Image">
-            <div class="overlay absolute z-4 w-full h-screen bg-gradient-to-t from-black to-transparent opacity-90"></div>
-            <div class="content absolute z-10 bottom-20 w-full">
-                <div>
-                    <p class="text-center mb-2 text-white font-bold text-4xl leading-normal">
-                        내게 맞는<br>
-                        <span class="gradient-effect-text font-extrabold">동아리</span> 찾아보기
-                    </p>
-                    <p class="text-lg text-center text-white mb-5">
-                        40개가 넘는 동아리가 <br>
-                        여러분을 기다리고 있어요!
-                    </p>
-                    <div class="flex flex-row justify-center">
-                        <a href="/find" class="find-club-button bg-primary px-4 py-3 rounded-2xl cursor-pointer">
-                            <span class="font-bold text-lg text-white flex items-center">
-                                <img class="icon w-6 h-6 mr-2 inline-block" src="/toss-emojis/4x/u1F50D.png" alt="Icon">
-                                지금 찾아보기
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- MapView Component -->
-        <div id="map-view"></div>
-        <!-- Footer Component -->
-        <div id="footer"></div>
+    <div class="container" id="container">
+        <button class="button" id="findClubButton"></button>
     </div>
 
-    <script src="/pages/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const findClubButton = document.getElementById('findClubButton');
+            const container = document.getElementById('container');
+
+            findClubButton.addEventListener('click', () => {
+                // 커버 이미지가 위로 올라가는 애니메이션
+                container.style.transform = 'translateY(-100vh)';
+                
+                setTimeout(() => {
+                    window.location.href = '/find';
+                }, 1000); // 애니메이션 시간과 일치하도록 설정
+            });
+        });
+    </script>
 </body>
 </html>
