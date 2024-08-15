@@ -5,46 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questionnaire</title>
     <link rel="stylesheet" href="/pages/find/Q.css">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
 </head>
 <body>
-    <!-- 애니메이션 섹션 -->
-    <div class="text" id="loading-text">잠시만 기다려주세요... 결과를 분석 중입니다!</div>
-    <div class="carousel" id="loading-animation">
-        <div class="logos">
-            <img src="src/공연예술.png" alt="Logo 1">
-            <img src="src/구기체육.png" alt="Logo 2">
-            <img src="src/무술체육.png" alt="Logo 3">
-            <img src="src/문화.png" alt="Logo 4">
-            <img src="src/봉사.png" alt="Logo 5">
-            <img src="src/생활체육.png" alt="Logo 6">
-            <img src="src/음악연주.png" alt="Logo 7">
-            <img src="src/정보과학.png" alt="Logo 8">
-            <img src="src/종교.png" alt="Logo 9">
-            <img src="src/창작예술.png" alt="Logo 9">
-            <img src="src/학술교양.png" alt="Logo 9">
-        </div>
-    </div>
-
-    <!-- 기존의 내용 -->
-    <div class="progress-container" style="display:none;">
+    <div class="progress-container">
         <div class="progress-text">내게 맞는 동아리 찾아보기</div>
         <div class="progress-bar-wrapper">
             <div class="progress-bar-container">
                 <div id="progress-bar" class="progress-bar"></div>
                 <div id="progress-icon" class="progress-icon"></div>
             </div>
-            <div id="progress-percent" class="progress-text"></div>
+            <div id="progress-percent" class="progress-text"></div> <!-- 진행 상태 퍼센트 -->
         </div>
     </div>
-    <div class="question-container" style="display:none;">
+    <div class="question-container">
         <div id="question" class="question"></div>
         <div id="options" class="options"></div>
     </div>
-    <div id="result-container" class="result-container center-content" style="display:none;">
-        <div id="result-image" class="result-image"></div>
+    <div id="result-container" class="result-container center-content">
+        <div id="result-image" class="result-image"></div> <!-- 결과 이미지 표시 영역 -->
         <div id="result-department" class="result-department"></div>
     </div>
 
-    <script src="/pages/find/Q.js"></script> <!-- 여기에 JS 코드가 들어갑니다 -->
+    <!-- 리스트를 표시할 영역 추가 -->
+    <div id="notionList" class="container" style="display: none;"></div>
+
+    <script src="/pages/find/Q.js"></script>
+    <script src="/api/fetchNotionData.js"></script>
 </body>
 </html>
