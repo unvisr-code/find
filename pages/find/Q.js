@@ -392,6 +392,23 @@ async function displayResults(subCategory) {
     loadNotionData(subCategory);
 }
 
+// 스크린샷 다운로드 함수 추가
+function downloadScreenshot() {
+    html2canvas(document.body).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'screenshot.png';
+        link.click();
+    }).catch(error => {
+        console.error('Screenshot download failed:', error);
+    });
+}
+
+// **수정된 부분 끝**
+
+// 나머지 기존 코드 계속 이어짐...
+
+
 
 
 
