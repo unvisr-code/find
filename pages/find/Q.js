@@ -394,7 +394,21 @@ async function displayResults(subCategory) {
 
 // 스크린샷 다운로드 함수 추가
 function downloadScreenshot() {
-    html2canvas(document.body).then(canvas => {
+    // 버튼의 상태를 명시적으로 설정
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(button => {
+        const computedStyle = window.getComputedStyle(button);
+        button.style.backgroundColor = computedStyle.backgroundColor;
+        button.style.color = computedStyle.color;
+        button.style.border = computedStyle.border;
+        button.style.padding = computedStyle.padding;
+        // 필요에 따라 추가적인 스타일 속성도 설정 가능
+    });
+
+    html2canvas(document.body, {
+        useCORS: true, // 외부 이미지 리소스 문제가 있을 경우 사용
+        backgroundColor: null // 배경색을 투명하게 설정하려면 null로 설정
+    }).then(canvas => {
         const link = document.createElement('a');
         link.href = canvas.toDataURL('image/png');
         link.download = 'screenshot.png';
@@ -403,6 +417,7 @@ function downloadScreenshot() {
         console.error('Screenshot download failed:', error);
     });
 }
+
 
 // **수정된 부분 끝**
 
