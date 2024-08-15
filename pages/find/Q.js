@@ -333,7 +333,6 @@ async function displayResults(subCategory) {
     const resultDepartment = document.getElementById("result-department");
     const notionList = document.getElementById("notionList");
     const resultContainer = document.querySelector('.result-container');
-    
 
     // 배경 이미지 제거
     document.body.classList.add("no-background");
@@ -365,17 +364,18 @@ async function displayResults(subCategory) {
     downloadButton.innerHTML = "&#128190;"; // 다운로드 아이콘 (유니코드 또는 FontAwesome 아이콘 사용 가능)
     downloadButton.onclick = () => downloadScreenshot();
 
-    // "모든 분과 동아리 보기" 버튼 추가
-    const allDepartmentsButton = document.createElement("button");
-    allDepartmentsButton.className = "download-button";
-    allDepartmentsButton.innerText = "모든 분과 동아리 보기";
-    allDepartmentsButton.onclick = () => window.location.href = '/index.html';
-
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
     buttonContainer.appendChild(showButton);
     buttonContainer.appendChild(downloadButton);
+
+    // "모든 분과 동아리 보기" 버튼 추가 (아래에 배치)
+    const allDepartmentsButton = document.createElement("button");
+    allDepartmentsButton.className = "download-button"; // 동일한 스타일 적용
+    allDepartmentsButton.innerText = "모든 분과 동아리 보기";
+    allDepartmentsButton.onclick = () => window.location.href = '/index.html';
     buttonContainer.appendChild(allDepartmentsButton);
+
     resultDepartment.appendChild(buttonContainer);
 
     showButton.onclick = () => {
@@ -401,6 +401,7 @@ async function displayResults(subCategory) {
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
 
 
 // 스크린샷 다운로드 함수 추가
