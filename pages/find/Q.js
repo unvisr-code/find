@@ -385,6 +385,11 @@ async function displayResults(subCategory) {
         const downloadButtonWidth = downloadButton.offsetWidth;
         const buttonContainerMargin = parseInt(window.getComputedStyle(buttonContainer).marginLeft) + parseInt(window.getComputedStyle(buttonContainer).marginRight);
         allDepartmentsButton.style.width = (showButtonWidth + downloadButtonWidth + buttonContainerMargin) + 'px';
+
+        // "모든 분과 동아리 보기" 버튼을 가운데 정렬
+        allDepartmentsButton.style.marginLeft = 'auto';
+        allDepartmentsButton.style.marginRight = 'auto';
+        allDepartmentsButton.style.display = 'block';
     }, 0);
 
     showButton.onclick = () => {
@@ -410,6 +415,7 @@ async function displayResults(subCategory) {
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
 
 
 
