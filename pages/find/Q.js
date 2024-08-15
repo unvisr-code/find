@@ -355,7 +355,7 @@ async function displayResults(subCategory) {
         <div class="description-text">${subCategoryDescriptions[subCategory]}</div>
     `;
 
-    // "세부 분과 보기" 버튼 및 다운로드 아이콘 추가
+    // "세부 동아리 보기" 버튼 및 다운로드 아이콘 추가
     const showButton = document.createElement("button");
     showButton.className = "show-button";
     showButton.innerText = "세부 동아리 보기";
@@ -365,10 +365,17 @@ async function displayResults(subCategory) {
     downloadButton.innerHTML = "&#128190;"; // 다운로드 아이콘 (유니코드 또는 FontAwesome 아이콘 사용 가능)
     downloadButton.onclick = () => downloadScreenshot();
 
+    // "모든 분과 동아리 보기" 버튼 추가
+    const allDepartmentsButton = document.createElement("button");
+    allDepartmentsButton.className = "download-button";
+    allDepartmentsButton.innerText = "모든 분과 동아리 보기";
+    allDepartmentsButton.onclick = () => window.location.href = '/index.html';
+
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
     buttonContainer.appendChild(showButton);
     buttonContainer.appendChild(downloadButton);
+    buttonContainer.appendChild(allDepartmentsButton);
     resultDepartment.appendChild(buttonContainer);
 
     showButton.onclick = () => {
@@ -378,6 +385,7 @@ async function displayResults(subCategory) {
             resultContainer.classList.add("center-content");
             showButton.innerText = "세부 동아리 보기";
             downloadButton.style.display = 'inline-block'; // 다운로드 버튼 다시 표시
+            allDepartmentsButton.style.display = 'inline-block'; // "모든 분과 동아리 보기" 버튼 다시 표시
         } else {
             loadNotionData(subCategory);
             notionList.style.display = 'block';
@@ -386,12 +394,14 @@ async function displayResults(subCategory) {
             resultContainer.classList.remove("center-content");
             showButton.innerText = "세부 동아리 닫기";
             downloadButton.style.display = 'none'; // 다운로드 버튼 숨기기
+            allDepartmentsButton.style.display = 'none'; // "모든 분과 동아리 보기" 버튼 숨기기
         }
     };
 
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
 
 // 스크린샷 다운로드 함수 추가
 function downloadScreenshot() {
