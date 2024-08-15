@@ -373,7 +373,7 @@ async function displayResults(subCategory) {
     const allDepartmentsButton = document.createElement("button");
     allDepartmentsButton.className = "download-button all-departments-button"; // 동일한 스타일 적용, 클래스 추가
     allDepartmentsButton.innerText = "모든 분과 동아리 보기";
-    allDepartmentsButton.onclick = () => window.location.href = '/index.html';
+    allDepartmentsButton.onclick = () => window.location.href = '/';
 
     // 버튼 컨테이너와 별도로 추가하여 아래에 배치
     resultDepartment.appendChild(buttonContainer);
