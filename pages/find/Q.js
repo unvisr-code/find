@@ -396,7 +396,7 @@ async function displayResults(subCategory) {
         }
     };
 
-    // 바로 데이터를 로딩 시작
+    // 바로 데이터를 로딩 시작.
     loadNotionData(subCategory);
 }
 
