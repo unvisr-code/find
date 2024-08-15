@@ -511,3 +511,35 @@ button:hover {
         font-size: 10px; /* 커리큘럼 포인트 텍스트 크기 줄이기 */
     }
 }
+/* 애니메이션 키프레임 정의 */
+@keyframes moveLogos {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+.carousel {
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.logos {
+    display: flex;
+    animation: moveLogos 3s linear infinite;
+}
+
+.logos img {
+    width: 100px;
+    height: auto;
+    margin: 0 10px;
+}
+
+.text {
+    font-size: 1.5em;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}

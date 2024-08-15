@@ -647,3 +647,15 @@ function shuffle(array) {
 
 // 초기 질문 표시
 displayQuestion();
+document.addEventListener('DOMContentLoaded', () => {
+    // 3초 후 결과 화면으로 전환
+    setTimeout(() => {
+        document.getElementById('loading-animation').style.display = 'none';
+        document.getElementById('loading-text').style.display = 'none';
+
+        // 기존의 요소들 표시
+        document.querySelector('.progress-container').style.display = 'block';
+        document.querySelector('.question-container').style.display = 'block';
+        document.getElementById('result-container').style.display = 'block';
+    }, 3000);
+});
