@@ -369,7 +369,7 @@ async function displayResults(subCategory) {
     buttonContainer.appendChild(showButton);
     buttonContainer.appendChild(downloadButton);
 
-    // "모든 분과 동아리 보기" 버튼 추가 (아래에 배치)
+    // "모든 분과 동아리 보기" 버튼 추가
     const allDepartmentsButton = document.createElement("button");
     allDepartmentsButton.className = "download-button all-departments-button"; // 동일한 스타일 적용, 클래스 추가
     allDepartmentsButton.innerText = "모든 분과 동아리 보기";
@@ -378,6 +378,14 @@ async function displayResults(subCategory) {
     // 버튼 컨테이너와 별도로 추가하여 아래에 배치
     resultDepartment.appendChild(buttonContainer);
     resultDepartment.appendChild(allDepartmentsButton);
+
+    // 세부 동아리 보기 및 다운로드 버튼의 합계 너비를 계산하여 "모든 분과 동아리 보기" 버튼에 적용
+    setTimeout(() => {
+        const showButtonWidth = showButton.offsetWidth;
+        const downloadButtonWidth = downloadButton.offsetWidth;
+        const buttonContainerMargin = parseInt(window.getComputedStyle(buttonContainer).marginLeft) + parseInt(window.getComputedStyle(buttonContainer).marginRight);
+        allDepartmentsButton.style.width = (showButtonWidth + downloadButtonWidth + buttonContainerMargin) + 'px';
+    }, 0);
 
     showButton.onclick = () => {
         if (notionList.style.display === 'block') {
@@ -402,6 +410,7 @@ async function displayResults(subCategory) {
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
 
 
 
