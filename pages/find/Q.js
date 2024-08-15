@@ -340,7 +340,7 @@ async function displayResults(subCategory) {
     animationContainer.style.display = 'flex';
 
     // 이미지 배열 정의
-    const images = [`/src/image1.png`, `/src/image2.png`, `/src/image3.png`, `/src/${subCategory}.png`]; // 원하는 이미지 파일명을 여기에 나열
+    const images = [`src/공연예술.png`, `src/구기체육.png`, `src/무술체육.png`, `src/문화.png`, `src/봉사.png`, `src/생활체육.png`, `src/음악연주.png`, `src/정보과학.png`, `src/종교.png`, `src/창작예술.png`, `src/학술교양.png`]; // 원하는 이미지 파일명을 여기에 나열
 
     // 애니메이션에 사용할 이미지 요소 생성
     images.forEach((imageSrc, index) => {
