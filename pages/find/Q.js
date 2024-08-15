@@ -404,6 +404,7 @@ async function displayResults(subCategory) {
 
 
 
+
 // 스크린샷 다운로드 함수 추가
 function downloadScreenshot() {
     // 버튼의 상태를 명시적으로 설정
