@@ -333,30 +333,7 @@ async function displayResults(subCategory) {
     const resultDepartment = document.getElementById("result-department");
     const notionList = document.getElementById("notionList");
     const resultContainer = document.querySelector('.result-container');
-    const progressContainer = document.querySelector('.progress-container');
-    const animationContainer = document.getElementById("animation-container");
     
-    // 애니메이션 컨테이너 표시
-    animationContainer.style.display = 'flex';
-
-    // 이미지 배열 정의
-    const images = [`src/공연예술.png`, `src/구기체육.png`, `src/무술체육.png`, `src/문화.png`, `src/봉사.png`, `src/생활체육.png`, `src/음악연주.png`, `src/정보과학.png`, `src/종교.png`, `src/창작예술.png`, `src/학술교양.png`]; // 원하는 이미지 파일명을 여기에 나열
-
-    // 애니메이션에 사용할 이미지 요소 생성
-    images.forEach((imageSrc, index) => {
-        const img = document.createElement('img');
-        img.src = imageSrc;
-        img.className = 'animation-image';
-        img.style.animationDelay = `${index * 0.75}s`; // 각 이미지가 약간씩 늦게 나타나도록 지연 설정
-        animationContainer.appendChild(img);
-    });
-
-    // 3초 후 애니메이션 숨기고 결과 표시
-    setTimeout(() => {
-        animationContainer.style.display = 'none';
-        animationContainer.innerHTML = ''; // 애니메이션 요소 정리
-        showResultScreen(subCategory); // 결과 화면을 표시하는 함수 호출
-    }, 3000);
 
     // 배경 이미지 제거
     document.body.classList.add("no-background");
@@ -414,27 +391,6 @@ async function displayResults(subCategory) {
 
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
-}
-function showResultScreen(subCategory) {
-    const resultImage = document.getElementById("result-image");
-    const resultDepartment = document.getElementById("result-department");
-    const notionList = document.getElementById("notionList");
-    const resultContainer = document.querySelector('.result-container');
-
-    // 배경 이미지 제거
-    document.body.classList.add("no-background");
-
-    resultContainer.style.display = 'block'; // 결과 컨테이너를 표시
-
-    const imagePath = `/src/${subCategory}.png`; // 결과값에 해당하는 이미지 경로 설정
-    resultImage.style.display = 'block';
-    resultImage.style.backgroundImage = `url('${imagePath}')`;
-
-    // 결과 텍스트 및 설명 추가
-    resultDepartment.innerHTML = `
-        <div class="result-text">${subCategory} 분과를 추천드려요!</div>
-        <div class="description-text">${subCategoryDescriptions[subCategory]}</div>
-    `;
 }
 
 // 스크린샷 다운로드 함수 추가
