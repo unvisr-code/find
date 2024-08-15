@@ -134,14 +134,21 @@ body.no-background::before {
     background-color: #e55370;
 }
 
+/* 기존 result-container의 위치를 조금 위로 조정 */
 .result-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* 위쪽으로 정렬 */
     align-items: center;
-    height: 100vh;
+    height: 80vh; /* 높이를 조정하여 위쪽으로 이동 */
     text-align: center;
     transition: all 0.5s ease-in-out;
+    margin-top: -50px; /* 위로 더 올리기 위해 마진 조정 */
+}
+
+/* 세부 동아리 보기 버튼을 눌렀을 때의 상태 */
+.result-container.show-content {
+    margin-top: 0; /* 프로그레스 바로 아래로 붙이기 */
 }
 
 .result-image {
@@ -393,7 +400,12 @@ button:hover {
     transition: all 0.5s ease-in-out;
 }
 .notion-list {
-    margin-top: 80px; /* notionList를 더 위로 이동시키기 위해 margin-top을 추가 */
+    margin-top: 20px; /* 세부 동아리 목록이 위로 올라오도록 조정 */
+    transition: margin-top 0.5s ease-in-out;
+}
+
+.notion-list.show-content {
+    margin-top: 0; /* 프로그레스 바로 아래로 붙이기 */
 }
 .download-button {
     background-color: #F2A0B0;

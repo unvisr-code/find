@@ -344,7 +344,7 @@ async function displayResults(subCategory) {
     progressIcon.style.left = `calc(100% - 10px)`;
 
     // 결과 이미지 설정
-    const imagePath = `/src/${subCategory}.png`; // 결과값에 해당하는 이미지 경로 설정
+    const imagePath = `/src/${subCategory}.png`;
     resultImage.style.display = 'block';
     resultImage.style.backgroundImage = `url('${imagePath}')`;
 
@@ -361,36 +361,20 @@ async function displayResults(subCategory) {
     
     const downloadButton = document.createElement("button");
     downloadButton.className = "download-button";
-    downloadButton.innerHTML = "&#128190;"; // 다운로드 아이콘 (유니코드 또는 FontAwesome 아이콘 사용 가능)
+    downloadButton.innerHTML = "&#128190;";
     downloadButton.onclick = () => downloadScreenshot();
+
+    const viewAllButton = document.createElement("button");
+    viewAllButton.className = "view-all-button";
+    viewAllButton.innerText = "모든 분과 동아리 보기";
+    viewAllButton.onclick = () => window.location.href = '/';
 
     const buttonContainer = document.createElement("div");
     buttonContainer.className = "button-container";
     buttonContainer.appendChild(showButton);
     buttonContainer.appendChild(downloadButton);
-
-    // "모든 분과 동아리 보기" 버튼 추가
-    const allDepartmentsButton = document.createElement("button");
-    allDepartmentsButton.className = "download-button all-departments-button"; // 동일한 스타일 적용, 클래스 추가
-    allDepartmentsButton.innerText = "모든 분과 동아리 보기";
-    allDepartmentsButton.onclick = () => window.location.href = '/';
-
-    // 버튼 컨테이너와 별도로 추가하여 아래에 배치
     resultDepartment.appendChild(buttonContainer);
-    resultDepartment.appendChild(allDepartmentsButton);
-
-    // 세부 동아리 보기 및 다운로드 버튼의 합계 너비를 계산하여 "모든 분과 동아리 보기" 버튼에 적용
-    setTimeout(() => {
-        const showButtonWidth = showButton.offsetWidth;
-        const downloadButtonWidth = downloadButton.offsetWidth;
-        const buttonContainerMargin = parseInt(window.getComputedStyle(buttonContainer).marginLeft) + parseInt(window.getComputedStyle(buttonContainer).marginRight);
-        allDepartmentsButton.style.width = (showButtonWidth + downloadButtonWidth + buttonContainerMargin) + 'px';
-
-        // "모든 분과 동아리 보기" 버튼을 가운데 정렬
-        allDepartmentsButton.style.marginLeft = 'auto';
-        allDepartmentsButton.style.marginRight = 'auto';
-        allDepartmentsButton.style.display = 'block';
-    }, 0);
+    resultDepartment.appendChild(viewAllButton);
 
     showButton.onclick = () => {
         if (notionList.style.display === 'block') {
@@ -398,23 +382,24 @@ async function displayResults(subCategory) {
             resultContainer.classList.remove("show-content");
             resultContainer.classList.add("center-content");
             showButton.innerText = "세부 동아리 보기";
-            downloadButton.style.display = 'inline-block'; // 다운로드 버튼 다시 표시
-            allDepartmentsButton.style.display = 'inline-block'; // "모든 분과 동아리 보기" 버튼 다시 표시
+            downloadButton.style.display = 'inline-block';
+            viewAllButton.style.display = 'inline-block';
         } else {
             loadNotionData(subCategory);
             notionList.style.display = 'block';
-            notionList.classList.add("notion-list");
+            notionList.classList.add("notion-list", "show-content");
             resultContainer.classList.add("show-content");
             resultContainer.classList.remove("center-content");
             showButton.innerText = "세부 동아리 닫기";
-            downloadButton.style.display = 'none'; // 다운로드 버튼 숨기기
-            allDepartmentsButton.style.display = 'none'; // "모든 분과 동아리 보기" 버튼 숨기기
+            downloadButton.style.display = 'none';
+            viewAllButton.style.display = 'none';
         }
     };
 
     // 바로 데이터를 로딩 시작
     loadNotionData(subCategory);
 }
+
 
 
 
