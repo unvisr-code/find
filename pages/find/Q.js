@@ -343,9 +343,10 @@ async function displayResults(subCategory) {
     progressPercent.innerHTML = '100%';
     progressIcon.style.left = `calc(100% - 10px)`;
 
-    // 결과 이미지 표시
+    // 결과 이미지 설정
+    const imagePath = `/src/${subCategory}.png`; // 결과값에 해당하는 이미지 경로 설정
     resultImage.style.display = 'block';
-    resultImage.style.backgroundImage = "url('/pages/find/donghwa.png')";
+    resultImage.style.backgroundImage = `url('${imagePath}')`;
 
     // 결과 텍스트 및 설명 추가
     resultDepartment.innerHTML = `
@@ -391,14 +392,6 @@ async function displayResults(subCategory) {
     loadNotionData(subCategory);
 }
 
-function downloadScreenshot() {
-    html2canvas(document.body).then(canvas => {
-        const link = document.createElement('a');
-        link.href = canvas.toDataURL('image/png');
-        link.download = 'screenshot.png';
-        link.click();
-    });
-}
 
 
 
